@@ -1,12 +1,16 @@
-package GUIpack;
+package src.GUIpack;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -21,7 +25,8 @@ public class SliderPanel extends JPanel  implements ChangeListener{
 	public static JSlider dragC;
 	public static JSlider bottleRadius;
 	public static JSlider nozzleRadius;
-
+	
+	
     public SliderPanel ()
     {
 
@@ -135,6 +140,10 @@ public class SliderPanel extends JPanel  implements ChangeListener{
 //        group2.add(sixthButton);
         add(group1);
         add(group2);
+        
+        
+		
+		
          }
    public static void main(String[] args) 
    {
@@ -162,4 +171,5 @@ public void stateChanged(ChangeEvent arg0) {
 	
 	
 }
+
 }

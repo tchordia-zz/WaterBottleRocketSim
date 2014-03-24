@@ -1,7 +1,7 @@
 /**
  * 
  */
-package GUIpack;
+package src.GUIpack;
 
 /**
  * @author Tanmay Chordia

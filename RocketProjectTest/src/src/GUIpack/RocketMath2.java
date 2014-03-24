@@ -1,7 +1,7 @@
 /**
  * 
  */
-package GUIpack;
+package src.GUIpack;
 
 import java.awt.Graphics;
 
