@@ -69,6 +69,7 @@ public class DataSave implements Serializable {
 	}
 	
 	public static boolean uploadS(String user,  int score, RocketMath2 ro) {
+		int high;
 		rocket = new r3(ro);
 		try {
 			file = DataSave.init(user, ".txt");
@@ -83,7 +84,7 @@ public class DataSave implements Serializable {
 
 				txtf.next();
 				txtf.next();
-				int high = (int) Integer.parseInt(txtf.next());
+				high = (int) Integer.parseInt(txtf.next());
 				if (score > high) {
 					high = score;
 					uploadO(user, DataSave.init(user, ".ser"), rocket);
@@ -97,10 +98,11 @@ public class DataSave implements Serializable {
 			else
 			{
 				uploadO(user, file, rocket);
+				high= score ;
 			}
 			DataSave.init(user, ".txt");
 			out = new PrintWriter(file);
-			out.println("Highest Height: " + score);
+			out.println("Highest Height: " + high);
 			out.println("Last Height: " + score);
 			
 			out.close();

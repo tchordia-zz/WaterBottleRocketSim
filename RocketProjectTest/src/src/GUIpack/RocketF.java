@@ -1,11 +1,11 @@
 package src.GUIpack;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
+
 public class RocketF extends JFrame {
 	
 	public SPanel spanel = new SPanel();
@@ -28,8 +28,14 @@ public class RocketF extends JFrame {
        
    public static void main(String[] args) 
    {
-
-	   	RocketF frame = new RocketF();
+		RocketF frame = new RocketF();
+	   	
+//	   	try {
+//	   	    UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+//	   	} catch (Exception e) {
+//	   	    e.printStackTrace();
+//	   	}
+//	   
         frame.setTitle("Button Panel Example");
         frame.setSize(600, 600);
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
@@ -50,7 +56,7 @@ public class RocketF extends JFrame {
 	   public SPanel()
 	   {
 		   super();
-		   
+		   setSize(200,200);
 	   }
 	   RocketMath2 rocket2;
 	   @Override
