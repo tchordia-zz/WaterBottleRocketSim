@@ -9,7 +9,7 @@ import javax.swing.event.ChangeEvent;
 public class RocketF extends JFrame {
 	
 	public SPanel spanel = new SPanel();
-	public AnimPanel apanel = new AnimPanel(new RocketMath2());
+	public GraphPanel apanel = new GraphPanel(new RocketMath2());
     
 
 	

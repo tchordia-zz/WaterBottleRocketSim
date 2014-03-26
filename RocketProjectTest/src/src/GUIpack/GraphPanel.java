@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @date Mar 2, 2014
  * @version 1
  */
-public class AnimPanel extends JPanel {
+public class GraphPanel extends JPanel {
 
 	public RocketMath2 rocket;
 	public RocketMath2 orocket;
@@ -28,7 +28,7 @@ public class AnimPanel extends JPanel {
 	/**
 	 * 
 	 */
-	public AnimPanel(RocketMath2 rocketa ) {
+	public GraphPanel(RocketMath2 rocketa ) {
 	
 	orocket = rocketa;
 	rocket = rocketa;
