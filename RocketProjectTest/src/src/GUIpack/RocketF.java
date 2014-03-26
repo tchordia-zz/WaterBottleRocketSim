@@ -1,12 +1,14 @@
 package src.GUIpack;
 
-import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import java.io.IOException;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.ChangeEvent;
 
-public class RocketF extends JFrame {
+public class RocketF extends JFrame  {
 	
 	public SPanel spanel = new SPanel();
 	public AnimPanel apanel = new AnimPanel(new RocketMath2());
@@ -20,7 +22,26 @@ public class RocketF extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public RocketF ()
     {
-     super();
+		super(); 
+		try {
+		   	    UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+		   	} catch (Exception e) {
+		   	    e.printStackTrace();
+		   	}
+
+        setTitle("Button Panel Example");
+        setSize(600, 600);
+        setLayout(new GridLayout());
+        
+        add(this.spanel);
+        add(this.apanel);
+        add(new JButton());
+        apanel.setVisible(true);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+		
+    
     }
 
        
@@ -28,24 +49,8 @@ public class RocketF extends JFrame {
        
    public static void main(String[] args) 
    {
-		RocketF frame = new RocketF();
-	   	
-//	   	try {
-//	   	    UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-//	   	} catch (Exception e) {
-//	   	    e.printStackTrace();
-//	   	}
-//	   
-        frame.setTitle("Button Panel Example");
-        frame.setSize(600, 600);
-        frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
-        
-        frame.add(frame.spanel);
-        frame.add(frame.apanel);
-        frame.apanel.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+		
+	   RocketF frame = new RocketF();
 
     }
 
@@ -53,10 +58,10 @@ public class RocketF extends JFrame {
 
    public class SPanel extends SliderPanel
    {
-	   public SPanel()
+	   public SPanel() 
 	   {
 		   super();
-		   setSize(200,200);
+		   setSize(getWidth(),getHeight());
 	   }
 	   RocketMath2 rocket2;
 	   @Override

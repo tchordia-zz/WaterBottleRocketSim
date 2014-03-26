@@ -20,7 +20,7 @@ public class RocketMath {
 	 * @param vB = bottle volume (liters)
 	 * @param p0 = intial air pressure (pascals)
 	 * @param cD = drag coefficient  ( no unit)
-	 * @param step = time step 
+	 * @param step = time step
 	 * @param rBot = bottle radius (m)
 	 * @param rNoz = nozzle radius (m)
 	 * @param iP = internal pressure (pascals)
