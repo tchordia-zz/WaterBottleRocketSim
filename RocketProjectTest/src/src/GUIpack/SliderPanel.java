@@ -38,7 +38,7 @@ public class SliderPanel extends JPanel implements ChangeListener {
 			e.printStackTrace();
 		}
 
-		JPanel group1 = initBack(new JPanel());
+		JPanel group1 = initBack(new JPanel(), "background.jpeg");
 		GridLayout flow = new GridLayout();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -158,18 +158,18 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 	}
 
-	private JPanel initBack(JPanel pane)
+	public static JPanel initBack(JPanel pane, String filename)
 	{
 		BufferedImage image2 = null;
 		try {
 			image2 = ImageIO
-					.read(new File("background.jpeg"));
+					.read(new File(filename));
 		} catch (IOException e) {
 		
 			e.printStackTrace();
 		}
 		int type = image2.getType() == 0? BufferedImage.TYPE_INT_ARGB : image2.getType();
-		image2 = resizeImage(image2, type, 500, 500);
+		image2 = resizeImage(image2, type, 1000, 1000);
 		final BufferedImage image = image2;
 		
 		pane = new JPanel() {
@@ -187,7 +187,7 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 		JFrame frame = new JFrame();
 		frame.setTitle("Button Panel Example");
-		frame.setSize(600, 600);
+		
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new SliderPanel());
