@@ -3,13 +3,16 @@
  */
 package src.GUIpack;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -31,7 +34,8 @@ public class LaunchPanel extends JPanel implements ActionListener {
 		setVisible(true);
 	    add(this.spanel);
 	    add(this.apanel);
-	   
+	    Border bord = BorderFactory.createLineBorder(Color.black, 5);
+		setBorder(bord);
 	    setVisible(true);
 	}
 

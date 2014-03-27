@@ -7,7 +7,9 @@ package src.GUIpack;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  * @author Tanmay
@@ -32,7 +34,7 @@ public class GraphPanel extends JPanel {
 
 		orocket = rocketa;
 		rocket = rocketa;
-
+		
 	}
 
 	public void updaterr(RocketMath2 rocketa) {

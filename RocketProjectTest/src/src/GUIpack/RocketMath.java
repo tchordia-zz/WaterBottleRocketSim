@@ -237,8 +237,8 @@ public class RocketMath {
 	public double drag()
 	{
 		double drag = -.5 * cD * pA * Math.PI * rBot * rBot * v * Math.abs(v);
-		System.out.println("    " + -.5 * cD * pA * Math.PI * rBot * rBot );
-		System.out.println("Drag" + drag);
+		//System.out.println("    " + -.5 * cD * pA * Math.PI * rBot * rBot );
+		//System.out.println("Drag" + drag);
 	return drag;
 	}
 	
@@ -247,9 +247,9 @@ public class RocketMath {
 	 */
 	public void doStep ()
 	{
-		System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
+		//System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
 		t+= step * 100;
-		System.out.println("time " + t);
+	//	System.out.println("time " + t);
 		iPc();
 		m();
 		dM_dt();
