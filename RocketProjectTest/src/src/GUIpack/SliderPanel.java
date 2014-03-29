@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -40,6 +41,14 @@ public class SliderPanel extends JPanel implements ChangeListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		JPanel group1 = initBack(new JPanel(), "background.jpeg");
 		
@@ -51,11 +60,12 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 		massRocket.setMinorTickSpacing(1);
 
-		massRocket.setPaintTicks(true);
+		massRocket.setPaintTicks(false);
 
 		massRocket.setPaintLabels(true);
 
-		massRocket.setSnapToTicks(true);
+		massRocket.setSnapToTicks(false);
+		
 
 		massRocket.addChangeListener(this);
 		add(new JLabel("Mass of the Rocket", JLabel.CENTER));

@@ -35,7 +35,7 @@ public class LaunchPanel extends JPanel implements ActionListener {
 	    add(this.spanel);
 	    add(this.apanel);
 	    Border bord = BorderFactory.createLineBorder(Color.black, 5);
-		setBorder(bord);
+		setBorder(bord); 
 	    setVisible(true);
 	}
 

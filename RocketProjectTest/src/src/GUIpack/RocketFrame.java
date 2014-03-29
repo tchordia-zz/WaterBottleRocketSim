@@ -5,24 +5,26 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 
-public class RocketF extends JFrame {
+public class RocketFrame extends JFrame {
 
 	public GraphPanel apanel = new GraphPanel(new RocketMath2());
 	public JPanel mpanel = new LaunchPanel();
 	public WPanel wpanel = new WPanel();
 	public CPanel cpanel = new CPanel();
-
+	public String filename = "background.jpeg";
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public RocketF() {
+	public RocketFrame() {
 		super();
 		try {
 			UIManager
@@ -30,15 +32,26 @@ public class RocketF extends JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setTitle("Water Bottle Rocket Launch");
-		setSize(1000, 1000);
-
-		setLocationRelativeTo(null);
+		
+		setSize(1000,1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		
+		setSize(1000, 1000);
+		
+		setVisible(true);
 		// setLayout(new CardLayout());
-		add(SliderPanel.initBack(new JPanel(), "background.jpeg"));
+		add(SliderPanel.initBack(new JPanel(), filename));
 		add(wpanel);
 		
 		
@@ -79,7 +92,7 @@ public class RocketF extends JFrame {
 
 	public static void main(String[] args) {
 
-		RocketF frame = new RocketF();
+		RocketFrame r = new RocketFrame();
 
 	}
 
