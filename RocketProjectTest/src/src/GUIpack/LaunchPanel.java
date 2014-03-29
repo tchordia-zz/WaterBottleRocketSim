@@ -3,16 +3,15 @@
  */
 package src.GUIpack;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
+import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -25,18 +24,31 @@ public class LaunchPanel extends JPanel implements ActionListener {
 	 * 
 	 */
 	
-	public SPanel spanel = new SPanel();
-	public GraphPanel apanel = new GraphPanel(new RocketMath2());
+	public SliderGui sliderp = new SliderGui();
 	
-	public LaunchPanel() {
-		// TODO Auto-generated constructor stub
+	public GUI gui = new GUI();
+	public ImageIcon icon = createImageIcon("background.jpeg");
+//	public LaunchPanel() {
+//		// TODO Auto-generated constructor stub
+//		setLayout(new GridLayout());
+//		setVisible(true);
+//	    add(this.spanel);
+//	    add(this.apanel);
+//	    Border bord = BorderFactory.createLineBorder(Color.black, 5);
+//		setBorder(bord); 
+//	    setVisible(true);
+//	}
+	public LaunchPanel()
+	{
 		setLayout(new GridLayout());
-		setVisible(true);
-	    add(this.spanel);
-	    add(this.apanel);
-	    Border bord = BorderFactory.createLineBorder(Color.black, 5);
-		setBorder(bord); 
-	    setVisible(true);
+		
+		
+		gui.setLayout(new GridLayout());
+		JTabbedPane tabs = new JTabbedPane();
+		tabs.addTab("Sliders",icon,sliderp, "Slider Input" );
+		tabs.addTab("Text", icon, gui, "text input");
+		tabs.setSize(getWidth(), getHeight());
+		add(tabs);
 	}
 
 	/**
@@ -46,7 +58,15 @@ public class LaunchPanel extends JPanel implements ActionListener {
 		super(layout);
 		// TODO Auto-generated constructor stub
 	}
-
+	protected static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = LaunchPanel.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
 	/**
 	 * @param isDoubleBuffered
 	 */
@@ -73,32 +93,56 @@ public class LaunchPanel extends JPanel implements ActionListener {
 
 	}
 	
-	public class SPanel extends SliderPanel
-	   {
-		   public SPanel() 
+	
+	public class SliderGui extends JPanel
+	{
+		public SPanel spanel = new SPanel();
+		public GraphPanel apanel = new GraphPanel(new RocketMath2());
+		public BouncingBall ball = new BouncingBall();
+		public SliderGui()
+		{
+			setLayout(new GridLayout());
+			add(spanel);
+			add(apanel);
+			add(ball);
+		}
+		public class SPanel extends SliderPanel implements ActionListener
 		   {
-			   super();
+			   public SPanel() 
+			   {
+				   super();
+				   JButton submit = new JButton("Animate");
+				   submit.addActionListener(this);
+				   add(submit);
+			   }
+			   RocketMath2 rocket2;
+			   @Override
+			   public void actionPerformed(ActionEvent arg0)
+			   {
+				   System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
+					System.out.println("massWater: " + massWater.getValue()/(10+0.0)) ;
+					System.out.println("volumeBottle: " + volumeBottle.getValue()/(10000+0.0)) ;
+					System.out.println("airPressure: " + airPressure.getValue()) ;
+					System.out.println("dragC: " + dragC.getValue()) ;
+					System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
+					System.out.println("nozzleRadius: " + nozzleRadius.getValue()/(100+0.0)) ;
+					rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue(),dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
+					
+					
+					ball.update(rocket2);
+					
+					
+			   }
+			   public void stateChanged(ChangeEvent arg0)
+			   {
+				   rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue(),dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
+				   apanel.updaterr(rocket2);
+			   }
+			   
+			
 			   
 		   }
-		   RocketMath2 rocket2;
-		   @Override
-		   public void stateChanged(ChangeEvent arg0)
-		   {
-			   System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
-				System.out.println("massWater: " + massWater.getValue()/(10+0.0)) ;
-				System.out.println("volumeBottle: " + volumeBottle.getValue()/(10000+0.0)) ;
-				System.out.println("airPressure: " + airPressure.getValue()) ;
-				System.out.println("dragC: " + dragC.getValue()) ;
-				System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
-				System.out.println("nozzleRadius: " + nozzleRadius.getValue()/(100+0.0)) ;
-				rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue(),dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
-				apanel.updaterr(rocket2);
-				
-		   }
-		   
-		
-		   
-	   }
+	}
 	   
 	  
 

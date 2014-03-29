@@ -49,8 +49,8 @@ public class ControlPanel extends JPanel implements ActionListener {
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		g.drawImage(imageBack("marioSky.jpeg",getWidth(),getHeight() * 5 ), 0, 0, null);
-		g.drawImage(imageBack("RocketLogo.png",getWidth()/5,getHeight()/10 ), getWidth()/5, getHeight()/8, null);
+		//g.drawImage(imageBack("marioSky.jpeg",getWidth(),getHeight() * 5 ), 0, 0, null);
+		//g.drawImage(imageBack("RocketLogo.png",getWidth()/5,getHeight()/10 ), getWidth()/5, getHeight()/8, null);
 	}
 	
 	public static JPanel addBack(JPanel pane, String filename, int width, int height)
@@ -106,7 +106,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		System.out.println("hello");
 		
 	}
 	
