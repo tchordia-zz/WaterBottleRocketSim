@@ -77,16 +77,17 @@ public class GUI extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-//		 RocketMath rocket = new RocketMath(Double.parseDouble(m0.getText()),
-//		
-//		 Double.parseDouble(mW.getText()), Double.parseDouble(vB.getText()),
-//		 Double.parseDouble(p0.getText()), Double.parseDouble(cD.getText()),
-//		 Double.parseDouble(rBot.getText()), Double.parseDouble(rNoz
-//		 .getText()), .01);
-		 RocketMath2 rocket = new RocketMath2();
+		 RocketMath2 rocket = new RocketMath2(Double.parseDouble(m0.getText()),
+		
+		 Double.parseDouble(mW.getText()), Double.parseDouble(vB.getText()),
+		 Double.parseDouble(p0.getText()), Double.parseDouble(cD.getText()),
+		 Double.parseDouble(rBot.getText()), Double.parseDouble(rNoz
+		 .getText()));
+		
 		 RocketMath2 r = rocket.copy();
-		 ball.update(rocket);
+		 
 		 graph.updaterr(r);
+		 ball.update(rocket);
 //		for (; rocket.h>=0; ) 
 //		{
 //			try {

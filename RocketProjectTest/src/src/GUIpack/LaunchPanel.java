@@ -106,7 +106,7 @@ public class LaunchPanel extends JPanel implements ActionListener {
 			add(apanel);
 			add(ball);
 		}
-		public class SPanel extends SliderPanel implements ActionListener
+		public class SPanel extends SliderPanel2 implements ActionListener
 		   {
 			   public SPanel() 
 			   {
@@ -126,7 +126,7 @@ public class LaunchPanel extends JPanel implements ActionListener {
 					System.out.println("dragC: " + dragC.getValue()) ;
 					System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
 					System.out.println("nozzleRadius: " + nozzleRadius.getValue()/(100+0.0)) ;
-					rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue(),dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
+					rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue() * 10000,dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
 					
 					
 					ball.update(rocket2);
@@ -135,7 +135,7 @@ public class LaunchPanel extends JPanel implements ActionListener {
 			   }
 			   public void stateChanged(ChangeEvent arg0)
 			   {
-				   rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue(),dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
+				   rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue() * 10000,dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
 				   apanel.updaterr(rocket2);
 			   }
 			   
