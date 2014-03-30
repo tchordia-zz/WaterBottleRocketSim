@@ -3,14 +3,19 @@ package src.GUIpack;
 
 import com.sun.java.swing.Painter;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JSlider;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * 
@@ -35,8 +40,10 @@ import java.awt.RenderingHints;
  */
 
 public class minimalSlider extends JSlider{
-	public minimalSlider()
+    private BufferedImage sliderThumb;
+	public minimalSlider(int x, int y, int z, int a)
 	{
+		super(x,y,z,a);
 		for (UIManager.LookAndFeelInfo laf : UIManager.getInstalledLookAndFeels()) {
             if ("Nimbus".equals(laf.getName())){
                 try {
@@ -47,27 +54,29 @@ public class minimalSlider extends JSlider{
             }
         }
 		UIDefaults sliderDefaults = new UIDefaults();
-        sliderDefaults.put("Slider.thumbWidth", 20);
-        sliderDefaults.put("Slider.thumbHeight", 20);
+        try {
+        	sliderThumb = ImageIO.read(new File("new slider thumb.png"));
+        }
+        catch(IOException ex)
+        {
+        	System.out.println("ya fucked up");
+        }
+        sliderDefaults.put("Slider.thumbWidth", 21);
+        sliderDefaults.put("Slider.thumbHeight", 25);
         sliderDefaults.put("Slider:SliderThumb.backgroundPainter", new Painter<JComponent>() {
-            public void paint(Graphics2D g, JComponent c, int w, int h) {
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g.setStroke(new BasicStroke(2f));
-                g.setColor(Color.RED);
-                g.fillOval(1, 1, w-3, h-3);
-                g.setColor(Color.WHITE);
-                g.drawOval(1, 1, w-3, h-3);
-            }
+        	public void paint(Graphics2D g, JComponent c, int w, int h) {
+        		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        		g.drawImage(sliderThumb, 0, 0, null);
+        	}
         });
         sliderDefaults.put("Slider:SliderTrack.backgroundPainter", new Painter<JComponent>() {
-            public void paint(Graphics2D g, JComponent c, int w, int h) {
-                g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g.setStroke(new BasicStroke(2f));
-                g.setColor(Color.GRAY);
-                g.fillRoundRect(0, 6, w-1, 8, 8, 8);
-                g.setColor(Color.WHITE);
-                g.drawRoundRect(0, 6, w-1, 8, 8, 8);
-            }
+        	public void paint(Graphics2D g, JComponent c, int w, int h) {
+        		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        		g.setStroke(new BasicStroke(2f));
+        		g.setColor(Color.lightGray);
+        		g.fillRoundRect(0, 8, w-1, 4, 8, 8);
+        	}
         });
-	}
+        this.putClientProperty("Nimbus.Overrides",sliderDefaults);
+        this.putClientProperty("Nimbus.Overrides.InheritDefaults",false);	}
 }
