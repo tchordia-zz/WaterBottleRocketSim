@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -24,7 +26,6 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.JComponent;
 
 import com.sun.java.swing.Painter;
 
@@ -39,7 +40,7 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 	public static JSlider dragC;
 	public static JSlider bottleRadius;
 	public static JSlider nozzleRadius;
-	
+	public GUI gui;
     UIDefaults sliderDefaults = new UIDefaults();
     
     private BufferedImage sliderThumb;
@@ -274,9 +275,12 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 		sliders.setBackground(Color.white);
 		setBackground(Color.white);
 		tabbedPane.add("sliders",sliders);
-		JPanel testPanel = new JPanel();
-		testPanel.setBackground(Color.white);
-		tabbedPane.add("exact values", testPanel);
+		
+		gui= new GUI();
+		gui.setLayout(new GridLayout());
+		tabbedPane.add("exact values", gui);
+		
+		gui.setVisible(true);
 		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		add(tabbedPane);
 	}
