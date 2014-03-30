@@ -1,20 +1,20 @@
 package src.GUIpack;
 
-import java.awt.GridLayout;
-import java.io.IOException;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.event.ChangeEvent;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class RocketF extends JFrame  {
 	
-	public SPanel spanel = new SPanel();
-	public AnimPanel apanel = new AnimPanel(new RocketMath2());
-    
-
 	
+	public GraphPanel apanel = new GraphPanel(new RocketMath2());
+    public LaunchPanel mpanel = new LaunchPanel();
+    public WPanel wpanel = new WPanel();
+	public CPanel cpanel = new CPanel();
 
     /**
 	 * 
@@ -24,28 +24,51 @@ public class RocketF extends JFrame  {
     {
 		super(); 
 		try {
-		   	    UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-		   	} catch (Exception e) {
-		   	    e.printStackTrace();
-		   	}
-
-        setTitle("Button Panel Example");
-        setSize(600, 600);
-        setLayout(new GridLayout());
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        setTitle("Water Bottle Rocket Launch");
+        setSize(1000, 1000);
         
-        add(this.spanel);
-        add(this.apanel);
-        add(new JButton());
-        apanel.setVisible(true);
+       
+        
+        
+        
+        
+        
+        
+        
+        
+       
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        
+        add(wpanel);
 		
     
     }
 
-       
-        
+  public void mInit()
+  {
+	  remove(wpanel);
+	  add(cpanel,BorderLayout.NORTH);
+      add(mpanel);
+      repaint();
+  }
+  
+  public void restart()
+  {
+	  remove(mpanel);
+	  remove(cpanel);
+	 
+	  add(wpanel);
+	  repaint();
+  }
        
    public static void main(String[] args) 
    {
@@ -56,31 +79,65 @@ public class RocketF extends JFrame  {
 
    
 
-   public class SPanel extends SliderPanel
+
+   
+   public class WPanel extends WelcomePanel
    {
-	   public SPanel() 
+	   public WPanel() 
 	   {
 		   super();
 		   setSize(getWidth(),getHeight());
 	   }
-	   RocketMath2 rocket2;
+	   
 	   @Override
-	   public void stateChanged(ChangeEvent arg0)
-	   {
-		   System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
-			System.out.println("massWater: " + massWater.getValue()/(10+0.0)) ;
-			System.out.println("volumeBottle: " + volumeBottle.getValue()/(10000+0.0)) ;
-			System.out.println("airPressure: " + airPressure.getValue()) ;
-			System.out.println("dragC: " + dragC.getValue()) ;
-			System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
-			System.out.println("nozzleRadius: " + nozzleRadius.getValue()/(100+0.0)) ;
-			rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue(),dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
-			apanel.updaterr(rocket2);
+	   public void actionPerformed(ActionEvent e) {
+			super.actionPerformed(e);
+			System.out.println(e.getActionCommand());
+			if (e.getActionCommand().equals("launch"))
+			{
+				System.out.println(e.getActionCommand());
+				
+				mInit();
+				
+			}
+			else 
+			{
+				
+			}
 			
-	   }
+		}
 	   
 	
 	   
    }
+   
+   public class CPanel extends ControlPanel
+   {
+	   public CPanel() 
+	   {
+		   super();
+		   setSize(getWidth(),getHeight()/5);
+	   }
+	   
+	   @Override
+	   public void actionPerformed(ActionEvent e) {
+			restart();
+			//System.out.println("restart");
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+			
+			
+		}
+	   
+	
+	   
+   }
+   
+   
+   
 
 }

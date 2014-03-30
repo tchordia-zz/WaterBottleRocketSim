@@ -1,5 +1,6 @@
 package src.GUIpack;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -9,12 +10,15 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -37,9 +41,17 @@ public class SliderPanel extends JPanel implements ChangeListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		JPanel group1 = initBack(new JPanel());
-		GridLayout flow = new GridLayout();
+		JPanel group1 = initBack(new JPanel(), "background.jpeg");
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		massRocket = new JSlider(JSlider.HORIZONTAL, 0, 10, 7); // divide by 100
@@ -48,11 +60,12 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 		massRocket.setMinorTickSpacing(1);
 
-		massRocket.setPaintTicks(true);
+		massRocket.setPaintTicks(false);
 
 		massRocket.setPaintLabels(true);
 
-		massRocket.setSnapToTicks(true);
+		massRocket.setSnapToTicks(false);
+		
 
 		massRocket.addChangeListener(this);
 		add(new JLabel("Mass of the Rocket", JLabel.CENTER));
@@ -145,9 +158,10 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 		group1.add(nozzleRadius);
 		
-		
+		group1.setLayout(new GridLayout(7,1));
 
-		
+		Border bord = BorderFactory.createLineBorder(Color.black, 5);
+		setBorder(bord);
 
 		
 
@@ -158,18 +172,18 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 	}
 
-	private JPanel initBack(JPanel pane)
+	public static JPanel initBack(JPanel pane, String filename)
 	{
 		BufferedImage image2 = null;
 		try {
 			image2 = ImageIO
-					.read(new File("background.jpeg"));
+					.read(new File(filename));
 		} catch (IOException e) {
 		
 			e.printStackTrace();
 		}
 		int type = image2.getType() == 0? BufferedImage.TYPE_INT_ARGB : image2.getType();
-		image2 = resizeImage(image2, type, 500, 500);
+		image2 = resizeImage(image2, type, 1000, 1000);
 		final BufferedImage image = image2;
 		
 		pane = new JPanel() {
@@ -187,7 +201,7 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 		JFrame frame = new JFrame();
 		frame.setTitle("Button Panel Example");
-		frame.setSize(600, 600);
+		frame.setSize(1000,1000);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(new SliderPanel());
@@ -195,7 +209,7 @@ public class SliderPanel extends JPanel implements ChangeListener {
 
 	}
 
-	private static BufferedImage resizeImage(BufferedImage originalImage, int type, int iw, int ih){
+	static BufferedImage resizeImage(BufferedImage originalImage, int type, int iw, int ih){
 		BufferedImage resizedImage = new BufferedImage(iw, ih, type);
 		Graphics2D g = resizedImage.createGraphics();
 		g.drawImage(originalImage, 0, 0, iw, ih, null);

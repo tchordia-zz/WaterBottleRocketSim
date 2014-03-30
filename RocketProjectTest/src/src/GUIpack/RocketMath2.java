@@ -37,7 +37,7 @@ public class RocketMath2 extends RocketMath  {
 	
 	
     public RocketMath2 copy() {
-    	RocketMath2 a = new RocketMath2(m0,mW,vB, p0, cD,  rBot,  rNoz);
+    	RocketMath2 a = new RocketMath2(m0,mW,vB, p0, cD/5000000,  rBot,  rNoz);
     	return a;
     }
 }
