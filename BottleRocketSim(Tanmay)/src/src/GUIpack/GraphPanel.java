@@ -18,8 +18,8 @@ import javax.swing.border.Border;
  */
 public class GraphPanel extends JPanel {
 
-	public RocketMath2 rocket;
-	public RocketMath2 orocket;
+	public RocketMath rocket;
+	public RocketMath orocket;
 	int sHeight = 50; // apparent height of applet
 	int sWidth = 5; // apparent width of applet
 	int numMarks = 10; // Number of marks, currently does noth
@@ -30,14 +30,14 @@ public class GraphPanel extends JPanel {
 	/**
 	 * 
 	 */
-	public GraphPanel(RocketMath2 rocketa) {
+	public GraphPanel(RocketMath rocketa) {
 
 		orocket = rocketa;
 		rocket = rocketa;
 		
 	}
 
-	public void updaterr(RocketMath2 rocketa) {
+	public void updaterr(RocketMath rocketa) {
 		orocket = rocketa;
 		rocket = rocketa;
 		changedCall = true;
@@ -80,7 +80,7 @@ public class GraphPanel extends JPanel {
 	public void paint(Graphics gr) {
 
 		if (!changedCall) {
-		rocket = new RocketMath2();
+		rocket = new RocketMath();
 		}
 			int width = getWidth();
 			int height = getHeight();
@@ -89,7 +89,7 @@ public class GraphPanel extends JPanel {
 			gr.setColor(Color.black);
 			drawAxis(gr, width, height);
 			// rocket = orocket.copy();
-			// rocket = new RocketMath2();
+			// rocket = new RocketMath();
 			double inc = rocket.step;
 			double y2 = 10;
 			double nexty2 = 10;

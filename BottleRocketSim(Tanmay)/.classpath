@@ -5,7 +5,11 @@
 	<classpathentry exported="true" kind="lib" path="/Users/Tanmay/Workspace/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0-javadoc.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/Tanmay/Workspace/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="/Users/Tanmay/Workspace/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0-tests.jar"/>
-	<classpathentry exported="true" kind="lib" path="/Users/Tanmay/Workspace/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/Tanmay/Workspace/jgoodies-looks-2.6.0/jgoodies-looks-2.6.0.jar" sourcepath="jgoodies-looks-2.6.0-sources.jar"/>
 	<classpathentry kind="lib" path="/Users/Tanmay/Workspace/seaglasslookandfeel-0.2.jar"/>
+	<classpathentry kind="lib" path="jgoodies-looks-2.6.0.jar"/>
+	<classpathentry kind="lib" path="jgoodies-looks-2.6.0-sources.jar"/>
+	<classpathentry kind="lib" path="jgoodies-common-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

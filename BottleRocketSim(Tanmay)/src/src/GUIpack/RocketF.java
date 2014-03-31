@@ -1,21 +1,26 @@
 package src.GUIpack;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import com.jgoodies.looks.Options;
 
 public class RocketF extends JFrame  {
 	
 	
-	public GraphPanel apanel = new GraphPanel(new RocketMath2());
+	
     public LaunchPanel mpanel = new LaunchPanel();
     public WPanel wpanel = new WPanel();
 	public CPanel cpanel = new CPanel();
-
+	public String user;
     /**
 	 * 
 	 */
@@ -23,6 +28,16 @@ public class RocketF extends JFrame  {
 	public RocketF ()
     {
 		super(); 
+	    UIManager.put(Options.USE_SYSTEM_FONTS_APP_KEY, Boolean.TRUE);
+        Options.setDefaultIconSize(new Dimension(18, 18));
+
+       
+//        try {
+//            
+//            UIManager.setLookAndFeel(new PlasticLookAndFeel());
+//        } catch (Exception e) {
+//            System.err.println("Can't set look & feel:" + e);
+//        }
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (ClassNotFoundException | InstantiationException
@@ -43,15 +58,18 @@ public class RocketF extends JFrame  {
         
         
         
-       
+        setLayout(new BorderLayout());
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        //getContentPane().setBackground(Color.cyan);
         
         add(wpanel);
-		
+	
     
     }
+
+	
 
   public void mInit()
   {
@@ -67,7 +85,14 @@ public class RocketF extends JFrame  {
 	  remove(cpanel);
 	 
 	  add(wpanel);
+	  wpanel.pane.remove(wpanel.launch);
+	  wpanel.pane.remove(wpanel.target);
+	  wpanel.pane.add(wpanel.tpane);
+	  wpanel.pane.setLayout(new BorderLayout());
+		wpanel.tpane.add(wpanel.j);
 	  repaint();
+	  refFrame(this);
+	 // System.out.println(user);
   }
        
    public static void main(String[] args) 
@@ -83,10 +108,15 @@ public class RocketF extends JFrame  {
    
    public class WPanel extends WelcomePanel
    {
+	   
+	   
 	   public WPanel() 
 	   {
 		   super();
 		   setSize(getWidth(),getHeight());
+		   
+		   
+		   
 	   }
 	   
 	   @Override
@@ -100,17 +130,39 @@ public class RocketF extends JFrame  {
 				mInit();
 				
 			}
-			else 
+			else if (e.getActionCommand().equals("user"))
 			{
-				
+				user = j.getText();
+				pane.remove(tpane);
+				pane.setLayout(new GridLayout());
+				pane.add(launch, BorderLayout.NORTH);
+				pane.add(target, BorderLayout.NORTH);
+				repaint();
 			}
+			pane.repaint();
 			
+			try
+			{
+			SwingUtilities.getRoot(this).setVisible(true);
+			}
+			catch (Exception eve)
+			{}
 		}
 	   
 	
 	   
    }
    
+   public static void refFrame(Component comp)
+   {
+	   try
+		{
+		SwingUtilities.getRoot(comp).setVisible(true);
+		}
+		catch (Exception eve)
+		{}
+
+   }
    public class CPanel extends ControlPanel
    {
 	   public CPanel() 

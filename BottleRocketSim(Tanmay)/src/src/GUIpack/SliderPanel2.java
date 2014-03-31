@@ -16,18 +16,17 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JTabbedPane;
-import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.sun.java.swing.Painter;
 
 public class SliderPanel2 extends JPanel implements ChangeListener {
@@ -275,9 +274,16 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 		
 		sliderLayout.setVerticalGroup(verticalLayout);
 		sliders.setBackground(Color.white);
-
+//
+//		try {
+//          
+//          UIManager.setLookAndFeel(new PlasticLookAndFeel());
+//      } catch (Exception e) {
+//          System.err.println("Can't set look & feel:" + e);
+//      }
 		
-	
+		
+		
 		
 		setBackground(Color.white);
 		tabbedPane.add("sliders",sliders);

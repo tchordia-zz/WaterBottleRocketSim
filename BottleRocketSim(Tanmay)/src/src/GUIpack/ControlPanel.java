@@ -30,7 +30,7 @@ public class ControlPanel extends JPanel implements ActionListener {
 	/**
 	 * 
 	 */
-	JButton back = new JButton("Back to Start");
+	JButton back = new CoolButton("Back to Start",CoolButton.SMALL);
 	public ControlPanel() {
 		
 		back.addActionListener(this);
@@ -49,10 +49,42 @@ public class ControlPanel extends JPanel implements ActionListener {
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		//g.drawImage(imageBack("marioSky.jpeg",getWidth(),getHeight() * 5 ), 0, 0, null);
-		//g.drawImage(imageBack("RocketLogo.png",getWidth()/5,getHeight()/10 ), getWidth()/5, getHeight()/8, null);
+		g.drawImage(imageBack("marioSky.jpeg",400,200), 0, -5, null);
+		g.drawImage(imageBack("marioSky.jpeg",400,200), 400, -10, null);
+		g.drawImage(imageBack("marioSky.jpeg",400,200), 800, -5, null);
+		g.drawImage(imageBack("marioSky.jpeg",400,200), 1200, -10, null);
+		g.drawImage(imageBack("marioSky.jpeg",400,200), 1600, -5, null);
+		g.drawImage(imageBack("marioSky.jpeg",400,200), 2000, -10, null);
+		g.drawImage(imageBack("RocketLogo.png", 150, 20 ), getWidth()/2 - 200, getHeight()/4, null);
+		
 	}
-	
+	public static JPanel addback (JPanel pane, String filename)
+	{
+		BufferedImage image2 = null;
+		try {
+			image2 = ImageIO
+					.read(new File(filename));
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		int type = image2.getType() == 0? BufferedImage.TYPE_INT_ARGB : image2.getType();
+		
+		final BufferedImage image = image2;
+		
+		pane = new JPanel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				
+				g.drawImage(imageBack("greenBack.jpeg", 500,500), 0, 0, null);
+				g.drawImage(image, 0, 0, null);
+			}
+			
+			
+		};
+		return pane;
+	}
 	public static JPanel addBack(JPanel pane, String filename, int width, int height)
 	{
 		BufferedImage image2 = null;
@@ -93,6 +125,21 @@ public class ControlPanel extends JPanel implements ActionListener {
 		}
 		int type = image2.getType() == 0? BufferedImage.TYPE_INT_ARGB : image2.getType();
 		image2 = resizeImage(image2, type, width, height);
+		return image2;
+	}
+	
+	public static BufferedImage imageBack(String filename)
+	{
+		BufferedImage image2 = null;
+		try {
+			image2 = ImageIO
+					.read(new File(filename));
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		int type = image2.getType() == 0? BufferedImage.TYPE_INT_ARGB : image2.getType();
+		
 		return image2;
 	}
 	static BufferedImage resizeImage(BufferedImage originalImage, int type, int iw, int ih){

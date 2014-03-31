@@ -208,7 +208,10 @@ public class RocketMath {
 		return m;
 	}
 	
-	
+	 public RocketMath copy() {
+	    	RocketMath a = new RocketMath(m0,mW,vB, p0, cD,  rBot,  rNoz);
+	    	return a;
+	    }
 	/**
 	 * @return return the acceleration at a given time.
 	 * calculate acceleration

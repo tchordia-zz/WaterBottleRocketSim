@@ -14,7 +14,7 @@ public class BouncingBall extends JPanel{
     private int yIncrement = 5;
     //Ball radius
     private final int R = 10;
-
+    private boolean flag = true;
     private Timer timer;
 
     public BouncingBall(){
@@ -26,8 +26,9 @@ public class BouncingBall extends JPanel{
 //         });
 //
 //    timer.start();
+    	setBackground(Color.white);
    }
-    public void update(RocketMath2 rocket)
+    public void update(RocketMath rocket)
     
     {
     	for (; rocket.h>=0; ) 
@@ -57,7 +58,11 @@ public class BouncingBall extends JPanel{
            yIncrement *= -1;
        }
        //increment position
-      
+      if (flag)
+      {
+    	  y = getHeight();
+    	  flag = false;
+      }
        System.out.println(y);
        //draw the ball
 //       Image img = new Image();

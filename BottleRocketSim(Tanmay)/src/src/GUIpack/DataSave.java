@@ -68,7 +68,7 @@ public class DataSave implements Serializable {
 		return file;
 	}
 	
-	public static boolean uploadS(String user,  int score, RocketMath2 ro) {
+	public static boolean uploadS(String user,  int score, RocketMath ro) {
 		int high;
 		rocket = new r3(ro);
 		try {
@@ -130,7 +130,7 @@ public class DataSave implements Serializable {
 		   }
 	}
 	
-	public static RocketMath2 retrieve(String user) throws IOException, ClassNotFoundException
+	public static RocketMath retrieve(String user) throws IOException, ClassNotFoundException
 	{
 		DataSave.init(user,".ser");
 		FileInputStream fin;
@@ -138,12 +138,12 @@ public class DataSave implements Serializable {
 		fin = new FileInputStream(file);
 		
 		ObjectInputStream ois = new ObjectInputStream(fin);
-		RocketMath2 ret = (RocketMath2) r3.toRocketMath2((r3) ois.readObject());
+		RocketMath ret = (RocketMath) r3.toRocketMath2((r3) ois.readObject());
 		ois.close();
 		return ret;
 	}
 	
-	public static class r3 extends RocketMath2 implements Serializable
+	public static class r3 extends RocketMath implements Serializable
 	{
 
 		/**
@@ -151,27 +151,27 @@ public class DataSave implements Serializable {
 		 */
 		private static final long serialVersionUID = -5128331306530100179L;
 		
-		public r3(RocketMath2 rocket)
+		public r3(RocketMath rocket)
 		{
 			super(rocket.m0, rocket.mW, rocket.vB, rocket.p0, rocket.cD, rocket.rBot, rocket.rNoz);
 		}
 		
-		public static void printStats(RocketMath2 rocket)
+		public static void printStats(RocketMath rocket)
 		{
 			System.out.println(rocket.m0+ " " + rocket.mW+ " " + rocket.vB+ " " + rocket.p0+ " " + rocket.cD+ " " + rocket.rBot+ " " + rocket.rNoz);
 		}
 		
-		public static RocketMath2 toRocketMath2(r3 r)
+		public static RocketMath toRocketMath2(r3 r)
 		{
-			return new RocketMath2(r.m0, r.mW, r.vB, r.p0, r.cD /5000000, r.rBot, r.rNoz); 
+			return new RocketMath(r.m0, r.mW, r.vB, r.p0, r.cD /5000000, r.rBot, r.rNoz); 
 		}
 	}
 	
 	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 
-		r3.printStats(new RocketMath2());
-		DataSave.uploadS("Tanmay", 7, new RocketMath2());
+		r3.printStats(new RocketMath());
+		DataSave.uploadS("Tanmay", 7, new RocketMath());
 		
 		
 		
@@ -179,8 +179,8 @@ public class DataSave implements Serializable {
 		
 		System.out.println();
 		
-		r3.printStats(new RocketMath2(0.76, 0.66, .003, 253312.5, 1,.05, .01));
-		DataSave.uploadS("John", 2, new RocketMath2(0.76, 0.66, .003, 253312.5, 1,.05, .01));
+		r3.printStats(new RocketMath(0.76, 0.66, .003, 253312.5, 1,.05, .01));
+		DataSave.uploadS("John", 2, new RocketMath(0.76, 0.66, .003, 253312.5, 1,.05, .01));
 		
 		
 		
