@@ -237,7 +237,6 @@ public class SliderPanel extends JPanel implements ChangeListener {
 		frame.setVisible(true);
 	}
 
-	@Override
 	public void stateChanged(ChangeEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println("massRocket: "

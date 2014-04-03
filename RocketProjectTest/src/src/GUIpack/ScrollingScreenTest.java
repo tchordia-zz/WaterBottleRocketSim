@@ -1,36 +1,18 @@
 package src.GUIpack;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import javafx.application.Application;
+import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.effect.Lighting;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-public class ScrollingScreenTest extends JPanel
+public class ScrollingScreenTest
 {
 	
-	public ScrollingScreenTest()
-	{
-		super();
-		setVisible(true);
-	}
-	
-	
-	@Override
-	public void paint(Graphics gr)
-	{
-		super.paint(gr);
-		gr.setColor(Color.blue);
-		gr.fillOval(getWidth()/2-10, getHeight()/2-10, 10, 10);
-	}
-	
-	
-	public static void main(String[] args)
-	{
-		ScrollingScreenTest screen = new ScrollingScreenTest();
-		JFrame frame = new JFrame();
-		frame.add(screen);
-		frame.setVisible(true);
-		frame.setSize(600,600);
-	}
 }
