@@ -1,21 +1,22 @@
 package src.GUIpack;
 
-import java.awt.Container;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 //notice javax
 
 public class GUI extends JPanel implements ActionListener {
 	JPanel masterpane = new JPanel();
 	JPanel pane = new JPanel();
+	JLabel l = new JLabel("Please fill all fields correctly");
 	BouncingBall ball = new BouncingBall();
 	JTextField m0 = new JTextField(10);
 	JTextField mW = new JTextField(10);
@@ -25,16 +26,18 @@ public class GUI extends JPanel implements ActionListener {
 	JTextField rBot = new JTextField(10);
 	JTextField rNoz = new JTextField(10);
 	JButton start = new JButton("Start");
-	GraphPanel graph = new GraphPanel(new RocketMath2());
+	GraphPanel graph = new GraphPanel(new RocketMath());
 	public GUI() // the frame constructor method
 	{
 		
 		setBounds(250, 200, 400, 200);
 		
-		
+		l.setVisible(false);
 		add(masterpane); // add the panel to frame
-		masterpane.setLayout(new GridLayout(1, 2));
-		masterpane.add(pane);
+		masterpane.setLayout(new BorderLayout());
+		masterpane.add(l, BorderLayout.NORTH);
+		masterpane.add(pane, BorderLayout.CENTER);
+		
 		pane.setLayout(new GridLayout(8, 2));
 		// customize panel here
 		pane.add(new JLabel("Mass of Rocket"));
@@ -62,8 +65,8 @@ public class GUI extends JPanel implements ActionListener {
 		pane.add(start);
 
 		// pane.add(someWidget);
-		masterpane.add(ball);
-		masterpane.add(graph);
+		//masterpane.add(ball);
+		//masterpane.add(graph);
 		setVisible(true); // display this frame
 	}
 
@@ -77,17 +80,26 @@ public class GUI extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		 RocketMath2 rocket = new RocketMath2(Double.parseDouble(m0.getText()),
+		try 
+		{
+		RocketMath rocket = new RocketMath(Double.parseDouble(m0.getText()),
 		
 		 Double.parseDouble(mW.getText()), Double.parseDouble(vB.getText()),
 		 Double.parseDouble(p0.getText()), Double.parseDouble(cD.getText()),
 		 Double.parseDouble(rBot.getText()), Double.parseDouble(rNoz
 		 .getText()));
 		
-		 RocketMath2 r = rocket.copy();
-		 
-		 graph.updaterr(r);
-		 ball.update(rocket);
+		 RocketMath r = rocket.copy();
+		 ((RocketF)SwingUtilities.getRoot(SwingUtilities.getRoot(this))).mpanel.sliderp.apanel.updaterr(rocket);
+		 ((RocketF)SwingUtilities.getRoot(SwingUtilities.getRoot(this))).mpanel.sliderp.ball.update(r);
+		 l.setVisible(false);
+		}
+		catch (NumberFormatException e)
+		{
+			l.setVisible(true);
+		}
+//		 graph.updaterr(r);
+//		 ball.update(rocket);
 //		for (; rocket.h>=0; ) 
 //		{
 //			try {
