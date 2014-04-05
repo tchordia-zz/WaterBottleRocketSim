@@ -1,9 +1,17 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 public class BouncingBall extends JPanel{
     //Ball position
+	Graphics bufferGraphics; 
     private int x = this.getWidth()/2;
     public int y = 0;
     //Position change after every repaint
@@ -40,8 +48,19 @@ public class BouncingBall extends JPanel{
       
        System.out.println(y);
        //draw the ball
-//       Image img = new Image();
-//       g.drawImage(img,x,y,null);
-       g.fillOval(getWidth()/2, y - R, R * 2, R * 2);
+       BufferedImage image2 = null;
+       try {
+			image2 = ImageIO
+					.read(new File("bottle-rocket.jpg"));
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+    
+       	BufferStrategy myStrategy = null;
+       	Graphics gr = myStrategy.getDrawGraphics();
+        g.drawImage(image2, getWidth()/2-25, y, null);
+//       g.fillOval(getWidth()/2, y - R, R * 2, R * 2);
    }
+   
 }
