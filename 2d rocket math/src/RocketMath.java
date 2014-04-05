@@ -267,11 +267,11 @@ public class RocketMath {
 		iPc();
 	
 		dM_dt();
-		m();
+		m(); 
 		thrust();
-		cA();
-		cV();
-		cH();
+		cA(); // calc accel
+		cV(); // calc velocity
+		cH(); // calc height
 		//printStuff();
 		//System.out.println(h);
 		
