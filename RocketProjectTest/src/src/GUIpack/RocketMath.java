@@ -249,7 +249,6 @@ public class RocketMath {
 	public void doStep ()
 	{
 		System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
-//		t+= step * 100;
 		System.out.println("time " + t);
 		iPc();
 		m();

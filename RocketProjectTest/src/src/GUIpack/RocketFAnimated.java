@@ -35,7 +35,7 @@ public class RocketFAnimated extends JFrame  {
         }
         
         
-        apanel = new ProjectileBall(600, 600)
+        apanel = new ProjectileBall(300, 400)
         {
         	public void mathClass(double t)
         	{
@@ -61,7 +61,6 @@ public class RocketFAnimated extends JFrame  {
         setVisible(true);
 
     }
-
 
    public static void main(String[] args) 
    {
