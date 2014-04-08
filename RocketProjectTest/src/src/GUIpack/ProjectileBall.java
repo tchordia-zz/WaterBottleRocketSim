@@ -22,18 +22,19 @@ import javafx.application.*;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 
-public class projectileBall extends JPanel
+public class ProjectileBall extends JPanel
 {
-	int frameNumber = 0;
+	double frameNumber = 0;
 	
 	public static double x;
 	public static double y;
-	
+
 	public double xInit;
 	public double yInit;
 	
 	static double cosineTheta;
 	static double sineTheta;
+	static double magnitude;
 	
 	static boolean timerRunning;
 	
@@ -46,7 +47,9 @@ public class projectileBall extends JPanel
 	static Line xAxis = new Line();
 	static Line yAxis = new Line();
 	
-	public projectileBall(int W, int H)
+	static boolean inCircle = false;
+	
+	public ProjectileBall(int W, int H)
 	{
 		windowWidth = W;
 		windowHeight = H;
@@ -76,7 +79,7 @@ public class projectileBall extends JPanel
             });
 	}
 	
-	public projectileBall()
+	public ProjectileBall()
 	{
 		x = 0;
 		y = getHeight();
@@ -129,13 +132,16 @@ public class projectileBall extends JPanel
 				{
 					public void handle(MouseEvent event)
 					{
-						if(!timerRunning==true)
+						if(!timerRunning==true && inCircle==false)
 						{
 						double height = 652-event.getSceneY();
 						double width = event.getSceneX();
 						double hypotenuse = Math.sqrt(height*height + width*width);
+						
+						magnitude = hypotenuse/4;
 						cosineTheta = width/hypotenuse;
 						sineTheta = height/hypotenuse;
+						
 						double lineSize = 50;
 						
 						line.setEndX(cosineTheta*lineSize);
@@ -162,6 +168,22 @@ public class projectileBall extends JPanel
 					}
 				}
 				);
+		circle.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, new EventHandler<MouseEvent>()
+				{
+					public void handle(MouseEvent event)
+					{
+						inCircle=true;
+					}
+				}
+				);
+		circle.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET, new EventHandler<MouseEvent>()
+				{
+					public void handle(MouseEvent event)
+					{
+						inCircle=false;
+					}
+				}
+				);
 		
 		return (scene);
 	}
@@ -173,23 +195,25 @@ public class projectileBall extends JPanel
 			@Override
 			public void handle(long l)
 			{
-				frameNumber++;
+				for(int i=1; !(i==50); i++)
+				{
+				frameNumber+=.02;
             	mathClass(frameNumber);
 				circle.setTranslateX(x-10);
 				circle.setTranslateY(y);
 				System.out.println("X value: " + x);
 				System.out.println("Y value: " + y);
 				System.out.println("Frame Number: " + frameNumber);
+				}
 			}
 		};
 	}
 	
+	//this class should be overridden
 	public void mathClass(double t)
 	{		
 		t /= 12.5;
-		
-		double magnitude = 100;
-		
+				
 		double vInitialX = magnitude*cosineTheta;
 		double accelerationX = 0;
 		
@@ -203,7 +227,7 @@ public class projectileBall extends JPanel
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		projectileBall ball = new projectileBall(600, 600);
+		ProjectileBall ball = new ProjectileBall(600, 600);
 		ball.setPreferredSize(new Dimension(700, 700));
 		
 		frame.setLayout(new BorderLayout());

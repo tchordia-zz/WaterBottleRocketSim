@@ -55,7 +55,7 @@ public class RocketMath {
 	public double v = 0;
 	public double a = 0;
 	public double h = 0;
-	public int t = 0;
+	public double t = 0;
 	public final double y = 1.4;
 	public final double g = 9.81;
 	public final double oP = 101325; //pascals
@@ -244,11 +244,12 @@ public class RocketMath {
 	
 	/**
 	 *  Increment the time by the step, and recalculate all values
+	 * @return 
 	 */
 	public void doStep ()
 	{
 		System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
-		t+= step * 100;
+//		t+= step * 100;
 		System.out.println("time " + t);
 		iPc();
 		m();
@@ -257,7 +258,6 @@ public class RocketMath {
 		cA();
 		cV();
 		cH();
-		
 	}
 	/**
 	 * @param args
