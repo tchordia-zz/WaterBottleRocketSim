@@ -24,13 +24,13 @@ import javafx.event.EventHandler;
 
 public class ProjectileBall extends JPanel
 {
-	double frameNumber = 0;
+	static double frameNumber = 0;
 	
 	public static double x;
 	public static double y;
 
-	public double xInit;
-	public double yInit;
+	public static double xInit;
+	public static double yInit;
 	
 	static double cosineTheta;
 	static double sineTheta;
@@ -38,8 +38,8 @@ public class ProjectileBall extends JPanel
 	
 	static boolean timerRunning;
 	
-	public int windowHeight;
-	public int windowWidth;
+	private static int windowHeight;
+	private static int windowWidth;
 	
 	static AnimationTimer timer;
 	
@@ -54,6 +54,33 @@ public class ProjectileBall extends JPanel
 		windowWidth = W;
 		windowHeight = H;
 		
+		x = 10;
+		y = H+52;
+
+		xInit = x;
+		yInit = y;
+		
+		final JFXPanel fxPanel = new JFXPanel();
+		
+		fxPanel.setSize(windowWidth, windowHeight);
+		
+		setLayout(new BorderLayout());
+		
+		add(fxPanel, BorderLayout.CENTER);
+		
+		establishTimer();
+		
+        Platform.runLater(new Runnable() {
+            public void run() {
+            	Scene scene = createScene();
+            	fxPanel.setScene(scene);
+//            	timer.start();
+            	}
+            });
+	}
+	
+	public ProjectileBall()
+	{	
 		x = 10;
 		y = 652;
 
@@ -79,42 +106,25 @@ public class ProjectileBall extends JPanel
             });
 	}
 	
-	public ProjectileBall()
+	public void resetBall()
 	{
-		x = 0;
-		y = getHeight();
-		
-		x = 0;
-		y = 500;
-		
-		xInit=x;
-		yInit=y;
-		
-		final JFXPanel fxPanel = new JFXPanel();
-		
-		fxPanel.setSize(600, 600);
-		
-		add(fxPanel, BorderLayout.CENTER);
-		
-		establishTimer();
-		
-        Platform.runLater(new Runnable() {
-            public void run() {
-            	Scene scene = createScene();
-            	fxPanel.setScene(scene);
-            	timer.start();
-            	}
-            });
+		timer.stop();
+		timerRunning=false;
+		circle.setTranslateX(0);
+		circle.setTranslateY(0);
+		x=xInit;
+		y=yInit;
+		frameNumber=0;
 	}
 	
-	private static Scene createScene()
+	private Scene createScene()
 	{
 		Group root = new Group();
 		Scene scene = new Scene(root, Color.WHITE);
 		
 		circle.setRadius(10);
-		circle.setCenterX(x);
-		circle.setCenterY(y);
+		circle.setCenterX(xInit);
+		circle.setCenterY(yInit);
 		
 		System.out.println(x);
 		System.out.println(y);
@@ -122,9 +132,9 @@ public class ProjectileBall extends JPanel
 		final Line line = new Line();
 		
 		line.setStartX(10);
-		line.setStartY(652);
+		line.setStartY(yInit);
 		line.setEndX(10);
-		line.setEndY(652);
+		line.setEndY(yInit);
 		
 		root.getChildren().addAll(line, circle);
 		
@@ -134,7 +144,7 @@ public class ProjectileBall extends JPanel
 					{
 						if(!timerRunning==true && inCircle==false)
 						{
-						double height = 652-event.getSceneY();
+						double height = yInit-event.getSceneY();
 						double width = event.getSceneX();
 						double hypotenuse = Math.sqrt(height*height + width*width);
 						
@@ -145,7 +155,7 @@ public class ProjectileBall extends JPanel
 						double lineSize = 50;
 						
 						line.setEndX(cosineTheta*lineSize);
-						line.setEndY(-sineTheta*lineSize+652);
+						line.setEndY(-sineTheta*lineSize+yInit);
 						
 						System.out.println("Mouse Clicked");
 						System.out.println(height);
@@ -156,8 +166,22 @@ public class ProjectileBall extends JPanel
 						System.out.println(sineTheta*lineSize);
 						System.out.println(cosineTheta*lineSize);
 						}
+
 					}
 				});
+		scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
+				{
+
+					public void handle(MouseEvent event)
+					{
+						if(timerRunning==true && inCircle==false && (x>windowWidth || x<0 || y>windowHeight || y<0))
+						{
+							resetBall();
+						}
+					}
+					
+				});
+
 		
 		circle.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>()
 				{
@@ -227,7 +251,7 @@ public class ProjectileBall extends JPanel
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		ProjectileBall ball = new ProjectileBall(600, 600);
+		ProjectileBall ball = new ProjectileBall(400, 400);
 		ball.setPreferredSize(new Dimension(700, 700));
 		
 		frame.setLayout(new BorderLayout());

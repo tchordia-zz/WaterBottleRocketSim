@@ -35,8 +35,20 @@ public class RocketFAnimated extends JFrame  {
         }
         
         
-        apanel = new ProjectileBall(600, 600)
+        apanel = new ProjectileBall(300, 400)
         {
+        	public void resetBall()
+        	{
+        		super.resetBall();
+    			rocket2 = new RocketMath2(spanel.massRocket.getValue()/(10 + 0.0),
+    									  spanel.massWater.getValue()/(10 + 0.0),
+    									  spanel.volumeBottle.getValue()/(10000 + 0.0),
+    									  spanel.airPressure.getValue()*10000,
+    									  spanel.dragC.getValue(),
+    									  spanel.bottleRadius.getValue()/(100 + 0.0),
+    									  spanel.nozzleRadius.getValue()/(100 + 0.0));
+        	}
+        	
         	public void mathClass(double t)
         	{
         		super.mathClass(t);
@@ -61,7 +73,6 @@ public class RocketFAnimated extends JFrame  {
         setVisible(true);
 
     }
-
 
    public static void main(String[] args) 
    {
