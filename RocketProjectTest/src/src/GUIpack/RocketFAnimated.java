@@ -34,7 +34,6 @@ public class RocketFAnimated extends JFrame  {
             }
         }
         
-        
         apanel = new ProjectileBall(300, 400)
         {
         	public void resetBall()
@@ -48,7 +47,7 @@ public class RocketFAnimated extends JFrame  {
     									  spanel.bottleRadius.getValue()/(100 + 0.0),
     									  spanel.nozzleRadius.getValue()/(100 + 0.0));
         	}
-        	
+
         	public void mathClass(double t)
         	{
         		super.mathClass(t);
@@ -57,8 +56,6 @@ public class RocketFAnimated extends JFrame  {
         		ProjectileBall.y=rocket2.h;
         	}
         };
-        
-        
         setTitle("Button Panel Example");
         setSize(new Dimension(600, 600));
         setLayout(new GridLayout(0,2));
@@ -71,7 +68,6 @@ public class RocketFAnimated extends JFrame  {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-
     }
 
    public static void main(String[] args) 
@@ -90,7 +86,7 @@ public class RocketFAnimated extends JFrame  {
 	   @Override
 	   public void stateChanged(ChangeEvent arg0)
 	   {
-		   System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
+		   	System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
 			System.out.println("massWater: " + massWater.getValue()/(10+0.0)) ;
 			System.out.println("volumeBottle: " + volumeBottle.getValue()/(10000+0.0)) ;
 			System.out.println("airPressure: " + airPressure.getValue()*1000) ;

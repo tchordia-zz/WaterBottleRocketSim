@@ -171,7 +171,8 @@ public class ProjectileBall extends JPanel
 
 					}
 				});
-		scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
+
+		scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
 				{
 
 					public void handle(MouseEvent event)
@@ -179,6 +180,37 @@ public class ProjectileBall extends JPanel
 						if(timerRunning==true && inCircle==false && (x>windowWidth || x<0 || y>windowHeight || y<0))
 						{
 						resetBall();
+						}
+					}
+				});
+		
+		scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+				{
+					public void handle(MouseEvent event)
+					{
+						if(!timerRunning==true && inCircle==false)
+						{
+						double height = yInit-event.getSceneY();
+						double width = event.getSceneX();
+						double hypotenuse = Math.sqrt(height*height + width*width);
+						
+						magnitude = hypotenuse/4;
+						cosineTheta = width/hypotenuse;
+						sineTheta = height/hypotenuse;
+						
+						double lineSize = 50;
+						
+						line.setEndX(cosineTheta*lineSize);
+						line.setEndY(-sineTheta*lineSize+yInit);
+						
+						System.out.println("Mouse Clicked");
+						System.out.println(height);
+						System.out.println(width);
+						System.out.println(hypotenuse);
+						System.out.println(cosineTheta);
+						System.out.println(sineTheta);
+						System.out.println(sineTheta*lineSize);
+						System.out.println(cosineTheta*lineSize);
 						}
 					}
 				});
