@@ -117,7 +117,8 @@ public class ProjectileBall extends JPanel
 		frameNumber=0;
 	}
 	
-	private Scene createScene()
+	private 
+	Scene createScene()
 	{
 		Group root = new Group();
 		Scene scene = new Scene(root, Color.WHITE);
@@ -167,6 +168,7 @@ public class ProjectileBall extends JPanel
 						System.out.println(cosineTheta*lineSize);
 						}
 
+
 					}
 				});
 		scene.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>()
@@ -176,12 +178,10 @@ public class ProjectileBall extends JPanel
 					{
 						if(timerRunning==true && inCircle==false && (x>windowWidth || x<0 || y>windowHeight || y<0))
 						{
-							resetBall();
+						resetBall();
 						}
 					}
-					
 				});
-
 		
 		circle.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>()
 				{
@@ -260,6 +260,5 @@ public class ProjectileBall extends JPanel
 		frame.setSize(700, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		}
 	}
-	
-}
