@@ -1,5 +1,10 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
 public class AngularLaunch extends RocketMath {
-	RocketMath rocket;
+	
 	double angle;
 	double accx;
 	double accy;
@@ -11,7 +16,7 @@ public class AngularLaunch extends RocketMath {
 	double oldvy=0;
 	double x1;
 	double oldx = 0;
-	static double y1;
+	double y1;
 	double oldy = 0;
 
 	public AngularLaunch(double m0, double mW, double vB, double p0, double cD,
@@ -25,22 +30,24 @@ public class AngularLaunch extends RocketMath {
 	// drag, thrust1
 	// since each step is 1 second i didn't bother putting that in
 	public void calculateXAcc() {
-		thrust1 = this.thrust();
-		if (vx>0)
+		
+		thrust1 = this.thrust;
+
+//		if (vx>0)
 			drag1 = this.drag();
-		else
-			drag1 = 0;
-		accx = (thrust1  - drag1)
+//		else
+//			drag1 = 0;
+		accx = (thrust1  + drag1)
 				* Math.cos(angle )
-				/ this.m();
+				/ this.m;
 	}
 
 	public void calculateYAcc() {
-		thrust1 = this.thrust();
+		thrust1 = this.thrust;
 		drag1 = this.drag();
-		accy = (thrust1 * Math.sin(angle ) - drag1
-				* Math.sin(angle ) - this.m() * 9.81)
-				/ this.m();
+		accy = (thrust1 * Math.sin(angle ) + drag1
+				* Math.sin(angle ) - this.m * 9.81)
+				/ this.m;
 	}
 
 	public void calculateVx() {
@@ -68,6 +75,7 @@ public class AngularLaunch extends RocketMath {
 	}
 	public void doStepThrust()
 	{
+	
 		super.doStep();
 		this.calculateXAcc();
 		this.calculateYAcc();
@@ -82,15 +90,24 @@ public class AngularLaunch extends RocketMath {
 	// make 2d motion based on velocity
 	// cartesian coordinates just for kicks
 	public static void main(String args[]) {
-		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01, 30);
+		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01, 90);
 		// (double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
-		rocket.doStepThrust();
-		for (;  y1>0;  )
-		{
-			rocket.doStepThrust();
-			//RocketMath.printStats(rocket);
-		}
+		JFrame frm = new JFrame();
+		BouncingBall ball = new BouncingBall();
+		frm.add(ball, BorderLayout.CENTER);
+		frm.setSize(new Dimension(1000, 500));
 		
-	
+		frm.setVisible(true);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		rocket.doStepThrust();
+		
+			
+//			rocket.doStepThrust();
+			ball.update(rocket);
+			
+			//RocketMath.printStats(rocket);
+		
+		System.out.println("y1:"+rocket.y1);
+	//System.exit(0);
 	}
 }
