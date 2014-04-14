@@ -59,7 +59,7 @@ public class RocketMath {
 	public final double y = 1.4;
 	public final double g = 9.81;
 	public final double oP = 101325; //pascals
-	public double step = 0.01; 
+	public double step = .1; 
 	public final double pA = 1.3; //TODO: FIX ALL CONSTANT VALUES 
     
 	

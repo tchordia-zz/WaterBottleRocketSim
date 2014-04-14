@@ -73,6 +73,14 @@ public class AngularLaunch extends RocketMath {
 		y1 = oldy+vy*step;
 		oldy = y1;
 	}
+	public double drag()
+	{
+		double drag = -.5 * cD * pA * Math.PI * rBot * rBot * (oldvx*oldvx+Math.abs(oldvy)*oldvy);
+//		System.out.println("    " + -.5 * cD * pA * Math.PI * rBot * rBot );
+//		System.out.println("Drag" + drag);
+	return drag;
+	}
+	
 	public void doStepThrust()
 	{
 	
@@ -90,12 +98,13 @@ public class AngularLaunch extends RocketMath {
 	// make 2d motion based on velocity
 	// cartesian coordinates just for kicks
 	public static void main(String args[]) {
-		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01, 90);
+		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,70);
 		// (double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
 		JFrame frm = new JFrame();
 		BouncingBall ball = new BouncingBall();
+		ball.setSize(1000, 500);
 		frm.add(ball, BorderLayout.CENTER);
-		frm.setSize(new Dimension(1000, 500));
+		frm.setSize(new Dimension(500, 500));
 		
 		frm.setVisible(true);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
