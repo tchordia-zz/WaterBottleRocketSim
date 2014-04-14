@@ -67,7 +67,7 @@ public class BouncingBall extends JPanel{
        g.fillOval((x*10+R),getHeight()-y*10-2*R ,R * 2,R * 2);
             
       try {
-		Thread.sleep(50);
+		Thread.sleep(35);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
