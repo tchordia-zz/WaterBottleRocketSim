@@ -12,7 +12,7 @@ public class BouncingBall extends JPanel{
     //Position change after every repaint
   
     //Ball radius
-    private final int R = 10;
+    private final int R = 20;
     private boolean flag = true;
     private Timer timer;
 

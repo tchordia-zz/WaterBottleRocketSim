@@ -98,13 +98,13 @@ public class AngularLaunch extends RocketMath {
 	// make 2d motion based on velocity
 	// cartesian coordinates just for kicks
 	public static void main(String args[]) {
-		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,70);
+		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,45);
 		// (double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
 		JFrame frm = new JFrame();
 		BouncingBall ball = new BouncingBall();
 		ball.setSize(1000, 500);
 		frm.add(ball, BorderLayout.CENTER);
-		frm.setSize(new Dimension(500, 500));
+		frm.setSize(new Dimension(1000, 500));
 		
 		frm.setVisible(true);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
