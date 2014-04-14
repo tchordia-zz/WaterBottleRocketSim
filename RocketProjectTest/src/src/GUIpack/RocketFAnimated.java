@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+import javafx.scene.input.MouseEvent;
+
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
@@ -16,7 +18,15 @@ public class RocketFAnimated extends JFrame  {
 	
 	public SPanel spanel = new SPanel();
 	public ProjectileBall apanel;
-	RocketMath2 rocket2 = new RocketMath2();
+	AngularLaunch rocket2 =new AngularLaunch(
+			  spanel.massRocket.getValue()/(10 + 0.0),
+			  spanel.massWater.getValue()/(10 + 0.0),
+			  spanel.volumeBottle.getValue()/(10000 + 0.0),
+			  spanel.airPressure.getValue()*10000,
+			  spanel.dragC.getValue(),
+			  spanel.bottleRadius.getValue()/(100 + 0.0),
+			  spanel.nozzleRadius.getValue()/(100 + 0.0),
+			  Math.asin(ProjectileBall.sineTheta));
 	private static final long serialVersionUID = 1L;
 	
 	public RocketFAnimated ()
@@ -28,53 +38,83 @@ public class RocketFAnimated extends JFrame  {
             if ("Nimbus".equals(laf.getName())){
                 try {
                     UIManager.setLookAndFeel(laf.getClassName());
-                } catch (Exception e) {
+                } 
+                catch (Exception e){
                     e.printStackTrace();
                 }
             }
         }
+        
+        setupAnimation();
+
+        spanel.setBackground(Color.white);
+        add(spanel);
+        add(apanel);
+        apanel.setVisible(true);
+
+        setTitle("Button Panel Example");
+        setSize(new Dimension(600, 600));
+        setLayout(new GridLayout(0,2));
+        setBackground(Color.white);
+        setPreferredSize(new Dimension(1000,1000));
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+	
+	public void setupAnimation()
+	{
         
         apanel = new ProjectileBall(300, 400)
         {
         	public void resetBall()
         	{
         		super.resetBall();
-    			rocket2 = new RocketMath2(spanel.massRocket.getValue()/(10 + 0.0),
-    									  spanel.massWater.getValue()/(10 + 0.0),
-    									  spanel.volumeBottle.getValue()/(10000 + 0.0),
-    									  spanel.airPressure.getValue()*10000,
-    									  spanel.dragC.getValue(),
-    									  spanel.bottleRadius.getValue()/(100 + 0.0),
-    									  spanel.nozzleRadius.getValue()/(100 + 0.0));
+    			rocket2 = new AngularLaunch(
+    					spanel.massRocket.getValue()/(10 + 0.0),
+    					spanel.massWater.getValue()/(10 + 0.0),
+    					spanel.volumeBottle.getValue()/(10000 + 0.0),
+    					spanel.airPressure.getValue()*10000,
+    					spanel.dragC.getValue(),
+    					spanel.bottleRadius.getValue()/(100 + 0.0),
+    					spanel.nozzleRadius.getValue()/(100 + 0.0),
+    					Math.asin(ProjectileBall.sineTheta)
+//    					Math.PI/4
+    					);
+        	}
+        	public void angleAdjust(MouseEvent e)
+        	{
+        		super.angleAdjust(e);
+    			rocket2 = new AngularLaunch(
+    					spanel.massRocket.getValue()/(10 + 0.0),
+    					spanel.massWater.getValue()/(10 + 0.0),
+    					spanel.volumeBottle.getValue()/(10000 + 0.0),
+    					spanel.airPressure.getValue()*10000,
+    					spanel.dragC.getValue(),
+    					spanel.bottleRadius.getValue()/(100 + 0.0),
+    					spanel.nozzleRadius.getValue()/(100 + 0.0),
+    					Math.asin(ProjectileBall.sineTheta)
+//    					Math.PI/4
+    							);
+    			System.out.println(rocket2.angle);
         	}
 
         	public void mathClass(double t)
         	{
         		super.mathClass(t);
-        		rocket2.t=t/1000;
-        		rocket2.doStep();
-        		ProjectileBall.y=rocket2.h;
+        		rocket2.t=t/100;
+        		rocket2.doStepThrust();
+//        		System.out.println()
+        		ProjectileBall.y=rocket2.y1;
+        		ProjectileBall.x=rocket2.x1;
         	}
         };
-        setTitle("Button Panel Example");
-        setSize(new Dimension(600, 600));
-        setLayout(new GridLayout(0,2));
-        spanel.setBackground(Color.white);
-        add(spanel);
-        add(apanel);
-        setBackground(Color.white);
-        setPreferredSize(new Dimension(1000,1000));
-        apanel.setVisible(true);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-    }
+	}
 
    public static void main(String[] args) 
    {
 	   RocketFAnimated frame = new RocketFAnimated();
    }
-
 
    public class SPanel extends SliderPanel
    {
@@ -93,7 +133,17 @@ public class RocketFAnimated extends JFrame  {
 			System.out.println("dragC: " + dragC.getValue()) ;
 			System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
 			System.out.println("nozzleRadius: " + nozzleRadius.getValue()/(100+0.0)) ;
-			rocket2 = new RocketMath2(massRocket.getValue()/(10 + 0.0), massWater.getValue()/(10 + 0.0), volumeBottle.getValue()/(10000 + 0.0),airPressure.getValue()*10000,dragC.getValue(),bottleRadius.getValue()/(100 + 0.0), nozzleRadius.getValue()/(100 + 0.0));
+			System.out.println("angle: " + rocket2.angle);
+			rocket2 = new AngularLaunch(
+					massRocket.getValue()/(10 + 0.0),
+					massWater.getValue()/(10 + 0.0),
+					volumeBottle.getValue()/(10000 + 0.0),
+					airPressure.getValue()*10000,dragC.getValue(),
+					bottleRadius.getValue()/(100 + 0.0),
+					nozzleRadius.getValue()/(100 + 0.0),
+					Math.asin(ProjectileBall.sineTheta)
+//					Math.PI/4
+					);
 	   }
    }
 }

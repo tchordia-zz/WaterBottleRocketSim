@@ -15,6 +15,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.animation.AnimationTimer;
@@ -41,14 +43,51 @@ public class ProjectileBall extends JPanel
 	private static int windowHeight;
 	private static int windowWidth;
 	
+	public AngularLaunch rocket2;
+	
 	static AnimationTimer timer;
 	
-	static Circle circle = new Circle(10, javafx.scene.paint.Color.BLUE);
-	static Line xAxis = new Line();
-	static Line yAxis = new Line();
+	static Circle circle = new Circle(10, javafx.scene.paint.Color.web("#3D9AD1"));
+	
+	static Line line;
+	
+	private boolean intersectTest;
 	
 	static boolean inCircle = false;
 	
+	private Rectangle square;
+	
+	public ProjectileBall(int W, int H, AngularLaunch launch, SliderPanel panel)
+	{
+		windowWidth = W;
+		windowHeight = H;
+		
+		x = 10;
+		y = H+52;
+
+		xInit = x;
+		yInit = y;
+		
+		rocket2 = launch;
+		
+		final JFXPanel fxPanel = new JFXPanel();
+		
+		fxPanel.setSize(windowWidth, windowHeight);
+		
+		setLayout(new BorderLayout());
+		
+		add(fxPanel, BorderLayout.CENTER);
+		
+		establishTimer();
+		
+        Platform.runLater(new Runnable() {
+            public void run()
+            	{
+            	Scene scene = createScene();
+            	fxPanel.setScene(scene);
+            	}
+            });
+	}
 	public ProjectileBall(int W, int H)
 	{
 		windowWidth = W;
@@ -74,13 +113,14 @@ public class ProjectileBall extends JPanel
             public void run() {
             	Scene scene = createScene();
             	fxPanel.setScene(scene);
-//            	timer.start();
             	}
             });
 	}
-	
 	public ProjectileBall()
-	{	
+	{
+		windowWidth = 600;
+		windowHeight = 600;
+		
 		x = 10;
 		y = 652;
 
@@ -101,7 +141,6 @@ public class ProjectileBall extends JPanel
             public void run() {
             	Scene scene = createScene();
             	fxPanel.setScene(scene);
-//            	timer.start();
             	}
             });
 	}
@@ -117,27 +156,58 @@ public class ProjectileBall extends JPanel
 		frameNumber=0;
 	}
 	
-	private 
-	Scene createScene()
+	public void angleAdjust(MouseEvent event)
+	{
+		double height = yInit-event.getSceneY();
+		double width = event.getSceneX();
+		double hypotenuse = Math.sqrt(height*height + width*width);
+		
+		magnitude = hypotenuse/4;
+		cosineTheta = width/hypotenuse;
+		sineTheta = height/hypotenuse;
+		
+		double lineSize = 50;
+		
+		line.setEndX(cosineTheta*lineSize);
+		line.setEndY(-sineTheta*lineSize+yInit);
+		
+		System.out.println("Mouse Clicked");
+		System.out.println(height);
+		System.out.println(width);
+		System.out.println(hypotenuse);
+		System.out.println("Cosine Theta: "+cosineTheta);
+		System.out.println("Sine Theta: "+sineTheta);
+		System.out.println("Angle sine: "+Math.asin(sineTheta));
+		System.out.println("Angle cosine: "+Math.acos(cosineTheta));
+		
+	}
+	
+	private Scene createScene()
 	{
 		Group root = new Group();
-		Scene scene = new Scene(root, Color.WHITE);
+		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
 		
 		circle.setRadius(10);
 		circle.setCenterX(xInit);
 		circle.setCenterY(yInit);
 		
+		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
+		
+		square.setX(xInit+400);
+		square.setY(yInit-40);
+				
 		System.out.println(x);
 		System.out.println(y);
 		
-		final Line line = new Line();
+		line = new Line();
 		
+		line.setStroke(javafx.scene.paint.Color.web("#03436A"));
 		line.setStartX(10);
 		line.setStartY(yInit);
 		line.setEndX(10);
 		line.setEndY(yInit);
 		
-		root.getChildren().addAll(line, circle);
+		root.getChildren().addAll(line, circle, square);
 		
 		scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>()
 				{
@@ -145,30 +215,8 @@ public class ProjectileBall extends JPanel
 					{
 						if(!timerRunning==true && inCircle==false)
 						{
-						double height = yInit-event.getSceneY();
-						double width = event.getSceneX();
-						double hypotenuse = Math.sqrt(height*height + width*width);
-						
-						magnitude = hypotenuse/4;
-						cosineTheta = width/hypotenuse;
-						sineTheta = height/hypotenuse;
-						
-						double lineSize = 50;
-						
-						line.setEndX(cosineTheta*lineSize);
-						line.setEndY(-sineTheta*lineSize+yInit);
-						
-						System.out.println("Mouse Clicked");
-						System.out.println(height);
-						System.out.println(width);
-						System.out.println(hypotenuse);
-						System.out.println(cosineTheta);
-						System.out.println(sineTheta);
-						System.out.println(sineTheta*lineSize);
-						System.out.println(cosineTheta*lineSize);
+						angleAdjust(event);
 						}
-
-
 					}
 				});
 
@@ -177,7 +225,7 @@ public class ProjectileBall extends JPanel
 
 					public void handle(MouseEvent event)
 					{
-						if(timerRunning==true && inCircle==false && (x>windowWidth || x<0 || y>windowHeight || y<0))
+						if(timerRunning==true && inCircle==false /*&& (x>windowWidth || x<0 || y>windowHeight || y<0)*/)
 						{
 						resetBall();
 						}
@@ -190,27 +238,7 @@ public class ProjectileBall extends JPanel
 					{
 						if(!timerRunning==true && inCircle==false)
 						{
-						double height = yInit-event.getSceneY();
-						double width = event.getSceneX();
-						double hypotenuse = Math.sqrt(height*height + width*width);
-						
-						magnitude = hypotenuse/4;
-						cosineTheta = width/hypotenuse;
-						sineTheta = height/hypotenuse;
-						
-						double lineSize = 50;
-						
-						line.setEndX(cosineTheta*lineSize);
-						line.setEndY(-sineTheta*lineSize+yInit);
-						
-						System.out.println("Mouse Clicked");
-						System.out.println(height);
-						System.out.println(width);
-						System.out.println(hypotenuse);
-						System.out.println(cosineTheta);
-						System.out.println(sineTheta);
-						System.out.println(sineTheta*lineSize);
-						System.out.println(cosineTheta*lineSize);
+							angleAdjust(event);
 						}
 					}
 				});
@@ -257,6 +285,9 @@ public class ProjectileBall extends JPanel
             	mathClass(frameNumber);
 				circle.setTranslateX(x-10);
 				circle.setTranslateY(y);
+//				intersectTest = circle.intersects(square.getBoundsInLocal());
+//				if(!intersectTest==true)
+//					square.setFill(Color.BLACK);
 				System.out.println("X value: " + x);
 				System.out.println("Y value: " + y);
 				System.out.println("Frame Number: " + frameNumber);

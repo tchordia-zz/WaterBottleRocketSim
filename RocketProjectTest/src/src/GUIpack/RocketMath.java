@@ -1,7 +1,8 @@
+package src.GUIpack;
 /**
  * 
  */
-package src.GUIpack;
+
 
 /**
  * @author Tanmay Chordia
@@ -46,7 +47,7 @@ public class RocketMath {
     public double vW0;
     public double vA0;
     public double iP;
-    public double pW = .001;
+    public double pW = 1000;
     
     
 	public double dMdt;
@@ -54,13 +55,13 @@ public class RocketMath {
 	public double m = 0;
 	public double v = 0;
 	public double a = 0;
-	public double h = 0;
-	public double t = 0;
+	public static double h = 0;
+	public static double t = 0;
 	public final double y = 1.4;
 	public final double g = 9.81;
 	public final double oP = 101325; //pascals
 	public double step = 0.01; 
-	public final double pA = .0000013; //TODO: FIX ALL CONSTANT VALUES 
+	public final double pA = 1.3; //TODO: FIX ALL CONSTANT VALUES 
     
 	
 	public RocketMath(double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
@@ -70,17 +71,17 @@ public class RocketMath {
 		this.vB = vB;
 		this.p0 = p0;
 		this.iP = p0;
-		this.cD = cD * 5000000;
+		this.cD = cD;
 		this.rBot = rBot;
 		this.rNoz = rNoz;
-		this.vW0 = pW * mW;
+		this.vW0 = mW/pW;
 		this.vA0 = vB - vW0;
 		this.m = m0;
 		
 		this.dM_dt();
 		this.iPc();
 		this.thrust();
-		
+		printStats(this);
 		//System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
 		
 	}
@@ -92,10 +93,10 @@ public class RocketMath {
 		this.vB = vB;
 		this.p0 = p0;
 		this.iP = p0;
-		this.cD = cD * 5000000;
+		this.cD = cD ;
 		this.rBot = rBot;
 		this.rNoz = rNoz;
-		this.vW0 = pW * mW;
+		this.vW0 = mW/pW;
 		this.vA0 = vB - vW0;
 		this.m = m0;
 		
@@ -103,27 +104,27 @@ public class RocketMath {
 		this.dM_dt();
 		this.iPc();
 		this.thrust();
-		
+		printStats(this);
 		//System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
 		
 	}
 	
 	public RocketMath()
 	{
-		RocketMath rocket = new RocketMath(0.76, 0.66, .002, 253312.5, 1,.05, .01);
+		//RocketMath rocket = new RocketMath(0.76, 0.66, 2, 253312.5, 1,.05, .01);
 		
 		this.m0 = .76;
 		this.mW = .66;
 		this.vB = .002;
 		this.p0 = 253312.5;
 		this.iP = p0;
-		this.cD = 1 * 5000000;
+		this.cD = 1;
 		this.rBot = .05;
 		this.rNoz = .01;
-		this.vW0 = pW * mW;
+		this.vW0 = mW/pW;
 		this.vA0 = vB - vW0;
 		this.m = m0;
-		
+		System.out.println(vA0);
 		this.dM_dt();
 		this.iPc();
 		this.thrust();
@@ -138,20 +139,27 @@ public class RocketMath {
 	 */
 	public double iPc()
 	{
-		iP = p0 * Math.pow((( vA0 + (m0 - m)/pW)/ vA0), -y);
+		//iP = p0 * Math.pow((( vA0 + (m0 - m)/pW)/ vA0), -y);
 		//System.out.println();
-		
-		int a = (int)(1000 * (m0 - m));
-		double b = (a + 0.0)/1000;
-		/*System.out.println(Math.pow( ((vA0 + b/pW)/ vA0), -y));
-		System.out.println(( vA0 + (m0 - m)/pW)/ vA0);
-		System.out.println(( m0 - mW));
-		System.out.println(m);*/
-		
+		if (iP > oP)
+		{
+		//System.out.println(iP + " " + m);
+			//System.out.println(a);
+//		int a = (int)(1000 * (m0 - m));
+//		double b = (a + 0.0)/1000;
+		double b = m0 - m;
+		//System.out.println(Math.pow( ((vA0 + b/pW)/ vA0), -y));
+		//System.out.println(b/pW);
+		//System.out.println(( vA0 + (m0 - m)/pW)/ vA0);
+		//System.out.println(( m0 - mW));
+		//System.out.println(m);
+		//System.out.println(a + " " + b);
 		iP = p0 * Math.pow((( vA0 + b/pW)/ vA0), -y);
-
+		double a = vA0 + (b/pW);
+		//System.out.println(b + " " + ( vA0) + " " + ( vA0));
+		}
 //		System.out.println();
-//		System.out.println("Internal Pressure " + iP);
+		//System.out.println("Internal Pressure " + iP);
 		return iP;
 		
 	}
@@ -161,12 +169,12 @@ public class RocketMath {
 	 */
 	public double dM_dt()
 	{
-		if (iP > oP)
+		if ((iP > oP))
 		{
 		dMdt = -1* Math.PI * (rNoz * rNoz) * pW * Math.sqrt((2 * (iP - oP ))/pW);
 		}
 		else dMdt = 0;
-//		System.out.println("dM/dt " + dMdt);
+		//System.out.println("dM/dt " + dMdt);
 		return dMdt;
 	}
 	/**
@@ -195,11 +203,16 @@ public class RocketMath {
 		{
 		m += (dMdt * step);
 		}
+		else
+			dMdt = 0;
 //		System.out.println("Mass2 " + m);
 		return m;
 	}
 	
-	
+	 public RocketMath copy() {
+	    	RocketMath a = new RocketMath(m0,mW,vB, p0, cD,  rBot,  rNoz);
+	    	return a;
+	    }
 	/**
 	 * @return return the acceleration at a given time.
 	 * calculate acceleration
@@ -237,32 +250,47 @@ public class RocketMath {
 	public double drag()
 	{
 		double drag = -.5 * cD * pA * Math.PI * rBot * rBot * v * Math.abs(v);
-		System.out.println("    " + -.5 * cD * pA * Math.PI * rBot * rBot );
-		System.out.println("Drag" + drag);
+//		System.out.println("    " + -.5 * cD * pA * Math.PI * rBot * rBot );
+//		System.out.println("Drag" + drag);
 	return drag;
 	}
 	
 	/**
 	 *  Increment the time by the step, and recalculate all values
-	 * @return 
 	 */
 	public void doStep ()
 	{
-		System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
-		System.out.println("time " + t);
+		//System.out.println("thrust" + thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
+		
+		t+= step * 100;
+//		System.out.println("time " + t);
+		//System.out.println();
 		iPc();
-		m();
+	
 		dM_dt();
+		m(); 
 		thrust();
-		cA();
-		cV();
-		cH();
+		cA(); // calc accel
+		cV(); // calc velocity
+		cH(); // calc height
+		//printStuff();
+		//System.out.println(h);
+		
+	}
+	
+	public void printStuff()
+	{
+		System.out.println("ipc " + iP + " mass " + m + " dM/dt " + dMdt + " velocity " + v + " height " + h + "Thrust " + thrust);
+	}
+	public static void printStats(RocketMath rocket)
+	{
+		System.out.println(rocket.m0+ " " + rocket.mW+ " " + rocket.vB+ " " + rocket.p0+ " " + rocket.cD+ " " + rocket.rBot+ " " + rocket.rNoz);
 	}
 	/**
 	 * @param args
 	 * @param m0 = total weight of rocket (kg)
 	 * @param mW = intital amount of water (liters)
-	 * @param vB = bottle volume (liters)
+	 * @param vB = bottdle volume (liters)
 	 * @param p0 = intial air pressure (pascals)
 	 * @param cD = drag coefficient  ( no unit)
 	 * @param step = time step 
@@ -282,10 +310,14 @@ public class RocketMath {
 	 */
 	public static void main ( String args[])
 	{
-		RocketMath rocket = new RocketMath(0.76, 0.66, .002, 253312.5, 1,.05, .01);
+		RocketMath rocket = new RocketMath();
 		// (double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
 		for (int i = 1; i <= 375; i++)
+		{
 			rocket.doStep();
+//			RocketMath.printStats(rocket);
+			System.out.println(t+": "+h);
+		}
 		System.out.println(rocket.rNoz);
 	}
 
