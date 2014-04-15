@@ -102,7 +102,6 @@ public class RocketFAnimated extends JFrame  {
 
         	public void mathClass(double t)
         	{
-        		super.mathClass(t);
         		rocket2.t=t;
         		rocket2.doStepThrust();
 //        		System.out.println()
