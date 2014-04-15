@@ -1,2 +1,0 @@
-Highest Height: 7
-Last Height: 7
