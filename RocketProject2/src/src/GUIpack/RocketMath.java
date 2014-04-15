@@ -262,7 +262,8 @@ public class RocketMath {
 	{
 		//System.out.println("thrust" + thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
 		
-//		t+= step * 100;
+		t+= step;
+		t= round(t,3);
 //		System.out.println("time " + t);
 		//System.out.println();
 		iPc();
@@ -278,6 +279,11 @@ public class RocketMath {
 		
 	}
 	
+	public static double round(double num, int places)
+	{
+		double factor = Math.pow(10, places);
+		return Math.round(num * factor) / (factor + 0.0);
+	}
 	public void printStuff()
 	{
 		System.out.println("ipc " + iP + " mass " + m + " dM/dt " + dMdt + " velocity " + v + " height " + h + "Thrust " + thrust);

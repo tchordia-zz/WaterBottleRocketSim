@@ -100,7 +100,7 @@ public class AngularLaunch extends RocketMath {
 		newFlightAngle();
 		this.xpos();
 		this.ypos();
-		System.out.println(t+" Cartesian Coordinates: ("+x1+", "+y1+") " + "Angle: "+ angle*180/Math.PI);
+		//System.out.println(t+" Cartesian Coordinates: ("+x1+", "+y1+") " + "Angle: "+ angle*180/Math.PI);
 	}
 	// when thrust1 = 0
 	// make 2d motion based on velocity
