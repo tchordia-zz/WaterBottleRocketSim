@@ -33,8 +33,8 @@ public class BouncingBall extends JPanel{
     	for (; rocket.y1>=0; ) 
 		{
 			
-			y=(int)rocket.y1;
-			x = (int) rocket.x1;
+			y=(int)(rocket.y1*10);
+			x = (int)( rocket.x1*10);
 			//System.out.println(ball.y);
 			rocket.doStepThrust();
 			System.out.println(rocket.drag1);
@@ -64,10 +64,10 @@ public class BouncingBall extends JPanel{
        
 //       g.drawImage(img,x,= y,null);
 //       g.fillOval(x, ry= 500= - R , R * 2, R * 2);
-       g.fillOval((x*10+R),getHeight()-y*10-2*R ,R * 2,R * 2);
+       g.fillOval((x+R),getHeight()-y-R ,R * 2,R * 2);
             
       try {
-		Thread.sleep(35);
+		Thread.sleep(25);
 	} catch (InterruptedException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
