@@ -268,7 +268,7 @@ public class ProjectileBall extends JPanel
 						}
 					}
 				});
-		//this sets the 
+		//this sets the angle on press, it's different than on drag
 		scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
 				{
 					public void handle(MouseEvent event)
@@ -280,6 +280,7 @@ public class ProjectileBall extends JPanel
 					}
 				});
 		
+		//this starts the timer when the ball is clicked
 		circle.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>()
 				{
 					public void handle(MouseEvent event)
@@ -289,6 +290,7 @@ public class ProjectileBall extends JPanel
 					}
 				}
 				);
+		//checks if the cursor is in the circle
 		circle.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET, new EventHandler<MouseEvent>()
 				{
 					public void handle(MouseEvent event)
@@ -309,6 +311,9 @@ public class ProjectileBall extends JPanel
 		return (scene);
 	}
 	
+	/**
+	 * creates the timer 
+	 */
 	private void establishTimer()
 	{
 		timer = new AnimationTimer()
