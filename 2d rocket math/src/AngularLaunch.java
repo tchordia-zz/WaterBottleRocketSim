@@ -98,7 +98,7 @@ public class AngularLaunch extends RocketMath {
 	// make 2d motion based on velocity
 	// cartesian coordinates just for kicks
 	public static void main(String args[]) {
-		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,45);
+		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,30);
 		// (double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
 		JFrame frm = new JFrame();
 		BouncingBall ball = new BouncingBall();
