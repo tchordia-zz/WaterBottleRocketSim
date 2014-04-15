@@ -69,7 +69,7 @@ public class AngularLaunch extends RocketMath {
 	}
 
 	public void newFlightAngle() {
-		angle = Math.atan(vy / vx) ; 
+		angle = Math.atan(vy / vx) ;
 	}
 
 	public void xpos() {

@@ -105,7 +105,12 @@ public class RocketFAnimated extends JFrame  {
 
         	public void mathClass(double t)
         	{
-
+<<<<<<< HEAD
+        		//super.mathClass(t);
+        		
+=======
+        		rocket2.t=t;
+>>>>>>> FETCH_HEAD
         		rocket2.doStepThrust();
 //        		System.out.println()
         		ProjectileBall.y=rocket2.y1;
