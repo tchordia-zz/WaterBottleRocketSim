@@ -25,7 +25,13 @@ public class AngularLaunch extends RocketMath {
 			double rBot, double rNoz, double angle) {
 		 super(m0, mW, vB, p0, cD, rBot, rNoz);
 		drag1 = this.drag();
-		this.angle = angle;
+		this.angle = angle*Math.PI/180;
+	}
+	
+	public AngularLaunch()
+	{
+		super();
+		this.angle = Math.PI/2;
 	}
 
 	// methods to be used
@@ -94,20 +100,37 @@ public class AngularLaunch extends RocketMath {
 		newFlightAngle();
 		this.xpos();
 		this.ypos();
-		System.out.println("Time: " + t+" Cartesian Coordinates: ("+x1+", "+y1+") " + "Angle: "+ angle*180/Math.PI);
+		System.out.println(t+" Cartesian Coordinates: ("+x1+", "+y1+") " + "Angle: "+ angle*180/Math.PI);
 	}
 	// when thrust1 = 0
 	// make 2d motion based on velocity
 	// cartesian coordinates just for kicks
-	
-	public static void main(String[] args)
-	{
-		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,Math.PI/2);
-		for(int i = 0; !(i==1000); i++)
-		{
-		System.out.println("step " + i);
+	public static void main(String args[]) {
+		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,30);
+		
+		// (double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
+		JFrame frm = new JFrame();
+		BouncingBall ball = new BouncingBall();
+		ball.setSize(1000, 500);
+		frm.add(ball, BorderLayout.CENTER);
+		frm.setSize(new Dimension(1000, 500));
+
+		frm.setVisible(true);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		rocket.doStepThrust();
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+//			rocket.doStepThrust();
+			ball.update(rocket);
+
+			//RocketMath.printStats(rocket);
+
+		System.out.println("y1:"+rocket.y1);
+	//System.exit(0);
 	}
-	
 }
