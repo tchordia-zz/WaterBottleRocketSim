@@ -1,7 +1,7 @@
 /**
  * 
  */
-package src.GUIpack;
+
 
 /**
  * @author Tanmay Chordia
@@ -54,12 +54,12 @@ public class RocketMath {
 	public double m = 0;
 	public double v = 0;
 	public double a = 0;
-	public double h = 0;
-	public int t = 0;
+	public static double h = 0;
+	public static int t = 0;
 	public final double y = 1.4;
 	public final double g = 9.81;
 	public final double oP = 101325; //pascals
-	public double step = 0.01; 
+	public double step = .1; 
 	public final double pA = 1.3; //TODO: FIX ALL CONSTANT VALUES 
     
 	
@@ -208,7 +208,10 @@ public class RocketMath {
 		return m;
 	}
 	
-	
+	 public RocketMath copy() {
+	    	RocketMath a = new RocketMath(m0,mW,vB, p0, cD,  rBot,  rNoz);
+	    	return a;
+	    }
 	/**
 	 * @return return the acceleration at a given time.
 	 * calculate acceleration
@@ -264,11 +267,11 @@ public class RocketMath {
 		iPc();
 	
 		dM_dt();
-		m();
+		m(); 
 		thrust();
-		cA();
-		cV();
-		cH();
+		cA(); // calc accel
+		cV(); // calc velocity
+		cH(); // calc height
 		//printStuff();
 		//System.out.println(h);
 		
@@ -311,7 +314,8 @@ public class RocketMath {
 		for (int i = 1; i <= 375; i++)
 		{
 			rocket.doStep();
-			//RocketMath.printStats(rocket);
+//			RocketMath.printStats(rocket);
+			System.out.println(t+": "+h);
 		}
 		System.out.println(rocket.rNoz);
 	}

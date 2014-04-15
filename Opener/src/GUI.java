@@ -1,5 +1,3 @@
-package src.GUIpack;
-
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,7 +11,7 @@ import javax.swing.JTextField;
 
 //notice javax
 
-public class GUI extends JPanel implements ActionListener {
+public class GUI extends JFrame implements ActionListener {
 	JPanel masterpane = new JPanel();
 	JPanel pane = new JPanel();
 	BouncingBall ball = new BouncingBall();
@@ -25,17 +23,18 @@ public class GUI extends JPanel implements ActionListener {
 	JTextField rBot = new JTextField(10);
 	JTextField rNoz = new JTextField(10);
 	JButton start = new JButton("Start");
-	GraphPanel graph = new GraphPanel(new RocketMath2());
+	JTextField height = new JTextField(10);
+
 	public GUI() // the frame constructor method
 	{
-		
+		super("RocketInput");
 		setBounds(250, 200, 400, 200);
-		
-		
-		add(masterpane); // add the panel to frame
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container con = this.getContentPane(); // inherit main frame
+		con.add(masterpane); // add the panel to frame
 		masterpane.setLayout(new GridLayout(1, 2));
 		masterpane.add(pane);
-		pane.setLayout(new GridLayout(8, 2));
+		pane.setLayout(new GridLayout(9, 2));
 		// customize panel here
 		pane.add(new JLabel("Mass of Rocket"));
 		pane.add(m0);
@@ -60,16 +59,14 @@ public class GUI extends JPanel implements ActionListener {
 
 		start.addActionListener(this);
 		pane.add(start);
-
+		
 		// pane.add(someWidget);
 		masterpane.add(ball);
-		masterpane.add(graph);
 		setVisible(true); // display this frame
 	}
 
 	public static void main(String args[]) {
 
-		
 		new GUI();
 
 	}
@@ -77,31 +74,43 @@ public class GUI extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		 RocketMath2 rocket = new RocketMath2(Double.parseDouble(m0.getText()),
+		RocketMath rocket;
+		try { 
+		rocket = new RocketMath(Double.parseDouble(m0.getText()),
 		
 		 Double.parseDouble(mW.getText()), Double.parseDouble(vB.getText()),
 		 Double.parseDouble(p0.getText()), Double.parseDouble(cD.getText()),
 		 Double.parseDouble(rBot.getText()), Double.parseDouble(rNoz
-		 .getText()));
-		
-		 RocketMath2 r = rocket.copy();
-		 
-		 graph.updaterr(r);
-		 ball.update(rocket);
-//		for (; rocket.h>=0; ) 
-//		{
-//			try {
-//				Thread.sleep(3);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				System.out.print("wait error");
-//			}
-//			ball.y =this.getHeight()-50-(int) rocket.h *this.getHeight()/48 ;
-//			//System.out.println(ball.y);
-//			rocket.doStep();
-//			
-//			ball.paint(ball.getGraphics());
-//		}
+		 .getText()), .01);
+		}
+		catch (Exception e)
+		{
+			rocket = new RocketMath(.77, .66, .002, 300000, 1, .05, .01,
+			.01);
+			m0.setText(".77");
+			mW.setText(".66");
+			vB.setText(".002");
+			p0 .setText("300000");
+			cD .setText("1");
+			rBot .setText(".05");
+			rNoz .setText(".01");
+		}
 
+		
+		for (; rocket.h>=0; ) 
+		{
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				System.out.print("wait error");
+			}
+			ball.y =this.getHeight()-50-(int) rocket.h *this.getHeight()/48 ;
+			//System.out.println(ball.y);
+			rocket.doStep();
+			
+			ball.paint(ball.getGraphics());
+		}
+		
 	}
 }
