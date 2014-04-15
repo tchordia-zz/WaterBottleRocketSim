@@ -24,70 +24,71 @@ import javafx.application.*;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 
+/**
+ * Projectile Ball Class
+ * 
+ * @author Cameron Yang
+ * 
+ * @description
+ * 
+ * This program creates the animation that launches a ball.
+ *  The ball follows a basic parabolic path of motion created in the math class.
+ *  This program is meant to be used to model a projectile with a path given by the math class.
+ */
 public class ProjectileBall extends JPanel
 {
 	static double frameNumber = 0;
 	
+	//x and y values of the ball
 	public static double x;
 	public static double y;
 
+	//initial x and y values of the ball
 	public static double xInit;
 	public static double yInit;
 	
+	//stuff for the original launch angle
 	static double cosineTheta;
 	static double sineTheta;
 	static double magnitude;
 	
+	//checks if the timer is running
 	static boolean timerRunning;
 	
+	//self explanatory
 	private static int windowHeight;
 	private static int windowWidth;
 	
-	public AngularLaunch rocket2;
-	
+	//this timer is used for animation.
 	static AnimationTimer timer;
 	
+	//this establishes the projectile. It's global because more than one method needs to access it
 	static Circle circle = new Circle(10, javafx.scene.paint.Color.web("#3D9AD1"));
 	
+	//this line is the point-y stick when you click on the screen. Chooses the angle of the ball
 	static Line line;
 	
+	//this makes the numbers
+	static Text distanceMarkers[];
+	
+	//used to detect intersection
 	private boolean intersectTest;
 	
+	//used to see if the pointer is in the circle or not
+	//used to prevent the angle from changing while clicking inside the circle
 	static boolean inCircle = false;
 	
+	//it's a rect
 	private Rectangle square;
 	
-	public ProjectileBall(int W, int H, AngularLaunch launch, SliderPanel panel)
-	{
-		windowWidth = W;
-		windowHeight = H;
-		
-		x = 10;
-		y = H+52;
+	//this is the ground
+	Line ground;
 
-		xInit = x;
-		yInit = y;
-		
-		rocket2 = launch;
-		
-		final JFXPanel fxPanel = new JFXPanel();
-		
-		fxPanel.setSize(windowWidth, windowHeight);
-		
-		setLayout(new BorderLayout());
-		
-		add(fxPanel, BorderLayout.CENTER);
-		
-		establishTimer();
-		
-        Platform.runLater(new Runnable() {
-            public void run()
-            	{
-            	Scene scene = createScene();
-            	fxPanel.setScene(scene);
-            	}
-            });
-	}
+	   /** 
+	    * Class constructor.
+	    * pretty basic, sets up the jfxPanel. The new thread starts the JavaFX
+	    * 
+	    */
 	public ProjectileBall(int W, int H)
 	{
 		windowWidth = W;
@@ -145,6 +146,13 @@ public class ProjectileBall extends JPanel
             });
 	}
 	
+	/**
+	 * <b>ResetBall</b>
+	 * 
+	 * <p>
+	 * When you click the screen after launch, this class is called. It puts the ball back, and stops the animation.
+	 * 
+	 */
 	public void resetBall()
 	{
 		timer.stop();
@@ -156,6 +164,14 @@ public class ProjectileBall extends JPanel
 		frameNumber=0;
 	}
 	
+	/**
+	 * <b>angleAdjust</b>
+	 * 
+	 * <p>
+	 * This class is to adjust the angle when the mouse is pressed down. Creates the line, and gets the angle.
+	 * 
+	 * @param event = The mouse event.
+	 */
 	public void angleAdjust(MouseEvent event)
 	{
 		double height = yInit-event.getSceneY();
@@ -179,36 +195,57 @@ public class ProjectileBall extends JPanel
 		System.out.println("Sine Theta: "+sineTheta);
 		System.out.println("Angle sine: "+Math.asin(sineTheta));
 		System.out.println("Angle cosine: "+Math.acos(cosineTheta));
-		
 	}
 	
+	/**
+	 * <b>createScene</b>
+	 * 
+	 * <p>
+	 * Creates the scene and sets up events.
+	 * 
+	 * 
+	 */
 	private Scene createScene()
 	{
+		//establishes scene hierarchy.
 		Group root = new Group();
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
 		
+		//sets up circles
 		circle.setRadius(10);
 		circle.setCenterX(xInit);
 		circle.setCenterY(yInit);
 		
+		//sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
-		
 		square.setX(xInit+400);
-		square.setY(yInit-40);
-				
+		square.setY(yInit-36);
+		
+		//I forgot why this was there
 		System.out.println(x);
 		System.out.println(y);
 		
+		//sets up line
 		line = new Line();
-		
 		line.setStroke(javafx.scene.paint.Color.web("#03436A"));
 		line.setStartX(10);
 		line.setStartY(yInit);
 		line.setEndX(10);
 		line.setEndY(yInit);
 		
-		root.getChildren().addAll(line, circle, square);
+		//makes the ground
+		distanceMarkers = new Text[10];
+		ground = new Line(0, yInit+11, 2000,yInit+25);
+		for(int i = 0; i<10; i++)
+		{
+			int marker = (i+1)*100;
+			distanceMarkers[i] = new Text(marker, yInit+50, Integer.toString(marker));
+			root.getChildren().add(distanceMarkers[i]);
+		}
+		//adds everything to the scene
+		root.getChildren().addAll(line, circle, square, ground);
 		
+		//this event is to make the line appear and get the angle on mouse drag
 		scene.addEventFilter(MouseEvent.MOUSE_DRAGGED, new EventHandler<MouseEvent>()
 				{
 					public void handle(MouseEvent event)
@@ -219,7 +256,7 @@ public class ProjectileBall extends JPanel
 						}
 					}
 				});
-
+		//this event resets the ball after the timer starts.
 		scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
 				{
 
@@ -231,7 +268,7 @@ public class ProjectileBall extends JPanel
 						}
 					}
 				});
-		
+		//this sets the 
 		scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
 				{
 					public void handle(MouseEvent event)
@@ -279,19 +316,26 @@ public class ProjectileBall extends JPanel
 			@Override
 			public void handle(long l)
 			{
-				for(int i=1; !(i==50); i++)
-				{
-				frameNumber+=.02;
+//				for(int i=1; !(i==100); i++)
+//				{
+				frameNumber+=1;
             	mathClass(frameNumber);
+            	System.out.println("window width "+windowWidth/2);
+            	if(x >= windowWidth/2)
+            	{
+//            		this.stop();
+            	}
+            	
 				circle.setTranslateX(x-10);
 				circle.setTranslateY(y);
-//				intersectTest = circle.intersects(square.getBoundsInLocal());
-//				if(!intersectTest==true)
-//					square.setFill(Color.BLACK);
+				intersectTest = ground.intersects(circle.getBoundsInParent());
+//				System.out.println(ground.getBoundsInLocal());
+//				System.out.println(circle.getBoundsInParent());
 				System.out.println("X value: " + x);
 				System.out.println("Y value: " + y);
 				System.out.println("Frame Number: " + frameNumber);
-				}
+				
+//				}
 			}
 		};
 	}
@@ -299,8 +343,6 @@ public class ProjectileBall extends JPanel
 	//this class should be overridden
 	public void mathClass(double t)
 	{		
-		t /= 12.5;
-				
 		double vInitialX = magnitude*cosineTheta;
 		double accelerationX = 0;
 		
@@ -314,7 +356,7 @@ public class ProjectileBall extends JPanel
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		ProjectileBall ball = new ProjectileBall(400, 400);
+		ProjectileBall ball = new ProjectileBall(600, 400);
 		ball.setPreferredSize(new Dimension(700, 700));
 		
 		frame.setLayout(new BorderLayout());

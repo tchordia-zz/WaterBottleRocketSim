@@ -26,7 +26,9 @@ public class RocketFAnimated extends JFrame  {
 			  spanel.dragC.getValue(),
 			  spanel.bottleRadius.getValue()/(100 + 0.0),
 			  spanel.nozzleRadius.getValue()/(100 + 0.0),
-			  Math.asin(ProjectileBall.sineTheta));
+//			  Math.asin(ProjectileBall.sineTheta)
+			  Math.PI/4
+			  );
 	private static final long serialVersionUID = 1L;
 	
 	public RocketFAnimated ()
@@ -78,8 +80,7 @@ public class RocketFAnimated extends JFrame  {
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
     					spanel.nozzleRadius.getValue()/(100 + 0.0),
-    					Math.asin(ProjectileBall.sineTheta)
-//    					Math.PI/4
+    					Math.PI/4
     					);
         	}
         	public void angleAdjust(MouseEvent e)
@@ -93,8 +94,8 @@ public class RocketFAnimated extends JFrame  {
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
     					spanel.nozzleRadius.getValue()/(100 + 0.0),
-    					Math.asin(ProjectileBall.sineTheta)
-//    					Math.PI/4
+//    					Math.asin(ProjectileBall.sineTheta)
+    					Math.PI/4
     							);
     			System.out.println(rocket2.angle);
         	}
@@ -102,11 +103,19 @@ public class RocketFAnimated extends JFrame  {
         	public void mathClass(double t)
         	{
         		super.mathClass(t);
-        		rocket2.t=t/100;
+        		rocket2.t=t;
         		rocket2.doStepThrust();
 //        		System.out.println()
         		ProjectileBall.y=rocket2.y1;
         		ProjectileBall.x=rocket2.x1;
+        		rocket2.t=t+1;
+        		System.out.print("Next step: ");
+        		rocket2.doStepThrust();
+        		if(Double.toString(rocket2.angle) == "NaN")
+        		{
+        			System.out.println("aw shit");
+        		}
+        		rocket2.t=t-1;
         	}
         };
 	}
@@ -141,8 +150,8 @@ public class RocketFAnimated extends JFrame  {
 					airPressure.getValue()*10000,dragC.getValue(),
 					bottleRadius.getValue()/(100 + 0.0),
 					nozzleRadius.getValue()/(100 + 0.0),
-					Math.asin(ProjectileBall.sineTheta)
-//					Math.PI/4
+//					Math.asin(ProjectileBall.sineTheta)
+					Math.PI/4
 					);
 	   }
    }

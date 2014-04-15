@@ -262,7 +262,7 @@ public class RocketMath {
 	{
 		//System.out.println("thrust" + thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
 		
-		t+= step * 100;
+//		t+= step * 100;
 //		System.out.println("time " + t);
 		//System.out.println();
 		iPc();

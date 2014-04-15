@@ -5,11 +5,6 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-
 public class AngularLaunch extends RocketMath {
 
 	double angle;
@@ -53,7 +48,7 @@ public class AngularLaunch extends RocketMath {
 		thrust1 = this.thrust;
 		drag1 = this.drag();
 		accy = (thrust1 * Math.sin(angle ) + drag1
-				* Math.sin(angle) - this.m * 9.81)
+				* Math.sin(angle ) - this.m * 9.81)
 				/ this.m;
 	}
 
@@ -90,6 +85,7 @@ public class AngularLaunch extends RocketMath {
 
 	public void doStepThrust()
 	{
+
 		super.doStep();
 		this.calculateXAcc();
 		this.calculateYAcc();
@@ -98,9 +94,20 @@ public class AngularLaunch extends RocketMath {
 		newFlightAngle();
 		this.xpos();
 		this.ypos();
-		System.out.println(t+" Cartesian Coordinates: ("+x1+", "+y1+") " + "Angle: "+ angle);
+		System.out.println("Time: " + t+" Cartesian Coordinates: ("+x1+", "+y1+") " + "Angle: "+ angle*180/Math.PI);
 	}
 	// when thrust1 = 0
 	// make 2d motion based on velocity
 	// cartesian coordinates just for kicks
+	
+	public static void main(String[] args)
+	{
+		AngularLaunch rocket = new AngularLaunch(0.76, 0.66, 2, 253312.5, 1, .05, .01,Math.PI/2);
+		for(int i = 0; !(i==1000); i++)
+		{
+		System.out.println("step " + i);
+		rocket.doStepThrust();
+		}
+	}
+	
 }
