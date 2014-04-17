@@ -56,7 +56,7 @@ public class RocketFAnimated extends JFrame  {
         apanel.setVisible(true);
 
         setTitle("Button Panel Example");
-        setSize(new Dimension(600, 600));
+        setSize(new Dimension(1000, 1000));
         setLayout(new GridLayout(0,2));
         setBackground(Color.white);
         setPreferredSize(new Dimension(1000,1000));
@@ -84,6 +84,7 @@ public class RocketFAnimated extends JFrame  {
     					Math.toDegrees(Math.asin(ProjectileBall.sineTheta))
     							);
         	}
+        	
         	public void angleAdjust(MouseEvent e)
         	{
         		super.angleAdjust(e);
@@ -106,6 +107,16 @@ public class RocketFAnimated extends JFrame  {
         		rocket2.doStepThrust();
         		ProjectileBall.y=rocket2.y1*-10;
         		ProjectileBall.x=rocket2.x1*10;
+        	}
+        	
+        	public void mathClass()
+        	{
+
+        		rocket2.doStepThrust();
+//        		System.out.println()
+        		ProjectileBall.y=(int)(rocket2.y1 * 10);
+        		ProjectileBall.x=(int)(rocket2.x1 * 10);
+
         	}
         };
 	}

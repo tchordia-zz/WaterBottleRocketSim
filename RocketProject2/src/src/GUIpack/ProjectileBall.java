@@ -66,7 +66,9 @@ public class ProjectileBall extends JPanel {
 	// self explanatory
 	private static int windowHeight;
 	private static int windowWidth;
-
+	
+	private static double currentX = 0;
+	private static double currentY = 0;
 	// this timer is used for animation.
 	static AnimationTimer timer;
 
@@ -404,17 +406,35 @@ public class ProjectileBall extends JPanel {
 					this.stop();
 				}
 				if (frameNumber % 10 == 0) {
+				
+				mathClass();
+			//	System.out.println("window width " + windowWidth / 2);
+				if (x >= windowWidth / 2) {
+					// this.stop();
+				}
+
+				circle.setTranslateX(x);
+				circle.setTranslateY(-y);
+				currentX = x;
+				currentY = y;
+//				try {
+//					Thread.sleep(500);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				intersectTest = ground.intersects(circle.getBoundsInParent());
+				
 					// System.out.println(ground.getBoundsInLocal());
 					// System.out.println(circle.getBoundsInParent());
 					System.out.println("X value: " + x);
 					System.out.println("Y value: " + y);
 					System.out.println("Frame Number: " + frameNumber);
-				}
-
-				// }
+				 }
 			}
 		};
 	}
+	
 
 	// this class should be overridden
 	public void mathClass(double t) {
@@ -451,16 +471,27 @@ public class ProjectileBall extends JPanel {
 		System.out.println("playing");
 	}
 
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		ProjectileBall ball = new ProjectileBall(600, 400);
-		ball.setPreferredSize(new Dimension(700, 700));
-
-		frame.setLayout(new BorderLayout());
-		frame.setTitle("Projectile Ball");
-		frame.add(ball, BorderLayout.CENTER);
-		frame.setSize(700, 700);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+	public void mathClass() {
+		// double vInitialX = magnitude*cosineTheta;
+		// double accelerationX = 0;
+		//
+		// double vInitialY = magnitude*sineTheta;
+		// double gravity = -10;
+		//
+		// x = 10 + (vInitialX*t + accelerationX * t*t);
+		// y = 0 - (vInitialY*t + gravity * t*t);
 	}
+
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		ProjectileBall ball = new ProjectileBall(600, 400);
+//		ball.setPreferredSize(new Dimension(700, 700));
+//
+//		frame.setLayout(new BorderLayout());
+//		frame.setTitle("Projectile Ball");
+//		frame.add(ball, BorderLayout.CENTER);
+//		frame.setSize(700, 700);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setVisible(true);
+//	}
 }
