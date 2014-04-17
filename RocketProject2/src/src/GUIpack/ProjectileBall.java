@@ -385,12 +385,11 @@ public class ProjectileBall extends JPanel {
 	private void establishTimer() {
 		timer = new AnimationTimer() {
 			@Override
-			public void handle(long l) {
-				// for(int i=1; !(i==100); i++)
-				// {
+			public void handle(long l) 
+			{
 				frameNumber += 1;
-				System.out.println("Frame Number: "+ frameNumber + " Time: " +l);
-				System.out.println("window width " + windowWidth / 2);
+//				System.out.println("Frame Number: "+ frameNumber + " Time: " +l);
+//				System.out.println("window width " + windowWidth / 2);
 				if (x >= windowWidth) {
 					this.stop();
 				}
@@ -402,39 +401,13 @@ public class ProjectileBall extends JPanel {
 				
 				if(intersectTest == true)
 				{
+					System.out.println("intersect");
 					circle.setTranslateY(2);
 					this.stop();
 				}
-				if (frameNumber % 10 == 0) {
-				
-				mathClass();
-			//	System.out.println("window width " + windowWidth / 2);
-				if (x >= windowWidth / 2) {
-					// this.stop();
-				}
-
-				circle.setTranslateX(x);
-				circle.setTranslateY(-y);
-				currentX = x;
-				currentY = y;
-//				try {
-//					Thread.sleep(500);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-				intersectTest = ground.intersects(circle.getBoundsInParent());
-				
-					// System.out.println(ground.getBoundsInLocal());
-					// System.out.println(circle.getBoundsInParent());
-					System.out.println("X value: " + x);
-					System.out.println("Y value: " + y);
-					System.out.println("Frame Number: " + frameNumber);
-				 }
-			}
 		};
-	}
-	
+	};
+}
 
 	// this class should be overridden
 	public void mathClass(double t) {
