@@ -10,16 +10,24 @@ import javax.swing.JPanel;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.QuadCurveTo;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.animation.AnimationTimer;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.application.*;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
@@ -83,7 +91,11 @@ public class ProjectileBall extends JPanel {
 
 	// it's a rect
 	private Rectangle square;
+	
+	boolean orangeColored = true;
 
+	boolean inButton = false;
+	
 	// this is the ground
 	Line ground;
 
@@ -206,12 +218,12 @@ public class ProjectileBall extends JPanel {
 	 * <p>
 	 * Creates the scene and sets up events.
 	 * 
-	 * 
 	 */
 	private Scene createScene() {
 		// establishes scene hierarchy.
 		Group root = new Group();
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
+		Group group = new Group();
 
 		// sets up circles
 		circle.setRadius(10);
@@ -234,7 +246,15 @@ public class ProjectileBall extends JPanel {
 		line.setStartY(yInit);
 		line.setEndX(10);
 		line.setEndY(yInit);
-
+		
+		final Rectangle button = new Rectangle(100, 25, javafx.scene.paint.Color.web("#FFCC40"));
+		button.setY(windowHeight+150);
+		final Text buttonText = new Text(0, windowHeight+150, "Motion Path");
+		buttonText.setX(button.getWidth()/2-buttonText.getBoundsInLocal().getWidth()/2);
+		buttonText.setY(windowHeight+150+button.getHeight()/2+buttonText.getBoundsInLocal().getHeight()/4);
+		
+		group.getChildren().addAll(button, buttonText);
+		
 		// makes the ground
 		distanceMarkers = new Text[10];
 		ground = new Line(0, yInit + 11, 2000, yInit + 25);
@@ -245,40 +265,82 @@ public class ProjectileBall extends JPanel {
 			root.getChildren().add(distanceMarkers[i]);
 		}
 		// adds everything to the scene
-		root.getChildren().addAll(line, circle, square, ground);
-
+		root.getChildren().addAll(line, circle, square, ground, group);
+		
+		group.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET,
+				new EventHandler<MouseEvent>()
+				{
+					@Override
+					public void handle(MouseEvent event) {
+						inButton=true;
+						System.out.println(inButton);
+					}
+				});
+		group.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET,
+				new EventHandler<MouseEvent>()
+				{
+					@Override
+					public void handle(MouseEvent event) {
+						inButton=false;
+						System.out.println(inButton);
+					}
+				});
+		
+		group.addEventFilter(MouseEvent.MOUSE_CLICKED,
+				new EventHandler<MouseEvent>()
+				{
+					@Override
+					public void handle(MouseEvent event) {
+						if(!timerRunning==true)
+						{
+						if(orangeColored==false)
+						{
+							button.setFill(javafx.scene.paint.Color.web("#FFCC40"));
+							buttonText.setText("Motion Path");
+							buttonText.setX(button.getWidth()/2-buttonText.getBoundsInLocal().getWidth()/2);
+							orangeColored = true;
+							System.out.println("bro it works");
+						}
+						else
+						{
+							button.setFill(javafx.scene.paint.Color.web("#FF6E40"));
+							buttonText.setText("Timer");
+							buttonText.setX(button.getWidth()/2-buttonText.getBoundsInLocal().getWidth()/2);
+							orangeColored = false;
+							System.out.println("bro it works");
+						}
+						}
+					}
+				});
+		
 		// this event is to make the line appear and get the angle on mouse drag
 		scene.addEventFilter(MouseEvent.MOUSE_DRAGGED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent event) {
-						if (!timerRunning == true && inCircle == false) {
+						if (!timerRunning == true && inCircle == false && inButton == false) {
 							angleAdjust(event);
 						}
 					}
 				});
+		
+		// this sets the angle on press, it's different than on drag
+		scene.addEventFilter(MouseEvent.MOUSE_PRESSED,
+				new EventHandler<MouseEvent>() {
+					public void handle(MouseEvent event) {
+						if (!timerRunning == true && inCircle == false && inButton == false) {
+							angleAdjust(event);
+						}
+					}
+				});
+		
 		// this event resets the ball after the timer starts.
 		scene.addEventFilter(MouseEvent.MOUSE_PRESSED,
 				new EventHandler<MouseEvent>() {
 
 					public void handle(MouseEvent event) {
-						if (timerRunning == true && inCircle == false /*
-																	 * && (x>
-																	 * windowWidth
-																	 * || x<0 ||
-																	 * y
-																	 * >windowHeight
-																	 * || y<0)
-																	 */) {
+						if (timerRunning == true && (inCircle == false)
+								/* && (x> windowWidth || x<0 || y >windowHeight || y<0)*/) {
 							resetBall();
-						}
-					}
-				});
-		// this sets the angle on press, it's different than on drag
-		scene.addEventFilter(MouseEvent.MOUSE_PRESSED,
-				new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent event) {
-						if (!timerRunning == true && inCircle == false) {
-							angleAdjust(event);
 						}
 					}
 				});
@@ -287,8 +349,15 @@ public class ProjectileBall extends JPanel {
 		circle.addEventFilter(MouseEvent.MOUSE_RELEASED,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent event) {
+						if(orangeColored==false)
+						{
 						timerRunning = true;
 						timer.start();
+						}
+						else
+						{
+							createAndLaunchPath();
+						}
 					}
 				});
 		// checks if the cursor is in the circle
@@ -318,15 +387,22 @@ public class ProjectileBall extends JPanel {
 				// for(int i=1; !(i==100); i++)
 				// {
 				frameNumber += 1;
-				mathClass(frameNumber);
+				System.out.println("Frame Number: "+ frameNumber + " Time: " +l);
 				System.out.println("window width " + windowWidth / 2);
-				if (x >= windowWidth / 2) {
-					// this.stop();
+				if (x >= windowWidth) {
+					this.stop();
 				}
-
-				circle.setTranslateX(10 * x);
-				circle.setTranslateY(-10 * y);
+				circle.setTranslateX(x);
+				circle.setTranslateY(y);
 				intersectTest = ground.intersects(circle.getBoundsInParent());
+				
+				mathClass(frameNumber);
+				
+				if(intersectTest == true)
+				{
+					circle.setTranslateY(2);
+					this.stop();
+				}
 				if (frameNumber % 10 == 0) {
 					// System.out.println(ground.getBoundsInLocal());
 					// System.out.println(circle.getBoundsInParent());
@@ -342,14 +418,37 @@ public class ProjectileBall extends JPanel {
 
 	// this class should be overridden
 	public void mathClass(double t) {
-		// double vInitialX = magnitude*cosineTheta;
-		// double accelerationX = 0;
-		//
-		// double vInitialY = magnitude*sineTheta;
-		// double gravity = -10;
-		//
-		// x = 10 + (vInitialX*t + accelerationX * t*t);
-		// y = 0 - (vInitialY*t + gravity * t*t);
+		
+		t/=100;
+		
+		 double vInitialX = magnitude*cosineTheta;
+		 double accelerationX = 0;
+		
+		 double vInitialY = magnitude*sineTheta;
+		 double gravity = -10;
+		
+		 x = 0 + (vInitialX*t + accelerationX * t*t);
+		 y = 0 - (vInitialY*t + gravity * t*t);
+	}
+	
+	public void createAndLaunchPath()
+	{
+		Path path = new Path();
+		PathTransition pathTransition = new PathTransition();
+		QuadCurveTo quadCurve= new QuadCurveTo();
+		for(int i = 0; i<101; i++)
+		{
+			mathClass(i);
+		}
+		pathTransition.setDuration(Duration.millis(40000));
+		pathTransition.setPath(path);
+		pathTransition.setNode(circle);
+		pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathTransition.setCycleCount(Timeline.INDEFINITE);
+		pathTransition.setAutoReverse(true);
+		pathTransition.play();
+		timerRunning=true;
+		System.out.println("playing");
 	}
 
 	public static void main(String[] args) {

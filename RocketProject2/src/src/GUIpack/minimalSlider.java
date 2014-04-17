@@ -50,13 +50,13 @@ public class minimalSlider extends JSlider{
         sliderDefaults.put("Slider.thumbWidth", 21);
         sliderDefaults.put("Slider.thumbHeight", 25);
         sliderDefaults.put("Slider:SliderThumb.backgroundPainter", new Painter<JComponent>() {
-        	public void paint(Graphics2D g, Object c, int w, int h) {
+        	public void paint(Graphics2D g, JComponent c, int w, int h) {
         		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         		g.drawImage(sliderThumb, 0, 0, null);
         	}
         });
         sliderDefaults.put("Slider:SliderTrack.backgroundPainter", new Painter<JComponent>() {
-        	public void paint(Graphics2D g, Object c, int w, int h) {
+        	public void paint(Graphics2D g, JComponent c, int w, int h) {
         		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         		g.setStroke(new BasicStroke(2f));
         		g.setColor(Color.lightGray);

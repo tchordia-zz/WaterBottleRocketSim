@@ -29,6 +29,7 @@ public class RocketFAnimated extends JFrame  {
 //			  Math.asin(ProjectileBall.sineTheta)
 			  Math.PI/4
 			  );
+	
 	private static final long serialVersionUID = 1L;
 	
 	public RocketFAnimated ()
@@ -80,10 +81,8 @@ public class RocketFAnimated extends JFrame  {
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
     					spanel.nozzleRadius.getValue()/(100 + 0.0),
-    					Math.PI/4
-    					);
-    			
-    			
+    					Math.toDegrees(Math.asin(ProjectileBall.sineTheta))
+    							);
         	}
         	public void angleAdjust(MouseEvent e)
         	{
@@ -97,7 +96,6 @@ public class RocketFAnimated extends JFrame  {
     					spanel.bottleRadius.getValue()/(100 + 0.0),
     					spanel.nozzleRadius.getValue()/(100 + 0.0),
     					Math.toDegrees(Math.asin(ProjectileBall.sineTheta))
-    					
     							);
     			//rocket2 = new AngularLaunch();
     			System.out.println(rocket2.angle);
@@ -105,12 +103,9 @@ public class RocketFAnimated extends JFrame  {
 
         	public void mathClass(double t)
         	{
-
         		rocket2.doStepThrust();
-//        		System.out.println()
-        		ProjectileBall.y=rocket2.y1;
-        		ProjectileBall.x=rocket2.x1;
-
+        		ProjectileBall.y=rocket2.y1*-10;
+        		ProjectileBall.x=rocket2.x1*10;
         	}
         };
 	}
