@@ -42,6 +42,10 @@ public class BouncingBall extends JPanel{
 			paint(getGraphics());
 		}
     }
+    public void drawRocket(Graphics g)
+    {
+    	g.fillArc(500, this.getHeight()/2, 40, 70, 0, (int) (2*Math.PI));
+    }
    @Override
    public void paint(Graphics g) {
        super.paintComponent(g);
