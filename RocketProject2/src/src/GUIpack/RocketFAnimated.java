@@ -95,7 +95,6 @@ public class RocketFAnimated extends JFrame  {
     					spanel.bottleRadius.getValue()/(100 + 0.0),
     					spanel.nozzleRadius.getValue()/(100 + 0.0),
     					Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
-    			//rocket2 = new AngularLaunch();
     			System.out.println(rocket2.angle);
         	}
 
@@ -149,6 +148,19 @@ public class RocketFAnimated extends JFrame  {
 					spanel.bottleRadius.getValue()/(100 + 0.0),
 					spanel.nozzleRadius.getValue()/(100 + 0.0),
 					Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
+	   }
+   }
+   public class customRocket extends SliderPanel
+   {
+	   public customRocket() 
+	   {
+		   super();
+		   setSize(getWidth(),getHeight());
+	   }
+	   @Override
+	   public void stateChanged(ChangeEvent arg0)
+	   {
+		   
 	   }
    }
 }

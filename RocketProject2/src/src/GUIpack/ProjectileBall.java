@@ -37,7 +37,7 @@ import javafx.event.EventHandler;
  * 
  * @author Cameron Yang
  * 
- * @description
+ * @Description
  * 
  *              This program creates the animation that launches a ball. The
  *              ball follows a basic parabolic path of motion created in the
@@ -130,7 +130,7 @@ public class ProjectileBall extends JPanel {
 			public void run() {
 				Scene scene = createScene();
 				fxPanel.setScene(scene);
-			}
+				}
 		});
 	}
 
@@ -375,6 +375,9 @@ public class ProjectileBall extends JPanel {
 						inCircle = false;
 					}
 				});
+		
+		System.out.println(circle.getBoundsInLocal());
+		System.out.println(circle.getBoundsInParent());
 
 		return (scene);
 	}

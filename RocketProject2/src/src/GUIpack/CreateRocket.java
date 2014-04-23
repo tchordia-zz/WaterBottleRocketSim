@@ -1,0 +1,190 @@
+package src.GUIpack;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+import javax.swing.JFrame;
+
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.embed.swing.JFXPanel;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
+
+
+
+/**
+ * 
+ * @author Cameron Yang
+ * 
+**/
+
+public class CreateRocket extends JPanel
+{
+	
+	/** @param Ln	=	length of nose
+	  * @param D	=	diameter at base of nose
+	  * @param Df	=	diameter at front of transition
+	  * @param Dr	=	diameter at rear of transition
+	  * @param Lt	=	length of transition
+	  * @param Xp	=	distance from tip of nose to front of transition
+	  * @param Cr	=	fin root chord
+	  * @param Ct	=	fin tip chord
+	  * @param S	=	fin semispan
+	  * @param Lf	=	length of fin mid-chord line
+	  * @param R	=	radius of body at aft end
+	  * @param Xr	=	distance between fin root leading edge and fin tip leading edge parallel to body
+	  * @param Xb	=	distance from nose tip to fin root chord leading edge
+	  * @param N	=	number of fins
+	*/
+	
+	double Ln;
+	double D;
+	double Df;
+	double Dr;
+	double Lt;
+	double Xp;
+	double Cr;
+	double Ct;
+	double S;
+	double Lf;
+	double R;
+	double Xr;
+	double Xb;
+	double N;
+	
+	CreateRocket(double noseLength,
+				 double noseBaseDiameter,
+				 double diameterAtFrontTransition,
+				 double diameterAtRearTransition,
+				 double lengthOfTransition,
+				 double distanceFromNoseToTransition,
+				 double finRootChord,
+				 double finTipChord,
+				 double finSemispan,
+				 double lengthOfFinMidChordLine,
+				 double radiusOfBodyAtAftEnd,
+				 double edgeAndFinTipLeadingEdgeParallelToBody,
+				 double distanceFromNoseTipToFinRoot,
+				 double numberOfFins
+				 )
+	{
+		 Ln=noseLength;
+		 D=noseBaseDiameter;
+		 Df=diameterAtFrontTransition;
+		 Dr=diameterAtRearTransition;
+		 Lt=lengthOfTransition;
+		 Xp=distanceFromNoseToTransition;
+		 Cr=finRootChord;
+		 Ct=finTipChord;
+		 S=finSemispan;
+		 Lf=lengthOfFinMidChordLine;
+		 R=radiusOfBodyAtAftEnd;
+		 Xr=edgeAndFinTipLeadingEdgeParallelToBody;
+		 Xb=distanceFromNoseTipToFinRoot;
+		 N=numberOfFins;
+	}
+	
+	CreateRocket()
+	{
+		 Ln=10;
+		 D=0;
+		 Df=7;
+		 Dr=5;
+		 Lt=20;
+		 Xp=50;
+		 Cr=20;
+		 Ct=0;
+		 S=0;
+		 Lf=0;
+		 R=0;
+		 Xr=0;
+		 Xb=100;
+		 N=0;
+
+			final JFXPanel fxPanel = new JFXPanel();
+
+			fxPanel.setSize(600, 600);
+
+			setLayout(new BorderLayout());
+
+			add(fxPanel, BorderLayout.CENTER);
+
+			Platform.runLater(new Runnable() {
+				public void run() {
+					Scene scene = createScene();
+					fxPanel.setScene(scene);
+				}
+			});
+	}
+	
+	private Scene createScene()
+	{
+		Group root = new Group();
+		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
+		
+		double totalBodyLength = Xb + Cr;
+		
+		double x=getWidth()/2;
+		double y=getHeight()/2;
+		
+		double aftBodyLeftSide = x-Dr;
+		double aftBodyRightSide = x+Dr;
+		double aftBodyBottom = y+totalBodyLength/2;
+		double aftBodyTop = y-totalBodyLength/2+Xp+Lt;
+		
+		double transitionTopLeft=x-Df;
+		double transitionTopRight=x+Df;
+		double transitionHeight=aftBodyTop-Lt;
+		double topTransitionHeight=transitionHeight-Xp+Ln;;
+		
+		
+		Line centerLine=new Line();
+		
+		centerLine.setStartX(x);
+		centerLine.setStartY(y-totalBodyLength/2);
+		centerLine.setEndX(x);
+		centerLine.setEndY(y+totalBodyLength/2);
+		centerLine.setFill(Color.BLUE);
+		
+		Group aftEnd = new Group();
+		Group coneToBodyTransition = new Group();
+		
+		Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
+		Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
+		Line aftBottom = new Line(aftBodyRightSide,aftBodyBottom,aftBodyLeftSide,aftBodyBottom);
+		
+		aftEnd.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);
+		
+		Line bottomTransitionLeft = new Line(aftBodyLeftSide, aftBodyTop, transitionTopLeft, transitionHeight);
+		Line bottomTransitionRight = new Line(aftBodyRightSide, aftBodyTop, transitionTopRight, transitionHeight);
+		Line topTransitionLeft = new Line(transitionTopLeft, transitionHeight, transitionTopLeft, topTransitionHeight);
+		Line topTransitionRight = new Line(transitionTopRight, transitionHeight, transitionTopRight, topTransitionHeight);
+		
+		coneToBodyTransition.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);
+		
+		root.getChildren().addAll(centerLine, aftEnd, coneToBodyTransition);
+
+		
+		return scene;
+	}
+	
+	
+	public static void main(String[] args)
+	{
+		JFrame frame = new JFrame();
+		CreateRocket rocket = new CreateRocket();
+		frame.add(rocket);
+		frame.setSize(600,600);
+		frame.setTitle("Rocket Creation");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+}

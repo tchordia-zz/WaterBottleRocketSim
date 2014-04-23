@@ -218,8 +218,9 @@ public class SliderPanel extends JPanel implements ChangeListener {
 		setBackground(Color.white);
 		tabbedPane.add("sliders",sliders);
 		JPanel testPanel = new JPanel();
+		CopyOfSliderPanel rocketSettings=new CopyOfSliderPanel();
 		testPanel.setBackground(Color.white);
-		tabbedPane.add("exact values", testPanel);
+		tabbedPane.add("Custom Rocket Settings", rocketSettings);
 		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		add(tabbedPane);
 	}
