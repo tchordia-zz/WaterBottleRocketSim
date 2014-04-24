@@ -109,4 +109,16 @@ public class barrowman {
 		volume = v1+v2+v3;
 		return volume;
 	}
+	public double dragC()
+	{
+		return .5; //cone
+//		return .04; //parabolic
+//		return 1.15; //square
+//		return .42; //sphere
+	}
+	public RocketMath returnLoadedRocket(double m0, double mW, double vB, double p0, double rNoz)
+	{
+		
+		return new RocketMath(m0,mW,volume(),p0,dragC(),d/2,rNoz); //what do i even do here
+	}
 }
