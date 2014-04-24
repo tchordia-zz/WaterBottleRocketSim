@@ -131,42 +131,6 @@ public class CreateRocket extends JPanel
 			});
 	}
 	
-	CreateRocket (int scale)
-	{
-		int s = scale; 
-		Ln= s* 10/2;
-		 D=s * 10/2;
-		 Df=s * 7/2;
-		 Dr=s * 5/2;
-		 Lt=s * 20/2;
-		 Xp=s * 50/2;
-		 Cr=s * 20/2;
-		 Ct=s * 10/2;
-		 S= s* 10/2;
-		 Lf=s * 10/2;
-		 R= s* 10/2;
-		 Xr=s * 20/2;
-		 Xb=s * 100/2;
-		 N=s * 2;
-		 
-			totalBodyLength = Xb + Cr;
-
-			final JFXPanel fxPanel = new JFXPanel();
-
-			fxPanel.setSize(600, 600);
-
-			setLayout(new BorderLayout());
-
-			add(fxPanel, BorderLayout.CENTER);
-
-			Platform.runLater(new Runnable() {
-				public void run() {
-					Scene scene = createScene();
-					fxPanel.setScene(scene);
-				}
-			});
-	}
-	
 	
 	public Group getRocket()
 	{
@@ -256,10 +220,7 @@ public class CreateRocket extends JPanel
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		CreateRocket rocket = new CreateRocket(4);
-		rocket.entireRocket.setTranslateX(200);
-		rocket.entireRocket.setTranslateY(200);
-//		entireRocket.setTranslateY(200);
+		CreateRocket rocket = new CreateRocket();
 		frame.add(rocket);
 		frame.setSize(600,600);
 		frame.setTitle("Rocket Creation");
