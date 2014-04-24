@@ -1,7 +1,7 @@
 package src.GUIpack;
 
 
-import com.sun.java.swing.Painter;
+import javax.swing.Painter;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
