@@ -103,15 +103,18 @@ public class RocketFAnimated extends JFrame  {
         		rocket2.doStepThrust();
         		ProjectileBall.y=rocket2.y1*-10;
         		ProjectileBall.x=rocket2.x1*10;
+        		ProjectileBall.angle = 90-rocket2.angle*180/Math.PI;
+        		System.out.println("REAL ANGLE REAL ANGLE: " + rocket2.angle);
         	}
         	
         	public void mathClass()
         	{
-
         		rocket2.doStepThrust();
 //        		System.out.println()
         		ProjectileBall.y=(int)(rocket2.y1 * 5);
         		ProjectileBall.x=(int)(rocket2.x1 * 5);
+        		ProjectileBall.angle = rocket2.angle;
+        		System.out.println("REAL ANGLE REAL ANGLE: " + rocket2.angle);
         	}
         };
 	}

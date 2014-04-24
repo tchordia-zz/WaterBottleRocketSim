@@ -31,6 +31,7 @@ import javafx.animation.Timeline;
 import javafx.application.*;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
+import javafx.geometry.Point3D;
 
 /**
  * Projectile Ball Class
@@ -69,13 +70,16 @@ public class ProjectileBall extends JPanel {
 	
 	private static double currentX = 0;
 	private static double currentY = 0;
+	
+	static double angle=90;
+	
 	// this timer is used for animation.
 	static AnimationTimer timer;
 
 	// this establishes the projectile. It's global because more than one method
 	// needs to access it
-	static Circle circle = new Circle(10,
-			javafx.scene.paint.Color.web("#3D9AD1"));
+//	static Circle circle = new Circle(10,
+//			javafx.scene.paint.Color.web("#3D9AD1"));
 
 	// this line is the point-y stick when you click on the screen. Chooses the
 	// angle of the ball
@@ -98,6 +102,8 @@ public class ProjectileBall extends JPanel {
 
 	boolean inButton = false;
 	
+	Group circle;
+	
 	// this is the ground
 	Line ground;
 
@@ -117,7 +123,14 @@ public class ProjectileBall extends JPanel {
 		yInit = y;
 
 		final JFXPanel fxPanel = new JFXPanel();
-
+		
+		CreateRocket rocket = new CreateRocket();
+		
+		circle = rocket.getRocket();
+		
+		circle.setLayoutX(x+25);
+		circle.setLayoutY(y-rocket.totalBodyLength/2);
+		
 		fxPanel.setSize(windowWidth, windowHeight);
 
 		setLayout(new BorderLayout());
@@ -171,6 +184,8 @@ public class ProjectileBall extends JPanel {
 	 * 
 	 */
 	public void resetBall() {
+		angle = 0;
+		circle.setRotate(angle);
 		timer.stop();
 		timerRunning = false;
 		circle.setTranslateX(0);
@@ -201,8 +216,8 @@ public class ProjectileBall extends JPanel {
 
 		double lineSize = 50;
 
-		line.setEndX(cosineTheta * lineSize);
-		line.setEndY(-sineTheta * lineSize + yInit);
+//		line.setEndX(cosineTheta * lineSize);
+//		line.setEndY(-sineTheta * lineSize + yInit);
 
 		System.out.println("Mouse Clicked");
 		System.out.println(height);
@@ -212,6 +227,10 @@ public class ProjectileBall extends JPanel {
 		System.out.println("Sine Theta: " + sineTheta);
 		System.out.println("Angle sine: " + Math.asin(sineTheta));
 		System.out.println("Angle cosine: " + Math.acos(cosineTheta));
+		
+		angle = Math.acos(sineTheta)*180/Math.PI;
+		
+		circle.setRotate(angle);
 	}
 
 	/**
@@ -228,9 +247,9 @@ public class ProjectileBall extends JPanel {
 		Group group = new Group();
 
 		// sets up circles
-		circle.setRadius(10);
-		circle.setCenterX(xInit);
-		circle.setCenterY(yInit);
+//		circle.setRadius(10);
+//		circle.setCenterX(xInit);
+//		circle.setCenterY(yInit);
 
 		// sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
@@ -302,12 +321,14 @@ public class ProjectileBall extends JPanel {
 							buttonText.setX(button.getWidth()/2-buttonText.getBoundsInLocal().getWidth()/2);
 							orangeColored = true;
 							System.out.println("bro it works");
+							resetBall();
 						}
 						else
 						{
 							button.setFill(javafx.scene.paint.Color.web("#FF6E40"));
 							buttonText.setText("Timer");
 							buttonText.setX(button.getWidth()/2-buttonText.getBoundsInLocal().getWidth()/2);
+							timer.start();
 							orangeColored = false;
 							System.out.println("bro it works");
 						}
@@ -399,6 +420,8 @@ public class ProjectileBall extends JPanel {
 				circle.setTranslateX(x);
 				circle.setTranslateY(y);
 				intersectTest = ground.intersects(circle.getBoundsInParent());
+				
+				circle.setRotate(angle);
 				
 				mathClass(frameNumber);
 				

@@ -60,6 +60,10 @@ public class CreateRocket extends JPanel
 	double Xb;
 	double N;
 	
+	double 	totalBodyLength;
+		
+	Group entireRocket = new Group();
+	
 	CreateRocket(double noseLength,
 				 double noseBaseDiameter,
 				 double diameterAtFrontTransition,
@@ -94,20 +98,22 @@ public class CreateRocket extends JPanel
 	
 	CreateRocket()
 	{
-		 Ln=10;
-		 D=0;
-		 Df=7;
-		 Dr=5;
-		 Lt=20;
-		 Xp=50;
-		 Cr=20;
-		 Ct=0;
-		 S=0;
-		 Lf=0;
-		 R=0;
-		 Xr=0;
-		 Xb=100;
-		 N=0;
+		 Ln=10/2;
+		 D=10/2;
+		 Df=7/2;
+		 Dr=5/2;
+		 Lt=20/2;
+		 Xp=50/2;
+		 Cr=20/2;
+		 Ct=10/2;
+		 S=10/2;
+		 Lf=10/2;
+		 R=10/2;
+		 Xr=20/2;
+		 Xb=100/2;
+		 N=2;
+		 
+			totalBodyLength = Xb + Cr;
 
 			final JFXPanel fxPanel = new JFXPanel();
 
@@ -125,12 +131,16 @@ public class CreateRocket extends JPanel
 			});
 	}
 	
+	
+	public Group getRocket()
+	{
+		return entireRocket;
+	}
+	
 	private Scene createScene()
 	{
 		Group root = new Group();
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
-		
-		double totalBodyLength = Xb + Cr;
 		
 		double x=getWidth()/2;
 		double y=getHeight()/2;
@@ -143,7 +153,13 @@ public class CreateRocket extends JPanel
 		double transitionTopLeft=x-Df;
 		double transitionTopRight=x+Df;
 		double transitionHeight=aftBodyTop-Lt;
-		double topTransitionHeight=transitionHeight-Xp+Ln;;
+		double topTransitionHeight=transitionHeight-Xp+Ln;
+		
+		double finHeight = aftBodyBottom-Cr;
+		double finTipTop = finHeight+Xr;
+		double finTipBottom = finTipTop+Ct;
+		double leftFinTip = x-(Dr+S);
+		double rightFinTip = x+(Dr+S);
 		
 		
 		Line centerLine=new Line();
@@ -156,6 +172,9 @@ public class CreateRocket extends JPanel
 		
 		Group aftEnd = new Group();
 		Group coneToBodyTransition = new Group();
+		Group cone = new Group();
+		Group leftFin = new Group();
+		Group rightFin = new Group();
 		
 		Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
 		Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
@@ -170,8 +189,29 @@ public class CreateRocket extends JPanel
 		
 		coneToBodyTransition.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);
 		
-		root.getChildren().addAll(centerLine, aftEnd, coneToBodyTransition);
-
+		Line coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, y-totalBodyLength/2);
+		Line coneRight = new Line(transitionTopRight, topTransitionHeight, x, y-totalBodyLength/2);	
+		
+		cone.getChildren().addAll(coneLeft, coneRight);
+		
+		Line leftFinTop = new Line(aftBodyLeftSide, finHeight, leftFinTip, finTipTop);
+		Line leftFinLeft = new Line(leftFinTip, finTipTop, leftFinTip, finTipBottom);
+		Line leftFinBottom = new Line(leftFinTip, finTipBottom, aftBodyLeftSide,aftBodyBottom);
+		
+		leftFin.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);
+		
+		Line rightFinTop = new Line(aftBodyRightSide, finHeight, rightFinTip, finTipTop);
+		Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
+		Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
+		
+		rightFin.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);
+		
+		entireRocket.getChildren().addAll(aftEnd, cone, coneToBodyTransition, leftFin, rightFin);
+		
+//		entireRocket.setTranslateX(200);
+//		entireRocket.setTranslateY(200);
+		
+		root.getChildren().add(entireRocket);
 		
 		return scene;
 	}
