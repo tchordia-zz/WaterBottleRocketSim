@@ -3,6 +3,8 @@ package src.GUIpack;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
+import java.time.Clock;
+import java.util.Date;
 
 import javax.print.attribute.standard.JobName;
 import javax.swing.JFrame;
@@ -104,8 +106,17 @@ public class ProjectileBall extends JPanel {
 	
 	Group circle;
 	
+	
+	private Date clock = new Date();
+	long time=0;
+	long oldTime=0;
+	
+	Text framesPerSecond;
+	
 	// this is the ground
 	Line ground;
+	
+	
 
 	/**
 	 * Class constructor. pretty basic, sets up the jfxPanel. The new thread
@@ -127,7 +138,7 @@ public class ProjectileBall extends JPanel {
 		CreateRocket rocket = new CreateRocket();
 		
 		circle = rocket.getRocket();
-		
+				
 		circle.setLayoutX(x+25);
 		circle.setLayoutY(y-rocket.totalBodyLength/2);
 		
@@ -241,15 +252,11 @@ public class ProjectileBall extends JPanel {
 	 * 
 	 */
 	private Scene createScene() {
+				
 		// establishes scene hierarchy.
 		Group root = new Group();
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
 		Group group = new Group();
-
-		// sets up circles
-//		circle.setRadius(10);
-//		circle.setCenterX(xInit);
-//		circle.setCenterY(yInit);
 
 		// sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
@@ -276,6 +283,12 @@ public class ProjectileBall extends JPanel {
 		
 		group.getChildren().addAll(button, buttonText);
 		
+		framesPerSecond = new Text();
+		
+		framesPerSecond.setText("Frames Per Second: " + 0);
+		framesPerSecond.setX(200);
+		framesPerSecond.setY(200);
+		
 		// makes the ground
 		distanceMarkers = new Text[10];
 		ground = new Line(0, yInit + 11, 2000, yInit + 25);
@@ -286,7 +299,7 @@ public class ProjectileBall extends JPanel {
 			root.getChildren().add(distanceMarkers[i]);
 		}
 		// adds everything to the scene
-		root.getChildren().addAll(line, circle, square, ground, group);
+		root.getChildren().addAll(line, circle, square, ground, group, framesPerSecond);
 		
 		group.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET,
 				new EventHandler<MouseEvent>()
@@ -411,9 +424,20 @@ public class ProjectileBall extends JPanel {
 			@Override
 			public void handle(long l) 
 			{
+				
+				clock = new Date();
+				
+				if (oldTime!=0)
+				{
+					time=clock.getTime();
+					framesPerSecond.setText("MS per frame: " + (time-oldTime));
+					System.out.println(time-oldTime);
+				}
+				oldTime=clock.getTime();
+
+				
+				
 				frameNumber += 1;
-//				System.out.println("Frame Number: "+ frameNumber + " Time: " +l);
-//				System.out.println("window width " + windowWidth / 2);
 				if (x >= windowWidth) {
 					this.stop();
 				}
@@ -429,6 +453,7 @@ public class ProjectileBall extends JPanel {
 				{
 					System.out.println("intersect");
 					circle.setTranslateY(2);
+					timerRunning=false;
 					this.stop();
 				}
 		};

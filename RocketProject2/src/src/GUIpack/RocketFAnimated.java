@@ -26,8 +26,7 @@ public class RocketFAnimated extends JFrame  {
 			spanel.dragC.getValue(),
 			spanel.bottleRadius.getValue()/(100 + 0.0),
 			spanel.nozzleRadius.getValue()/(100 + 0.0),
-			Math.toDegrees(Math.asin(ProjectileBall.sineTheta))
-					);
+			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -80,9 +79,9 @@ public class RocketFAnimated extends JFrame  {
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
     					spanel.nozzleRadius.getValue()/(100 + 0.0),
-    					Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
+    					Math.toDegrees(Math.PI/2));
         	}
-        	
+       
         	public void angleAdjust(MouseEvent e)
         	{
         		super.angleAdjust(e);

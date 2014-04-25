@@ -98,19 +98,19 @@ public class CreateRocket extends JPanel
 	
 	CreateRocket()
 	{
-		 Ln=10/2;
-		 D=10/2;
-		 Df=7/2;
-		 Dr=5/2;
-		 Lt=20/2;
-		 Xp=50/2;
-		 Cr=20/2;
-		 Ct=10/2;
-		 S=10/2;
-		 Lf=10/2;
-		 R=10/2;
-		 Xr=20/2;
-		 Xb=100/2;
+		 Ln=10;
+		 D=10;
+		 Df=7;
+		 Dr=5;
+		 Lt=20;
+		 Xp=50;
+		 Cr=20;
+		 Ct=10;
+		 S=10;
+		 Lf=10;
+		 R=10;
+		 Xr=20;
+		 Xb=100;
 		 N=2;
 		 
 			totalBodyLength = Xb + Cr;
