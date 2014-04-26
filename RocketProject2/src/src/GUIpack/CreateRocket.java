@@ -208,8 +208,6 @@ public class CreateRocket extends JPanel
 		
 		entireRocket.getChildren().addAll(aftEnd, cone, coneToBodyTransition, leftFin, rightFin);
 		
-//		entireRocket.setTranslateX(200);
-//		entireRocket.setTranslateY(200);
 		
 		root.getChildren().add(entireRocket);
 		

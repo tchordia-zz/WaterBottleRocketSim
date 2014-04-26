@@ -1,31 +1,19 @@
 package src.GUIpack;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.LayoutManager;
-import java.time.Clock;
+
 import java.util.Date;
 
-import javax.print.attribute.standard.JobName;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
@@ -33,7 +21,6 @@ import javafx.animation.Timeline;
 import javafx.application.*;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
-import javafx.geometry.Point3D;
 
 /**
  * Projectile Ball Class
@@ -41,13 +28,13 @@ import javafx.geometry.Point3D;
  * @author Cameron Yang
  * 
  * @Description
- * 
  *              This program creates the animation that launches a ball. The
  *              ball follows a basic parabolic path of motion created in the
  *              math class. This program is meant to be used to model a
  *              projectile with a path given by the math class.
  */
 public class ProjectileBall extends JPanel {
+
 	static double frameNumber = 0;
 
 	// x and y values of the ball
@@ -69,10 +56,7 @@ public class ProjectileBall extends JPanel {
 	// self explanatory
 	private static int windowHeight;
 	private static int windowWidth;
-	
-	private static double currentX = 0;
-	private static double currentY = 0;
-	
+		
 	static double angle=90;
 	
 	// this timer is used for animation.
@@ -91,7 +75,7 @@ public class ProjectileBall extends JPanel {
 	static Text distanceMarkers[];
 
 	// used to detect intersection
-	private boolean intersectTest;
+	static boolean intersectTest;
 
 	// used to see if the pointer is in the circle or not
 	// used to prevent the angle from changing while clicking inside the circle
@@ -225,8 +209,8 @@ public class ProjectileBall extends JPanel {
 		cosineTheta = width / hypotenuse;
 		sineTheta = height / hypotenuse;
 
-		double lineSize = 50;
-
+//		double lineSize = 50;
+//
 //		line.setEndX(cosineTheta * lineSize);
 //		line.setEndY(-sineTheta * lineSize + yInit);
 
@@ -443,8 +427,7 @@ public class ProjectileBall extends JPanel {
 				}
 				circle.setTranslateX(x);
 				circle.setTranslateY(y);
-				intersectTest = ground.intersects(circle.getBoundsInParent());
-				
+								
 				circle.setRotate(angle);
 				
 				mathClass(frameNumber);
@@ -452,9 +435,10 @@ public class ProjectileBall extends JPanel {
 				if(intersectTest == true)
 				{
 					System.out.println("intersect");
-					circle.setTranslateY(2);
-					timerRunning=false;
-					this.stop();
+				}
+				else
+				{  
+					intersectTest = ground.intersects(circle.getBoundsInParent());
 				}
 		};
 	};
@@ -495,27 +479,5 @@ public class ProjectileBall extends JPanel {
 		System.out.println("playing");
 	}
 
-	public void mathClass() {
-		// double vInitialX = magnitude*cosineTheta;
-		// double accelerationX = 0;
-		//
-		// double vInitialY = magnitude*sineTheta;
-		// double gravity = -10;
-		//
-		// x = 10 + (vInitialX*t + accelerationX * t*t);
-		// y = 0 - (vInitialY*t + gravity * t*t);
-	}
-
-//	public static void main(String[] args) {
-//		JFrame frame = new JFrame();
-//		ProjectileBall ball = new ProjectileBall(600, 400);
-//		ball.setPreferredSize(new Dimension(700, 700));
-//
-//		frame.setLayout(new BorderLayout());
-//		frame.setTitle("Projectile Ball");
-//		frame.add(ball, BorderLayout.CENTER);
-//		frame.setSize(700, 700);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.setVisible(true);
-//	}
+	public void mathClass(){}
 }
