@@ -44,6 +44,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 	public static minimalSlider D;
 	public static minimalSlider Df;
 	public static minimalSlider Dr;
+	public static minimalSlider Lt;
 	public static minimalSlider Xp;
 	public static minimalSlider Cr;
 	public static minimalSlider Ct;
@@ -150,7 +151,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 
 		XpoefficientPanel.setBackground(Color.white);
 		XpoefficientPanel.add(Xp);
-		XpoefficientPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Transition"));
+		XpoefficientPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Distance from Nose to Transition"));
 
 
 		Cr = new minimalSlider(minimalSlider.HORIZONTAL, 0, 10, 5);// divide by 100
@@ -166,7 +167,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		JPanel CrPanel = new JPanel();
 		CrPanel.setBackground(Color.white);
 		CrPanel.add(Cr);
-		CrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Distance from Nose to Front"));
+		CrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin root chord"));
 		
 		
 		Ct = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1); // divide by
@@ -182,7 +183,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		JPanel CtPanel = new JPanel();
 		CtPanel.setBackground(Color.white);
 		CtPanel.add(Ct);
-		CtPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Root Chord"));
+		CtPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Tip Chord"));
 		
 		
 		S = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);
@@ -198,7 +199,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		JPanel SPanel = new JPanel();
 		SPanel.setBackground(Color.white);
 		SPanel.add(S);
-		SPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Root Semispan"));
+		SPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Semi Span"));
 		
 		
 		Lf = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);

@@ -24,7 +24,7 @@ public class RocketBuilderPanel extends JPanel {
 						RocketSliders.Ln.getValue(),  
 						  RocketSliders.D.getValue(),
 						  RocketSliders.Df.getValue(),
-						  RocketSliders.Dr.getValue(),
+						  RocketSliders.Dr.getValue(), 5,
 						  RocketSliders.Xp.getValue(),
 						  RocketSliders.Cr.getValue(),
 						  RocketSliders.Ct.getValue(),
@@ -33,8 +33,8 @@ public class RocketBuilderPanel extends JPanel {
 						  RocketSliders.R.getValue(),
 						  RocketSliders.Xr.getValue(),
 						  RocketSliders.Xb.getValue(),
-						  RocketSliders.N.getValue(),
-						 2
+						  RocketSliders.N.getValue()
+						 
 						
 						
 						);
