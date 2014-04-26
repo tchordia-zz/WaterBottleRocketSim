@@ -8,3 +8,67 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -data /Users/Tanmay/t
 
 !ENTRY org.eclipse.core.net 1 0 2014-04-14 20:09:40.450
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.ui.ide 4 4 2014-04-26 12:33:47.087
+!MESSAGE Problems occurred refreshing the selected resources.
+!SUBENTRY 1 org.eclipse.core.resources 4 567 2014-04-26 12:33:47.087
+!MESSAGE The project description file (.project) for 'RocketProjectTest' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.eclipse.core.resources 2 2 2014-04-26 12:34:16.095
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2014-04-26 12:34:16.095
+!MESSAGE The project description file (.project) for 'RocketProjectTest' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SESSION 2014-04-26 12:41:32.251 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2014-04-26 12:41:45.348
+!MESSAGE Unable to retrieve the bundle from the URI: bundleclass://org.eclipse.e4.tools.emf.liveeditor/org.eclipse.e4.tools.emf.liveeditor.OpenLiveDialogHandler
+
+!ENTRY org.eclipse.ui 4 4 2014-04-26 12:41:46.610
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.D.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-04-26 12:41:46.612
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.B.checkin.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-04-26 12:41:46.612
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.A.snarfer.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-04-26 12:41:46.613
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.C.submit.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-04-26 12:41:46.613
+!MESSAGE Unable to find Action Set: net.sf.webcat.eclipse.submitter.SubmissionActionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-04-26 12:41:46.613
+!MESSAGE Unable to find Action Set: com.mountainminds.eclemma.ui.CoverageActionSet
+
+!ENTRY org.eclipse.jdt.launching 1 0 2014-04-26 12:41:46.867
+!MESSAGE Installed JRE 'Java SE 7 [1.7.0_51]' removed due to missing VM type extension.
+
+!ENTRY org.eclipse.jdt.launching 1 0 2014-04-26 12:41:46.867
+!MESSAGE Installed JRE 'Java SE 6 [1.6.0_65-b14-462]' removed due to missing VM type extension.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-04-26 12:42:00.636
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-04-26 12:42:00.636
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Owner'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.resources 2 2 2014-04-26 12:48:57.779
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2014-04-26 12:48:57.779
+!MESSAGE The project description file (.project) for 'BottleRocketSim(Tanmay)' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
