@@ -1,0 +1,13 @@
+package src.GUIpack;
+
+import javafx.scene.Group;
+
+public class FullRocket {
+Group g;
+AngularLaunch a;
+public FullRocket(Group b, AngularLaunch c)
+{
+	g = b;
+	a = c;
+}
+}
