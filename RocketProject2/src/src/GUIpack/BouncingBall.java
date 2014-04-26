@@ -5,7 +5,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-
+/**
+ * 
+ * @author Sahil
+ *
+ */
 public class BouncingBall extends JPanel{
     //Ball position
     private int x = 0;

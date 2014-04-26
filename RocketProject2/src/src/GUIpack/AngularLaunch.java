@@ -4,7 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
-
+/**
+ * 
+ * @author Sahil
+ *
+ */
 public class AngularLaunch extends RocketMath {
 
 	double angle;
