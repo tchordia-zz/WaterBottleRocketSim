@@ -99,11 +99,19 @@ public class RocketFAnimated extends JFrame  {
 
         	public void mathClass(double t)
         	{
+        		if(ProjectileBall.intersectTest)
+        		{
+        			ProjectileBall.angle-=1;
+            		ProjectileBall.y+=1;
+        		}
+        		else
+        		{
         		rocket2.doStepThrust();
         		ProjectileBall.y=rocket2.y1*-10;
         		ProjectileBall.x=rocket2.x1*10;
         		ProjectileBall.angle = 90-rocket2.angle*180/Math.PI;
         		System.out.println("REAL ANGLE REAL ANGLE: " + rocket2.angle);
+        		}
         	}
         	
         	public void mathClass()
