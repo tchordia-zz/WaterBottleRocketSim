@@ -159,6 +159,11 @@ public class barrowman {
 		this.centerOfMass = (xb+xr+ct)*2/3;
 		return centerOfMass;
 	}
+	public boolean stabilityCheck()
+	{
+		
+		return this.centerOfPressure()>this.centerOfMass;
+	}
 	public RocketMath returnLoadedRocket(double m0, double mW, double vB,
 			double p0, double rNoz) {
 
