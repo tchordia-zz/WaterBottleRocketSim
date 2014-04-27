@@ -1,6 +1,7 @@
+
 package src.GUIpack;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout;x
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -33,7 +34,13 @@ public class RocketF extends JFrame {
 		super();
 		UIManager.put(Options.USE_SYSTEM_FONTS_APP_KEY, Boolean.TRUE);
 		Options.setDefaultIconSize(new Dimension(18, 18));
-		
+
+		// try {
+		//
+		// UIManager.setLookAndFeel(new PlasticLookAndFeel());
+		// } catch (Exception e) {
+		// System.err.println("Can't set look & feel:" + e);
+		// }
 		try {
 			UIManager
 					.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -49,7 +56,7 @@ public class RocketF extends JFrame {
 		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);
+		setVisible(true);                                     
 		// getContentPane().setBackground(Color.cyan);
 
 		add(wpanel);
@@ -115,6 +122,7 @@ public class RocketF extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			super.actionPerformed(e);
+			System.out.println(e.getActionCommand());
 			if (e.getActionCommand().equals("launch")) {
 				System.out.println(e.getActionCommand());
 
@@ -214,6 +222,4 @@ public class RocketF extends JFrame {
 			}
 		}
 	}
-
-	
 }
