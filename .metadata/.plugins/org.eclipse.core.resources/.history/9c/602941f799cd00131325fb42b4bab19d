@@ -40,16 +40,16 @@ public class RocketBuilderPanel extends JPanel {
 						
 						
 						);
-				Platform.runLater(new Runnable() {
-					public void run() {
-						r.entireRocket.setTranslateX(300);
-						r.entireRocket.setTranslateY(500);
-						}
-				});
+//				Platform.runLater(new Runnable() {
+//					public void run() {
+//						r.entireRocket.setTranslateX(300);
+//						r.entireRocket.setTranslateY(500);
+//						}
+//				});
 				r.setPreferredSize(new Dimension (500,500));
 				getParent().add(r);
 			r.repaint();
-			
+			getParent().repaint();
 			System.out.println("hellomotto wtaf are oyu doing");
 			
 			}

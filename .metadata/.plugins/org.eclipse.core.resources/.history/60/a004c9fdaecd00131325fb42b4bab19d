@@ -200,7 +200,7 @@ public class RocketMath {
 		if (m < extraWeight )
 
 		{
-			m = extraWeight;
+			m = extraWeight();
 		}
 //		System.out.println("Mass2 " + m);
 		return m;

@@ -55,7 +55,7 @@ public class RocketF extends JFrame {
 		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setVisible(true);                                     
+		setVisible(true);
 		// getContentPane().setBackground(Color.cyan);
 
 		add(wpanel);

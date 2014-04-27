@@ -19,7 +19,7 @@ public class RocketBuilderPanel extends JPanel {
 			{
 			super.stateChanged(e);
 				getParent().remove(r);
-				
+				getParent().repaint();
 				System.out.println("Hellomotto wtaf are you doung");
 				
 				r = new CreateRocket(
@@ -49,8 +49,8 @@ public class RocketBuilderPanel extends JPanel {
 				r.setPreferredSize(new Dimension (500,500));
 				getParent().add(r);
 			r.repaint();
+			getParent().repaint();
 			
-			System.out.println("hellomotto wtaf are oyu doing");
 			
 			}
 		};
