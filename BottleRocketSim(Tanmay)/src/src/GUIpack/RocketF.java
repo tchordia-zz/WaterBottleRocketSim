@@ -22,9 +22,7 @@ public class RocketF extends JFrame {
 	public static RocketMath mRocket;
 	// public CPanel cpanel = new CPanel();
 	public String user;
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public RocketF() {

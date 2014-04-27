@@ -1,11 +1,9 @@
 package src.GUIpack;
 
 import java.awt.BorderLayout;
-<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.LayoutManager;
-=======
->>>>>>> FETCH_HEAD
+
 
 import java.util.Date;
 

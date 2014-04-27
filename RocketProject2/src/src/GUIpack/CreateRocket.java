@@ -137,6 +137,11 @@ public class CreateRocket extends JPanel
 		return entireRocket;
 	}
 	
+	public void update()
+	{
+		
+	}
+	
 	private Scene createScene()
 	{
 		Group root = new Group();
@@ -160,9 +165,10 @@ public class CreateRocket extends JPanel
 		double finTipBottom = finTipTop+Ct;
 		double leftFinTip = x-(Dr+S);
 		double rightFinTip = x+(Dr+S);
-		
-		
+
+
 		Line centerLine=new Line();
+
 		
 		centerLine.setStartX(x);
 		centerLine.setStartY(y-totalBodyLength/2);
