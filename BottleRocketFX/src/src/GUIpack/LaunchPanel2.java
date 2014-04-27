@@ -108,8 +108,8 @@ public class LaunchPanel2 extends JPanel  {
         		rocket2.doStepThrust();
         		VerticalBall.y=rocket2.y1*-10;
         		VerticalBall.x=rocket2.x1*10;
+        		rocket2.printStuff();
         		VerticalBall.angle = 90 - rocket2.angle*180/Math.PI;
-        		System.out.println("REAL ANGLE REAL ANGLE: " + rocket2.angle);
         	}
         	
 //        	public void mathClass()
@@ -160,7 +160,7 @@ public class LaunchPanel2 extends JPanel  {
 					spanel.dragC.getValue(),
 					spanel.bottleRadius.getValue()/(100 + 0.0),
 					spanel.nozzleRadius.getValue()/(100 + 0.0),
-					Math.toDegrees(Math.asin(VerticalBall.sineTheta)));
+					90);
 			graph.updaterr(rocket2.copy());
 	   }
    }

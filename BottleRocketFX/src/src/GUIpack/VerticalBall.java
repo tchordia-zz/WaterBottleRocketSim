@@ -30,6 +30,7 @@ import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.application.*;
 import javafx.embed.swing.JFXPanel;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point3D;
 
@@ -67,10 +68,7 @@ public class VerticalBall extends JPanel {
 	// self explanatory
 	private static int windowHeight;
 	private static int windowWidth;
-	
-	private static double currentX = 0;
-	private static double currentY = 0;
-	
+		
 	static double angle=0;
 	
 	// this timer is used for animation.
@@ -101,6 +99,10 @@ public class VerticalBall extends JPanel {
 	boolean orangeColored = true;
 
 	boolean inButton = false;
+	
+	boolean tanmayHatesGround=false;
+	
+	Text currentHeight;
 	
 	Group circle;
 	
@@ -274,6 +276,12 @@ public class VerticalBall extends JPanel {
 		buttonText.setX(button.getWidth()/2-buttonText.getBoundsInLocal().getWidth()/2);
 		buttonText.setY(windowHeight+150+button.getHeight()/2+buttonText.getBoundsInLocal().getHeight()/4);
 		
+		Button btn = new Button();
+		
+		btn.setText("fucking tanmay");
+		
+		currentHeight=new Text(0,windowHeight+200,"Current Height: 0");
+		
 		group.getChildren().addAll(button, buttonText);
 		
 		// makes the ground
@@ -286,7 +294,7 @@ public class VerticalBall extends JPanel {
 			root.getChildren().add(distanceMarkers[i]);
 		}
 		// adds everything to the scene
-		root.getChildren().addAll(line, circle, square, ground, group);
+		root.getChildren().addAll(line, circle, btn, ground, group, currentHeight);
 		
 		group.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET,
 				new EventHandler<MouseEvent>()
@@ -294,7 +302,6 @@ public class VerticalBall extends JPanel {
 					@Override
 					public void handle(MouseEvent event) {
 						inButton=true;
-						System.out.println(inButton);
 					}
 				});
 		group.addEventFilter(MouseEvent.MOUSE_EXITED_TARGET,
@@ -303,7 +310,6 @@ public class VerticalBall extends JPanel {
 					@Override
 					public void handle(MouseEvent event) {
 						inButton=false;
-						System.out.println(inButton);
 					}
 				});
 		
@@ -368,6 +374,17 @@ public class VerticalBall extends JPanel {
 						}
 					}
 				});
+		
+		btn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event)
+			{
+				if(tanmayHatesGround)
+				tanmayHatesGround=false;
+				else
+				tanmayHatesGround=true;
+			}
+		});
 
 		// this starts the timer when the ball is clicked
 		circle.addEventFilter(MouseEvent.MOUSE_RELEASED,
@@ -397,9 +414,6 @@ public class VerticalBall extends JPanel {
 						inCircle = false;
 					}
 				});
-		
-		System.out.println(circle.getBoundsInLocal());
-		System.out.println(circle.getBoundsInParent());
 
 		return (scene);
 	}
@@ -420,7 +434,10 @@ public class VerticalBall extends JPanel {
 				}
 				circle.setTranslateX(x);
 				circle.setTranslateY(y);
-				intersectTest = ground.intersects(circle.getBoundsInParent());
+				
+				currentHeight.setText("Current Height: "+Double.toString(-1*y));
+				
+				intersectTest = !tanmayHatesGround && ground.intersects(circle.getBoundsInParent());
 				
 				circle.setRotate(angle);
 				

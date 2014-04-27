@@ -7,7 +7,7 @@ package src.GUIpack;
  * @author Tanmay Chordia
  * @date  2/19/2014
  * @see RocketMathApplet Class
- * @version 3
+ * @version 3 godamn boom
  *
  */
 
@@ -68,7 +68,6 @@ public class RocketMath {
 	public RocketMath(double m0, double mW, double vB, double p0, double cD, double rBot, double rNoz)
 	{
 		this(mW, vB, p0, cD, rBot, rNoz);
-		
 	}
 	
 	
@@ -107,10 +106,7 @@ public class RocketMath {
 		
 		this.dM_dt();
 		this.iPc();
-		this.thrust();
-		//printStats(this);
-		//System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
-		
+		this.thrust();		
 	}
 	
 	
@@ -118,10 +114,6 @@ public class RocketMath {
 	public RocketMath()
 	{
 		this(0.66, 2, 253312.5, 1,.05, .01);
-		
-		
-		
-		//System.out.println(thrust + " mass " + m + " acceleration " + a + " velocity " + v + " height " + h);
 	}
 	
 	
