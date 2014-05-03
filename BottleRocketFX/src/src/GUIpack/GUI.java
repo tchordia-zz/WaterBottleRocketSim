@@ -1,6 +1,7 @@
 package src.GUIpack;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,6 +64,7 @@ public class GUI extends JPanel implements ActionListener {
 
 		start.addActionListener(this);
 		pane.add(start);
+		pane.setBackground(Color.white);
 
 		// pane.add(someWidget);
 		//masterpane.add(ball);

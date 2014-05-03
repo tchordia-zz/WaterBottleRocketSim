@@ -26,8 +26,7 @@ public class LaunchPanel2 extends JPanel  {
 			spanel.airPressure.getValue()*10000,
 			spanel.dragC.getValue(),
 			spanel.bottleRadius.getValue()/(100 + 0.0),
-			spanel.nozzleRadius.getValue()/(100 + 0.0),
-//			Math.toDegrees(Math.asin(ProjectileBall.sineTheta))
+			spanel.nozzleRadius.getValue()/(500 + 0.0),
 				90	);
 	
 	private static final long serialVersionUID = 1L;
@@ -80,8 +79,7 @@ public class LaunchPanel2 extends JPanel  {
     					spanel.airPressure.getValue()*10000,
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
-    					spanel.nozzleRadius.getValue()/(100 + 0.0),
-//    					Math.toDegrees(Math.asin(ProjectileBall.sineTheta))
+    					spanel.nozzleRadius.getValue()/(500 + 0.0),
     					90);
     			graph.updaterr(rocket2.copy());
         	}
@@ -96,8 +94,7 @@ public class LaunchPanel2 extends JPanel  {
     					spanel.airPressure.getValue()*10000,
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
-    					spanel.nozzleRadius.getValue()/(100 + 0.0),
-//    					Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
+    					spanel.nozzleRadius.getValue()/(500 + 0.0),
     					90);
     			graph.updaterr(rocket2.copy());
     			System.out.println(rocket2.angle);
@@ -159,7 +156,7 @@ public class LaunchPanel2 extends JPanel  {
 					spanel.airPressure.getValue()*10000,
 					spanel.dragC.getValue(),
 					spanel.bottleRadius.getValue()/(100 + 0.0),
-					spanel.nozzleRadius.getValue()/(100 + 0.0),
+					spanel.nozzleRadius.getValue()/(500 + 0.0),
 					90);
 			graph.updaterr(rocket2.copy());
 	   }

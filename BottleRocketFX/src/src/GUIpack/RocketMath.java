@@ -3,7 +3,7 @@ package src.GUIpack;
 /**
  * @author Tanmay Chordia
  * @date  2/19/2014
- * @see RocketMathApplet Class
+ * @see RocketMathApplet
  * @version 3
  *
  */
@@ -122,7 +122,10 @@ public class RocketMath {
 	}
 	
 	
-	
+	public double round(double num,double a)
+	{
+		return (Math.round((num * Math.pow(10,a)))) / (Math.pow(10, a)*1.0);
+	}
 	/**
 	 * @return iP, return the internal air pressure of the water bottle rocket
 	 */
@@ -144,7 +147,7 @@ public class RocketMath {
 		//System.out.println(m);
 		//System.out.println(a + " " + b);
 		iP = p0 * Math.pow((( vA0 + b/pW)/ vA0), -y);
-		double a = vA0 + (b/pW);
+//		double a = vA0 + (b/pW);
 		//System.out.println(b + " " + ( vA0) + " " + ( vA0));
 		}
 //		System.out.println();
@@ -272,9 +275,10 @@ public class RocketMath {
 		
 	}
 	
-	public void printStuff()
+	public  void printStuff()
 	{
-		System.out.println("ipc " + iP + " mass " + m + " dM/dt " + dMdt + " velocity " + v + " height " + h + " Thrust " + thrust + " Volume Bottle " + vB + " mass of water " + mW); ;
+		System.out.println("Time: "+t);
+		System.out.println(" ipc: " + round(iP,3) +"\n"+ " mass: " + round(m,3) +"\n"+ " dM/dt: " + round(dMdt,3) +"\n"+ " Velocity: " + round(v,3) +"\n"+ " Height: " + round(h,3) +"\n"+ " Thrust: " + round(thrust,3) +"\n"+ " Volume Bottle: " + round(vB,3) +"\n"+ " Mass of water: " + round(mW,3)+"\n"+" Acceleration: "+round(a,3)+"\n");
 	}
 	public static void printStats(RocketMath rocket)
 	{
@@ -310,7 +314,7 @@ public class RocketMath {
 		for (int i = 1; i <= 375; i++)
 		{
 			rocket.doStep();
-			//RocketMath.printStats(rocket);
+			rocket.printStuff();
 		}
 		System.out.println(rocket.rNoz);
 	}

@@ -219,7 +219,7 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 		bottleRadiusPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Bottle Radius"));
 		
 		
-		nozzleRadius = customize(new JSlider(JSlider.HORIZONTAL, 1, 10, 1)); // divide by
+		nozzleRadius = customize(new JSlider(JSlider.HORIZONTAL, 1, 10, 5)); // divide by
 																// 100
 		nozzleRadius.setMajorTickSpacing(1);
 
@@ -232,6 +232,8 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 //		nozzleRadius.setSnapToTicks(true);
 
 		nozzleRadius.addChangeListener(this);
+		
+		nozzleRadius.setToolTipText("Adjusting this changes the size of the water nozle in centimeters.");
 		
 		JPanel nozzleRadiusPanel = new JPanel();
 		nozzleRadiusPanel.setBackground(Color.white);
@@ -286,14 +288,14 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 //      }
 		
 		
-		
+		gui.setBackground(Color.white);
 		
 		setBackground(Color.white);
 		tabbedPane.add("sliders",sliders);
 		tabbedPane.addChangeListener(this);
 		tabbedPane.setName("tabs");
 		tabbedPane.add("exact values", gui);
-		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		add(tabbedPane);
 	}
 

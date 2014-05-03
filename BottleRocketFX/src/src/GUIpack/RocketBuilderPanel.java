@@ -12,7 +12,7 @@ import javax.swing.event.ChangeEvent;
 public class RocketBuilderPanel extends JPanel {
 
 	
-	CreateRocket r = new CreateRocket(5);
+	CreateRocket r = new CreateRocket();
 		RocketSliders sliders = new RocketSliders(){
 			@Override
 			public void stateChanged(ChangeEvent e)

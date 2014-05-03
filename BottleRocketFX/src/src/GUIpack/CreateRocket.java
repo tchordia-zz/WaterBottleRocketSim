@@ -2,21 +2,22 @@ package src.GUIpack;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-
-import javafx.application.Application;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.stage.Stage;
 import javafx.scene.control.Button;
-import javafx.embed.swing.JFXPanel;
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.transform.Rotate;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 
@@ -60,10 +61,54 @@ public class CreateRocket extends JPanel
 	double Xb;
 	double N;
 	
+	int i=1;
+	
 	double 	totalBodyLength;
+	
+	public double x;
+	public double y;
+	
+	public double aftBodyLeftSide;
+	public double aftBodyRightSide;
+	public double aftBodyBottom;
+	public double aftBodyTop;
+	
+	public double transitionTopLeft;
+	public double transitionTopRight;
+	public double transitionHeight;
+	public double topTransitionHeight;
+	
+	public double finHeight;
+	public double finTipTop;
+	public double finTipBottom;
+	public double leftFinTip;
+	public double rightFinTip;
+	
+	double fallingAngle;
+	
+	boolean secondPointFalling=false;
+	
+	double contactAngle=0;
+	
+	double angleAtFall=0;
+	
+	boolean running=true;
+	
+	boolean stool;
 		
 	Group entireRocket = new Group();
-	double scale = 1;
+	
+	Circle point;
+	
+	AnimationTimer timer;
+	
+	Line parentBoundingLineLeft = new Line();
+	Line parentBoundingLineRight = new Line();
+	Line parentBoundingLineTop = new Line();
+	Line parentBoundingLineBottom = new Line();
+	
+	Group whoops = new Group();
+	
 	CreateRocket(double noseLength,
 				 double noseBaseDiameter,
 				 double diameterAtFrontTransition,
@@ -94,42 +139,23 @@ public class CreateRocket extends JPanel
 		 Xr=edgeAndFinTipLeadingEdgeParallelToBody;
 		 Xb=distanceFromNoseTipToFinRoot;
 		 N=numberOfFins;
-		 
-		 totalBodyLength = Xb + Cr;
-
-			final JFXPanel fxPanel = new JFXPanel();
-
-			fxPanel.setSize(600, 600);
-
-			setLayout(new BorderLayout());
-
-			add(fxPanel, BorderLayout.CENTER);
-
-			Platform.runLater(new Runnable() {
-				public void run() {
-					Scene scene = createScene();
-					fxPanel.setScene(scene);
-				}
-			});
-
 	}
 	
-	CreateRocket( double scale)
+	CreateRocket()
 	{
-		this.scale = scale; 
-		Ln=scale * 10/2;
-		 D=scale * 10/2;
-		 Df=scale * 7/2;
-		 Dr=scale * 5/2;
-		 Lt=scale * 20/2;
-		 Xp=scale * 50/2;
-		 Cr=scale * 20/2;
-		 Ct=scale * 10/2;
-		 S=scale * 10/2;
-		 Lf=scale * 10/2;
-		 R=scale * 10/2;
-		 Xr=scale * 20/2;
-		 Xb=scale * 100/2;
+		 Ln=10*5;
+		 D=10*2;
+		 Df=7*2;
+		 Dr=5*2;
+		 Lt=20*2;
+		 Xp=50*2;
+		 Cr=20*2;
+		 Ct=10*2;
+		 S=10*2;
+		 Lf=10*2;
+		 R=10*2;
+		 Xr=20*2;
+		 Xb=100*2;
 		 N=2;
 		 
 			totalBodyLength = Xb + Cr;
@@ -146,12 +172,9 @@ public class CreateRocket extends JPanel
 				public void run() {
 					Scene scene = createScene();
 					fxPanel.setScene(scene);
+//					timer.start();
 				}
 			});
-	}
-	CreateRocket()
-	{
-		this(1);
 	}
 	
 	
@@ -160,32 +183,38 @@ public class CreateRocket extends JPanel
 		return entireRocket;
 	}
 	
+	public void update()
+	{
+		
+	}
+	
 	private Scene createScene()
 	{
 		Group root = new Group();
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
 		
-		double x=getWidth()/2;
-		double y=getHeight()/2;
+		x=getWidth()/2;
+		y=getHeight()/2;
 		
-		double aftBodyLeftSide = x-Dr;
-		double aftBodyRightSide = x+Dr;
-		double aftBodyBottom = y+totalBodyLength/2;
-		double aftBodyTop = y-totalBodyLength/2+Xp+Lt;
+		aftBodyLeftSide = x-Dr;
+		aftBodyRightSide = x+Dr;
+		aftBodyBottom = y+totalBodyLength/2;
+		aftBodyTop = y-totalBodyLength/2+Xp+Lt;
 		
-		double transitionTopLeft=x-Df;
-		double transitionTopRight=x+Df;
-		double transitionHeight=aftBodyTop-Lt;
-		double topTransitionHeight=transitionHeight-Xp+Ln;
+		transitionTopLeft=x-Df;
+		transitionTopRight=x+Df;
+		transitionHeight=aftBodyTop-Lt;
+		topTransitionHeight=transitionHeight-Xp+Ln;
 		
-		double finHeight = aftBodyBottom-Cr;
-		double finTipTop = finHeight+Xr;
-		double finTipBottom = finTipTop+Ct;
-		double leftFinTip = x-(Dr+S);
-		double rightFinTip = x+(Dr+S);
-		
-		
+		finHeight = aftBodyBottom-Cr;
+		finTipTop = finHeight+Xr;
+		finTipBottom = finTipTop+Ct;
+		leftFinTip = x-(Dr+S);
+		rightFinTip = x+(Dr+S);
+
+
 		Line centerLine=new Line();
+
 		
 		centerLine.setStartX(x);
 		centerLine.setStartY(y-totalBodyLength/2);
@@ -193,60 +222,180 @@ public class CreateRocket extends JPanel
 		centerLine.setEndY(y+totalBodyLength/2);
 		centerLine.setFill(Color.BLUE);
 		
-		Group aftEnd = new Group();
-		Group coneToBodyTransition = new Group();
-		Group cone = new Group();
-		Group leftFin = new Group();
-		Group rightFin = new Group();
-		
 		Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
 		Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
 		Line aftBottom = new Line(aftBodyRightSide,aftBodyBottom,aftBodyLeftSide,aftBodyBottom);
 		
-		aftEnd.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);
+		entireRocket.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);//0-2
 		
 		Line bottomTransitionLeft = new Line(aftBodyLeftSide, aftBodyTop, transitionTopLeft, transitionHeight);
 		Line bottomTransitionRight = new Line(aftBodyRightSide, aftBodyTop, transitionTopRight, transitionHeight);
 		Line topTransitionLeft = new Line(transitionTopLeft, transitionHeight, transitionTopLeft, topTransitionHeight);
 		Line topTransitionRight = new Line(transitionTopRight, transitionHeight, transitionTopRight, topTransitionHeight);
 		
-		coneToBodyTransition.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);
+		entireRocket.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);//3-6
 		
-		Line coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, y-totalBodyLength/2);
-		Line coneRight = new Line(transitionTopRight, topTransitionHeight, x, y-totalBodyLength/2);	
+		Line coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, topTransitionHeight-Ln);
+		Line coneRight = new Line(transitionTopRight, topTransitionHeight, x, topTransitionHeight-Ln);	
 		
-		cone.getChildren().addAll(coneLeft, coneRight);
+		entireRocket.getChildren().addAll(coneLeft, coneRight);//7-8
 		
 		Line leftFinTop = new Line(aftBodyLeftSide, finHeight, leftFinTip, finTipTop);
 		Line leftFinLeft = new Line(leftFinTip, finTipTop, leftFinTip, finTipBottom);
 		Line leftFinBottom = new Line(leftFinTip, finTipBottom, aftBodyLeftSide,aftBodyBottom);
 		
-		leftFin.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);
+		entireRocket.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);//9-11 666
 		
 		Line rightFinTop = new Line(aftBodyRightSide, finHeight, rightFinTip, finTipTop);
 		Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
 		Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
 		
-		rightFin.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);
+		entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14		
 		
-		entireRocket.getChildren().addAll(aftEnd, cone, coneToBodyTransition, leftFin, rightFin);
+		System.out.println(entireRocket.getRotationAxis());		
 		
-//		entireRocket.setTranslateX(200);
-//		entireRocket.setTranslateY(200);
+		entireRocket.setRotate(180);
 		
-		root.getChildren().add(entireRocket);
+		final Line parentBoundingLine = new Line();
+		parentBoundingLine.setStartY(entireRocket.getBoundsInParent().getMaxY());
+		parentBoundingLine.setEndY(entireRocket.getBoundsInParent().getMaxY());
+		parentBoundingLine.setStartX(10000000);
+		parentBoundingLine.setEndX(-10000000);
+		
+		point=new Circle(x-Math.sqrt(Ln*Ln+Df*Df), y-totalBodyLength/2, 3);
+		
+		Button btn = new Button();
+		btn.setLayoutX(200);
+		btn.setLayoutX(200);
+		btn.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override public void handle(ActionEvent e)
+			{
+				running=!running;
+			}
+		}
+				);
+		
+		whoops.getChildren().addAll(parentBoundingLineLeft, parentBoundingLineRight, parentBoundingLineBottom, parentBoundingLineTop);
+		
+		root.getChildren().addAll(entireRocket, parentBoundingLine, point, btn, whoops);
+		
+		double phi= Math.atan((Df)/Ln)*180/Math.PI;
+		fallingAngle = 90-(180-entireRocket.getRotate());
+		fallingAngle -= phi;
+		
+		boolean Tanmay=true;
+		int z=0;
+		
+		while(Tanmay)
+		{
+			try
+			{
+			
+			System.out.println("Value at " + z + ": " + entireRocket.getChildren().get(z));
+			}
+			
+			catch(IndexOutOfBoundsException e)
+			{
+				Tanmay = false;
+			}
+			z++;
+		}
+		
+		
+		System.out.println("Falling Angle: " + fallingAngle);
+				
+		timer = new AnimationTimer() {
+			@Override
+			public void handle(long l) 
+			{
+				if(running == true)
+				{
+				i++;
+				if(!secondPointFalling)
+				{
+					entireRocket.getTransforms().clear();
+					entireRocket.getTransforms().add(new Rotate(-i, x, y-totalBodyLength/2));
+				}
+				else
+				{
+					if(angleAtFall==0)
+					{
+					angleAtFall = i;
+					System.out.println(angleAtFall);
+					}
+					else
+					{
+					entireRocket.setTranslateY(50);
+					entireRocket.setTranslateX(-40);
+					entireRocket.getTransforms().clear();
+					entireRocket.getTransforms().add(new Rotate(-i, transitionTopRight, topTransitionHeight));
+					stool = parentBoundingLine.intersects(entireRocket.getChildren().get(13).localToScene(entireRocket.getChildren().get(13).getBoundsInLocal()));
+					System.out.println("contact: " + stool);
+					if(stool)
+					{
+						this.stop();
+					}
+					}
+				}
+				if(i==(int)fallingAngle)
+				{
+					System.out.println(i);
+					entireRocket.getTransforms().clear();
+					entireRocket.getTransforms().add(new Rotate(-fallingAngle, x, y-totalBodyLength/2));
+					secondPointFalling = true;
+				}
+			}
+			}
+		};
 		
 		return scene;
 	}
+	
+	public void updateBounds(Bounds local)
+	{
+		
+		double minX;
+		double minY;
+		double maxX;
+		double maxY;
+		
+		minX=local.getMinX();
+		minY=local.getMinY();
+		maxX=local.getMaxX();
+		maxY=local.getMaxY();
+		
+		parentBoundingLineLeft.setStartX(minX);
+		parentBoundingLineLeft.setStartY(minY);
+		parentBoundingLineLeft.setEndX(minX);
+		parentBoundingLineLeft.setEndY(maxY);
+		parentBoundingLineLeft.setStroke(Color.RED);
+
+		parentBoundingLineRight.setStartX(maxX);
+		parentBoundingLineRight.setStartY(maxY);
+		parentBoundingLineRight.setEndX(maxX);
+		parentBoundingLineRight.setEndY(minY);
+		parentBoundingLineRight.setStroke(Color.RED);
+
+		parentBoundingLineTop.setStartX(maxX);
+		parentBoundingLineTop.setStartY(minY);
+		parentBoundingLineTop.setEndX(minX);
+		parentBoundingLineTop.setEndY(minY);
+		parentBoundingLineTop.setStroke(Color.RED);
+
+		parentBoundingLineBottom.setStartX(maxX);
+		parentBoundingLineBottom.setStartY(maxY);
+		parentBoundingLineBottom.setEndX(minX);
+		parentBoundingLineBottom.setEndY(maxY);
+		parentBoundingLineBottom.setStroke(Color.RED);
+	}
+	
 	
 	
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		CreateRocket rocket = new CreateRocket(6);
-		frame.setSize(600,600);
-		rocket.entireRocket.setTranslateX(frame.getWidth()/2);
-		rocket.entireRocket.setTranslateY(frame.getHeight()/2);
+		CreateRocket rocket = new CreateRocket();
 		frame.add(rocket);
 		frame.setSize(600,600);
 		frame.setTitle("Rocket Creation");

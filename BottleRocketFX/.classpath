@@ -7,6 +7,5 @@
 	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar"/>
 	<classpathentry kind="lib" path="jgoodies-looks-2.6.0-sources.jar"/>
 	<classpathentry kind="lib" path="jgoodies-looks-2.6.0.jar"/>
-	<classpathentry kind="lib" path="/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home/jre/lib/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
