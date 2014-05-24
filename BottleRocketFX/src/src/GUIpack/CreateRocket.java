@@ -23,7 +23,7 @@ import javax.swing.JPanel;
 
 /**
  * 
- * @author Cameron Yang
+ * @author Cameron J. Yang
  * 
 **/
 
@@ -102,6 +102,11 @@ public class CreateRocket extends JPanel
 	
 	AnimationTimer timer;
 	
+	double youngJeans;
+	
+	
+	double translatingX=1000;
+	
 	Line parentBoundingLineLeft = new Line();
 	Line parentBoundingLineRight = new Line();
 	Line parentBoundingLineTop = new Line();
@@ -161,31 +166,19 @@ public class CreateRocket extends JPanel
 			totalBodyLength = Xb + Cr;
 
 			final JFXPanel fxPanel = new JFXPanel();
-
+			
 			fxPanel.setSize(600, 600);
 
 			setLayout(new BorderLayout());
-
+			
 			add(fxPanel, BorderLayout.CENTER);
 
 			Platform.runLater(new Runnable() {
 				public void run() {
 					Scene scene = createScene();
 					fxPanel.setScene(scene);
-//					timer.start();
 				}
 			});
-	}
-	
-	
-	public Group getRocket()
-	{
-		return entireRocket;
-	}
-	
-	public void update()
-	{
-		
 	}
 	
 	private Scene createScene()
@@ -193,8 +186,8 @@ public class CreateRocket extends JPanel
 		Group root = new Group();
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
 		
-		x=getWidth()/2;
-		y=getHeight()/2;
+		x=0;
+		y=0;
 		
 		aftBodyLeftSide = x-Dr;
 		aftBodyRightSide = x+Dr;
@@ -213,14 +206,13 @@ public class CreateRocket extends JPanel
 		rightFinTip = x+(Dr+S);
 
 
-		Line centerLine=new Line();
-
-		
-		centerLine.setStartX(x);
-		centerLine.setStartY(y-totalBodyLength/2);
-		centerLine.setEndX(x);
-		centerLine.setEndY(y+totalBodyLength/2);
-		centerLine.setFill(Color.BLUE);
+//		Line centerLine=new Line();
+//
+//		centerLine.setStartX(x);
+//		centerLine.setStartY(y-totalBodyLength/2);
+//		centerLine.setEndX(x);
+//		centerLine.setEndY(y+totalBodyLength/2);
+//		centerLine.setStroke(Color.BLUE);
 		
 		Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
 		Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
@@ -250,19 +242,33 @@ public class CreateRocket extends JPanel
 		Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
 		Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
 		
-		entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14		
+		entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14	
 		
+		entireRocket.setLayoutX(200);
+		entireRocket.setLayoutY(200);
+						
 		System.out.println(entireRocket.getRotationAxis());		
 		
-		entireRocket.setRotate(180);
+		
+		//!!!!!!!!!!!
+		
+//		entireRocket.setRotate(132);
+		
+//		translatingX=-5;
+		
+		youngJeans=entireRocket.getRotate();
+		
+		//!!!!!!!!!!!
+		
 		
 		final Line parentBoundingLine = new Line();
 		parentBoundingLine.setStartY(entireRocket.getBoundsInParent().getMaxY());
 		parentBoundingLine.setEndY(entireRocket.getBoundsInParent().getMaxY());
 		parentBoundingLine.setStartX(10000000);
 		parentBoundingLine.setEndX(-10000000);
-		
-		point=new Circle(x-Math.sqrt(Ln*Ln+Df*Df), y-totalBodyLength/2, 3);
+
+		point=new Circle();
+
 		
 		Button btn = new Button();
 		btn.setLayoutX(200);
@@ -273,12 +279,11 @@ public class CreateRocket extends JPanel
 			{
 				running=!running;
 			}
-		}
-				);
+		});
 		
-		whoops.getChildren().addAll(parentBoundingLineLeft, parentBoundingLineRight, parentBoundingLineBottom, parentBoundingLineTop);
+		whoops.getChildren().addAll(parentBoundingLine);
 		
-		root.getChildren().addAll(entireRocket, parentBoundingLine, point, btn, whoops);
+		root.getChildren().addAll(entireRocket, point, btn, whoops);
 		
 		double phi= Math.atan((Df)/Ln)*180/Math.PI;
 		fallingAngle = 90-(180-entireRocket.getRotate());
@@ -304,6 +309,36 @@ public class CreateRocket extends JPanel
 		
 		
 		System.out.println("Falling Angle: " + fallingAngle);
+		
+		/*
+		 * 
+		 * 225 degrees: -76, 45, 119.36
+		 *
+		 * 180 degrees: -40, 50, 74 degrees
+		 * 
+		 * 175 degrees: -38, 49 69 degrees
+		 * 
+		 * 160 degrees: -30, 48 64 degrees
+		 * 
+		 * 155 degrees: -28, 45
+		 * 
+		 * 150 degrees: -25, 43 degrees 75
+		 * 
+		 * 145 degrees: -14, 34
+		 * 
+		 * 140 degrees: -12, 30
+		 *
+		 * 135 degrees: -6, 25, 29.358 degrees
+		 * 
+		 * 130 degrees: -4, 24
+		 * 
+		 * 125 degrees: -2, 20
+		 * 
+		 * 120 degrees: 0, 15
+		 * 
+		 * 170 degrees: 
+		 * 
+		 */
 				
 		timer = new AnimationTimer() {
 			@Override
@@ -311,6 +346,7 @@ public class CreateRocket extends JPanel
 			{
 				if(running == true)
 				{
+					
 				i++;
 				if(!secondPointFalling)
 				{
@@ -326,10 +362,20 @@ public class CreateRocket extends JPanel
 					}
 					else
 					{
-					entireRocket.setTranslateY(50);
-					entireRocket.setTranslateX(-40);
+					entireRocket.setTranslateY(-.0065*youngJeans*youngJeans+2.5642*youngJeans-199.66);
+					System.out.println("Low Shirt Sujeeth says, 'y value at: " + entireRocket.getTranslateY()+"'");
+					entireRocket.setTranslateX((.0013*youngJeans*youngJeans+.4077*youngJeans-70.184)*-1);
+					
+					if(translatingX!=1000)
+					entireRocket.setTranslateX(translatingX);
+
+					System.out.println("Big boobed Sujeeth says, 'x value at: " + entireRocket.getTranslateX()+"'");
+					
 					entireRocket.getTransforms().clear();
-					entireRocket.getTransforms().add(new Rotate(-i, transitionTopRight, topTransitionHeight));
+					Rotate rotate= new Rotate(-i, transitionTopRight, topTransitionHeight);
+					point.setLayoutX(rotate.getAxis().getX());
+					point.setLayoutY(rotate.getAxis().getY());
+					entireRocket.getTransforms().add(rotate);
 					stool = parentBoundingLine.intersects(entireRocket.getChildren().get(13).localToScene(entireRocket.getChildren().get(13).getBoundsInLocal()));
 					System.out.println("contact: " + stool);
 					if(stool)
@@ -388,6 +434,11 @@ public class CreateRocket extends JPanel
 		parentBoundingLineBottom.setEndX(minX);
 		parentBoundingLineBottom.setEndY(maxY);
 		parentBoundingLineBottom.setStroke(Color.RED);
+	}
+
+	public Group getRocket()
+	{
+		return entireRocket;
 	}
 	
 	
