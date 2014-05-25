@@ -151,3 +151,396 @@ org.eclipse.core.internal.resources.ResourceException: The project description f
 
 !ENTRY org.eclipse.core.resources 4 567 2014-04-26 15:24:19.698
 !MESSAGE The project description file (.project) for 'BottleRocketFX' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+!SESSION 2014-05-24 14:20:59.519 -----------------------------------------------
+eclipse.buildId=4.3.0.M20130911-1000
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -keyring /Users/Tanmay/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -keyring /Users/Tanmay/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-05-24 14:21:20.630
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.core.net 1 0 2014-05-24 14:21:21.333
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2014-05-24 14:21:22.077
+!MESSAGE Unable to retrieve the bundle from the URI: bundleclass://org.eclipse.e4.tools.emf.liveeditor/org.eclipse.e4.tools.emf.liveeditor.OpenLiveDialogHandler
+
+!ENTRY org.eclipse.jface 2 0 2014-05-24 14:21:26.612
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 14:21:26.613
+!MESSAGE A conflict occurred for COMMAND+SHIFT+U:
+Binding(COMMAND+SHIFT+U,
+	ParameterizedCommand(Command(com.aptana.ide.syncing.ui.commands.upload,Upload...,
+		,
+		Category(com.aptana.ide.syncing.ui.commands.category,File Transfer,File Transfer Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4da39ca9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+U,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.occurrences.in.file.quickMenu,Show Occurrences in File Quick Menu,
+		Shows the Occurrences in File quick menu,
+		Category(org.eclipse.search.ui.category.search,Search,Search command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6a9344f5,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 14:21:26.613
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5584d9c6,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3c9c6245,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 14:21:27.359
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.D.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 14:21:27.359
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.B.checkin.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 14:21:27.359
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.A.snarfer.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 14:21:27.360
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.C.submit.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 14:21:27.360
+!MESSAGE Unable to find Action Set: net.sf.webcat.eclipse.submitter.SubmissionActionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 14:21:27.360
+!MESSAGE Unable to find Action Set: com.mountainminds.eclemma.ui.CoverageActionSet
+
+!ENTRY org.eclipse.core.resources 4 2 2014-05-24 15:20:47.748
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.IllegalStateException: Registry Directory not available: /Users/Tanmay/teamdhc2/.metadata/.plugins/org.eclipse.pde.core/.p2/org.eclipse.equinox.p2.engine/profileRegistry.
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.restore(SimpleProfileRegistry.java:480)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfileMap(SimpleProfileRegistry.java:338)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfiles(SimpleProfileRegistry.java:320)
+	at org.eclipse.pde.internal.core.target.P2TargetUtils.cleanOrphanedTargetDefinitionProfiles(P2TargetUtils.java:168)
+	at org.eclipse.pde.internal.core.PDECore$1.saving(PDECore.java:274)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.resources 2 2 2014-05-24 15:20:47.760
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2014-05-24 15:20:47.760
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.IllegalStateException: Registry Directory not available: /Users/Tanmay/teamdhc2/.metadata/.plugins/org.eclipse.pde.core/.p2/org.eclipse.equinox.p2.engine/profileRegistry.
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.restore(SimpleProfileRegistry.java:480)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfileMap(SimpleProfileRegistry.java:338)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfiles(SimpleProfileRegistry.java:320)
+	at org.eclipse.pde.internal.core.target.P2TargetUtils.cleanOrphanedTargetDefinitionProfiles(P2TargetUtils.java:168)
+	at org.eclipse.pde.internal.core.PDECore$1.saving(PDECore.java:274)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.resources 4 2 2014-05-24 15:31:31.726
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.IllegalStateException: Registry Directory not available: /Users/Tanmay/teamdhc2/.metadata/.plugins/org.eclipse.pde.core/.p2/org.eclipse.equinox.p2.engine/profileRegistry.
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.restore(SimpleProfileRegistry.java:480)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfileMap(SimpleProfileRegistry.java:338)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfiles(SimpleProfileRegistry.java:320)
+	at org.eclipse.pde.internal.core.target.P2TargetUtils.cleanOrphanedTargetDefinitionProfiles(P2TargetUtils.java:168)
+	at org.eclipse.pde.internal.core.PDECore$1.saving(PDECore.java:274)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.ui.ide 4 4 2014-05-24 15:31:37.467
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2014-05-24 15:31:37.470
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 566 2014-05-24 15:31:37.471
+!MESSAGE Problems occurred during save.
+!STACK 0
+java.lang.IllegalStateException: Registry Directory not available: /Users/Tanmay/teamdhc2/.metadata/.plugins/org.eclipse.pde.core/.p2/org.eclipse.equinox.p2.engine/profileRegistry.
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.restore(SimpleProfileRegistry.java:480)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfileMap(SimpleProfileRegistry.java:338)
+	at org.eclipse.equinox.internal.p2.engine.SimpleProfileRegistry.getProfiles(SimpleProfileRegistry.java:320)
+	at org.eclipse.pde.internal.core.target.P2TargetUtils.cleanOrphanedTargetDefinitionProfiles(P2TargetUtils.java:168)
+	at org.eclipse.pde.internal.core.PDECore$1.saving(PDECore.java:274)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SESSION 2014-05-24 16:22:20.747 -----------------------------------------------
+eclipse.buildId=4.3.0.M20130911-1000
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -keyring /Users/Tanmay/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -data /Users/Tanmay/teamdhc2 -product org.eclipse.epp.package.standard.product -keyring /Users/Tanmay/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2014-05-24 16:22:23.977
+!MESSAGE Unable to retrieve the bundle from the URI: bundleclass://org.eclipse.e4.tools.emf.liveeditor/org.eclipse.e4.tools.emf.liveeditor.OpenLiveDialogHandler
+
+!ENTRY org.eclipse.core.net 1 0 2014-05-24 16:22:26.285
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jface 2 0 2014-05-24 16:22:26.666
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 16:22:26.666
+!MESSAGE A conflict occurred for ALT+COMMAND+R:
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.python.pydev.debug.setnext,Set Next Statement,
+		,
+		Category(org.python.pydev.ui.category.run,PyDev - Run,Python run category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@78d71df1,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+COMMAND+R,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.rename.element,Rename - Refactoring ,
+		Rename the selected element,
+		Category(org.eclipse.jdt.ui.category.refactoring,Refactor - Java,Java Refactoring Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@456bcb74,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 16:22:26.666
+!MESSAGE A conflict occurred for COMMAND+SHIFT+U:
+Binding(COMMAND+SHIFT+U,
+	ParameterizedCommand(Command(com.aptana.ide.syncing.ui.commands.upload,Upload...,
+		,
+		Category(com.aptana.ide.syncing.ui.commands.category,File Transfer,File Transfer Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@a9c5b75,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(COMMAND+SHIFT+U,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.search.occurrences.in.file.quickMenu,Show Occurrences in File Quick Menu,
+		Shows the Occurrences in File quick menu,
+		Category(org.eclipse.search.ui.category.search,Search,Search command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@dd4aec3,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 16:22:27.181
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.D.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 16:22:27.189
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.B.checkin.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 16:22:27.189
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.A.snarfer.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 16:22:27.190
+!MESSAGE Unable to find Action Set: edu.duke.cs.ambient.C.submit.actionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 16:22:27.190
+!MESSAGE Unable to find Action Set: net.sf.webcat.eclipse.submitter.SubmissionActionSet
+
+!ENTRY org.eclipse.ui 4 4 2014-05-24 16:22:27.190
+!MESSAGE Unable to find Action Set: com.mountainminds.eclemma.ui.CoverageActionSet
+
+!ENTRY org.eclipse.jface 2 0 2014-05-24 16:25:57.930
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 16:25:57.930
+!MESSAGE A conflict occurred for ALT+COMMAND+O:
+Binding(ALT+COMMAND+O,
+	ParameterizedCommand(Command(com.aptana.editor.common.toggleMarkOccurrences,Mark Occurrences,
+		Toggle mark occurrences,
+		Category(com.aptana.ui.category,Aptana,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@598f6c93,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.aptana.editor.context,,cocoa,system)
+Binding(ALT+COMMAND+O,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.toggleMarkOccurrences,Toggle Mark Occurrences,
+		Toggles mark occurrences in Java editors,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@65630116,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,cocoa,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 16:25:57.930
+!MESSAGE A conflict occurred for COMMAND+SHIFT+F:
+Binding(COMMAND+SHIFT+F,
+	ParameterizedCommand(Command(com.aptana.editor.commands.Format,Format,
+		Format the selected text,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5f8a02cf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.aptana.editor.context,,,system)
+Binding(COMMAND+SHIFT+F,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.format,Format,
+		Format the selected text,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@623dc0b8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 16:25:57.930
+!MESSAGE A conflict occurred for COMMAND+SHIFT+P:
+Binding(COMMAND+SHIFT+P,
+	ParameterizedCommand(Command(com.aptana.editor.common.gotoMatchingBracket,Goto Matching Bracket,
+		Goto Matching Bracket,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@fee1e32,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.aptana.editor.context,,,system)
+Binding(COMMAND+SHIFT+P,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.goto.matching.bracket,Go to Matching Bracket,
+		Moves the cursor to the matching bracket,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2d2710a8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-05-24 16:25:57.930
+!MESSAGE A conflict occurred for COMMAND+O:
+Binding(COMMAND+O,
+	ParameterizedCommand(Command(com.aptana.editor.js.quick_outline,Quick Outline,
+		,
+		Category(org.eclipse.core.commands.categories.autogenerated,Uncategorized,Commands that were either auto-generated or have no category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@50b1dfab,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	com.aptana.editor.context,,,system)
+Binding(COMMAND+O,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.show.outline,Quick Outline,
+		Show the quick outline for the editor input,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5c85ed05,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+
+!ENTRY org.eclipse.core.jobs 4 2 2014-05-24 19:11:18.591
+!MESSAGE An internal error occurred during: "Search progress polling".
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4397)
+	at org.eclipse.swt.SWT.error(SWT.java:4312)
+	at org.eclipse.swt.SWT.error(SWT.java:4283)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:783)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:574)
+	at org.eclipse.swt.widgets.Control.getForeground(Control.java:1700)
+	at org.eclipse.jface.action.StatusLine.updateMessageLabel(StatusLine.java:694)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:573)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:559)
+	at org.eclipse.jface.action.StatusLine.subTask(StatusLine.java:654)
+	at org.eclipse.jface.action.StatusLineManager$1.subTask(StatusLineManager.java:206)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor$1.run(TextSearchVisitor.java:150)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.jobs 4 2 2014-05-24 19:11:18.598
+!MESSAGE An internal error occurred during: "Search progress polling".
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4397)
+	at org.eclipse.swt.SWT.error(SWT.java:4312)
+	at org.eclipse.swt.SWT.error(SWT.java:4283)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:783)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:574)
+	at org.eclipse.swt.widgets.Control.getForeground(Control.java:1700)
+	at org.eclipse.jface.action.StatusLine.updateMessageLabel(StatusLine.java:694)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:573)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:559)
+	at org.eclipse.jface.action.StatusLine.subTask(StatusLine.java:654)
+	at org.eclipse.jface.action.StatusLineManager$1.subTask(StatusLineManager.java:206)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor$1.run(TextSearchVisitor.java:150)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.jobs 4 2 2014-05-24 19:11:18.602
+!MESSAGE An internal error occurred during: "Search progress polling".
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4397)
+	at org.eclipse.swt.SWT.error(SWT.java:4312)
+	at org.eclipse.swt.SWT.error(SWT.java:4283)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:783)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:574)
+	at org.eclipse.swt.widgets.Control.getForeground(Control.java:1700)
+	at org.eclipse.jface.action.StatusLine.updateMessageLabel(StatusLine.java:694)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:573)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:559)
+	at org.eclipse.jface.action.StatusLine.subTask(StatusLine.java:654)
+	at org.eclipse.jface.action.StatusLineManager$1.subTask(StatusLineManager.java:206)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor$1.run(TextSearchVisitor.java:150)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.jobs 4 2 2014-05-24 19:11:18.603
+!MESSAGE An internal error occurred during: "Search progress polling".
+!STACK 0
+org.eclipse.swt.SWTException: Invalid thread access
+	at org.eclipse.swt.SWT.error(SWT.java:4397)
+	at org.eclipse.swt.SWT.error(SWT.java:4312)
+	at org.eclipse.swt.SWT.error(SWT.java:4283)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:783)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:574)
+	at org.eclipse.swt.widgets.Control.getForeground(Control.java:1700)
+	at org.eclipse.jface.action.StatusLine.updateMessageLabel(StatusLine.java:694)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:573)
+	at org.eclipse.jface.action.StatusLine.setMessage(StatusLine.java:559)
+	at org.eclipse.jface.action.StatusLine.subTask(StatusLine.java:654)
+	at org.eclipse.jface.action.StatusLineManager$1.subTask(StatusLineManager.java:206)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.core.runtime.ProgressMonitorWrapper.subTask(ProgressMonitorWrapper.java:156)
+	at org.eclipse.core.runtime.SubProgressMonitor.subTask(SubProgressMonitor.java:174)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor$1.run(TextSearchVisitor.java:150)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
