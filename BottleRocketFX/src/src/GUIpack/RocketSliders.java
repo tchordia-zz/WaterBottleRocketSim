@@ -136,7 +136,6 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		DrPanel.add(Dr);
 		DrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter at Rear Transition"));
 		
-		
 		Lt = new MinimalSlider(MinimalSlider.HORIZONTAL, 1, 100, 40);
 
 		Lt.setMajorTickSpacing(10);
