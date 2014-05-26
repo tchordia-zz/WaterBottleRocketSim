@@ -19,11 +19,11 @@ import javafx.scene.transform.Rotate;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class rotateTest {
+public class RotateTest {
 	
 	Group rotatingBoxes;
 
-	rotateTest()
+	RotateTest()
 	{
 		Rectangle rect1 = new Rectangle(0, 0, 20, 20);
 		Rectangle rect2 = new Rectangle(20, 0, 20, 20);

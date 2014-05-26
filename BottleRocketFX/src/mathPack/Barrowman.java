@@ -1,5 +1,6 @@
-package src.GUIpack;
+package mathPack;
 
+import src.GUIpack.CreateRocket;
 import javafx.scene.Group;
 
 /**

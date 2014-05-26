@@ -1,4 +1,4 @@
-package src.GUIpack;
+package mathPack;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class AngularLaunch extends RocketMath {
 
-	double angle;
+	public double angle;
 	double accx;
 	double accy;
 	static double thrust1;
@@ -16,9 +16,9 @@ public class AngularLaunch extends RocketMath {
 	double oldvx=0;
 	double vy;
 	double oldvy=0;
-	double x1;
+	public double x1;
 	double oldx = 0;
-	double y1;
+	public double y1;
 	double oldy = 0;
 
 	public AngularLaunch(double m0, double mW, double vB, double p0, double cD,

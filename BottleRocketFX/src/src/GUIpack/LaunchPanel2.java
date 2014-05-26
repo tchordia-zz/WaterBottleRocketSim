@@ -14,6 +14,9 @@ import javax.swing.UIManager;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.ChangeEvent;
 
+import mathPack.AngularLaunch;
+import mathPack.RocketMath;
+
 public class LaunchPanel2 extends JPanel  {
 	
 	public SPanel spanel = new SPanel();

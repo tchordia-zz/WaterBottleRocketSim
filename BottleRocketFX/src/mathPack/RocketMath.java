@@ -1,4 +1,4 @@
-package src.GUIpack;
+package mathPack;
 
 /**
  * @author Tanmay Chordia

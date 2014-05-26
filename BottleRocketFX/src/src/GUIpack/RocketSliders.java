@@ -40,20 +40,20 @@ public class RocketSliders extends JPanel implements ChangeListener {
 
 	FlowLayout experimentLayout = new FlowLayout();
 
-	public static minimalSlider Ln;  
-	public static minimalSlider D;
-	public static minimalSlider Df;
-	public static minimalSlider Dr;
-	public static minimalSlider Lt;
-	public static minimalSlider Xp;
-	public static minimalSlider Cr;
-	public static minimalSlider Ct;
-	public static minimalSlider S;  
-	public static minimalSlider Lf;
-	public static minimalSlider R;
-	public static minimalSlider Xr;
-	public static minimalSlider Xb;
-	public static minimalSlider N;
+	public static MinimalSlider Ln;  
+	public static MinimalSlider D;
+	public static MinimalSlider Df;
+	public static MinimalSlider Dr;
+	public static MinimalSlider Lt;
+	public static MinimalSlider Xp;
+	public static MinimalSlider Cr;
+	public static MinimalSlider Ct;
+	public static MinimalSlider S;  
+	public static MinimalSlider Lf;
+	public static MinimalSlider R;
+	public static MinimalSlider Xr;
+	public static MinimalSlider Xb;
+	public static MinimalSlider N;
 	
     UIDefaults sliderDefaults = new UIDefaults();
     
@@ -75,7 +75,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
-		Ln = new minimalSlider (minimalSlider.HORIZONTAL, 0, 10, 7); // divide by 100
+		Ln = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 10, 7); // divide by 100
 
 		Ln.setMajorTickSpacing(1);
 
@@ -91,7 +91,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		noseLengthPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Nose"));
 		
 
-		D = new minimalSlider(minimalSlider.HORIZONTAL, 0, 10, 6);
+		D = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 10, 6);
 
 		D.setMajorTickSpacing(1);
 
@@ -107,7 +107,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		noseBaseDiameterPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter of Nose Base"));
 
 
-		Df = new minimalSlider(minimalSlider.HORIZONTAL, 0, 100, 20); // divide value by 1000
+		Df = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 100, 20); // divide value by 1000
 
 		Df.setMajorTickSpacing(10);
 
@@ -121,7 +121,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		DfPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter at Front Transition"));
 
 
-		Dr = new minimalSlider(minimalSlider.HORIZONTAL, 20, 100, 26);
+		Dr = new MinimalSlider(MinimalSlider.HORIZONTAL, 20, 100, 26);
 
 		Dr.setMajorTickSpacing(10);
 
@@ -137,7 +137,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		DrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter at Rear Transition"));
 
 
-		Xp = new minimalSlider(minimalSlider.HORIZONTAL, 0, 5, 1);
+		Xp = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 5, 1);
 
 		Xp.setMajorTickSpacing(1);
 
@@ -154,7 +154,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		XpoefficientPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Distance from Nose to Transition"));
 
 
-		Cr = new minimalSlider(minimalSlider.HORIZONTAL, 0, 10, 5);// divide by 100
+		Cr = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 10, 5);// divide by 100
 		
 		Cr.setMajorTickSpacing(1);
 
@@ -170,7 +170,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		CrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin root chord"));
 		
 		
-		Ct = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1); // divide by
+		Ct = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1); // divide by
 																			  // 100
 		Ct.setMajorTickSpacing(1);
 
@@ -186,7 +186,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		CtPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Tip Chord"));
 		
 		
-		S = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);
+		S = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
 		
 		S.setMajorTickSpacing(1);
 
@@ -202,7 +202,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		SPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Semi Span"));
 		
 		
-		Lf = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);
+		Lf = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
 		
 		Lf.setMajorTickSpacing(1);
 
@@ -217,7 +217,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		LfPanel.add(Lf);
 		LfPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Fin Mid-Chord"));
 		
-		R = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);
+		R = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
 		
 		R.setMajorTickSpacing(1);
 
@@ -232,7 +232,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		RPanel.add(R);
 		RPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Radius of Body at Aft End"));
 		
-		Xr = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);
+		Xr = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
 		
 		Xr.setMajorTickSpacing(1);
 
@@ -247,7 +247,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		XrPanel.add(Xr);
 		XrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Edge and Fin Tip Leading Edge"));
 		
-		Xb= new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);
+		Xb= new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
 		
 		Xb.setMajorTickSpacing(1);
 
@@ -262,7 +262,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		XbPanel.add(Xb);
 		XbPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Distance from Nose Tip to Fin Root"));
 		
-		N = new minimalSlider (minimalSlider.HORIZONTAL, 1, 10, 1);
+		N = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
 		
 		N.setMajorTickSpacing(1);
 

@@ -25,9 +25,9 @@ import java.io.IOException;
  * RAISE YOUR DONGERS
  */
 
-public class minimalSlider extends JSlider{
+public class MinimalSlider extends JSlider{
     private BufferedImage sliderThumb;
-	public minimalSlider(int x, int y, int z, int a)
+	public MinimalSlider(int x, int y, int z, int a)
 	{
 		super(x,y,z,a);
 		for (UIManager.LookAndFeelInfo laf : UIManager.getInstalledLookAndFeels()) {

@@ -2,6 +2,7 @@ package src.GUIpack;
 
 import java.io.Serializable;
 
+import mathPack.AngularLaunch;
 import javafx.scene.Group;
 
 public class FullRocket implements Serializable {
@@ -12,6 +13,7 @@ ProjectileBall b = null;
 public FullRocket()
 {
 }
+
 public FullRocket(CreateRocket r, ProjectileBall p, AngularLaunch a)
 {
 	b = p;
@@ -42,5 +44,10 @@ public AngularLaunch getAngularLaunch()
 public ProjectileBall getProjectileBall()
 {
 	return b;
+}
+
+public FullRocket copy()
+{
+	return new FullRocket(g,b,a);
 }
 }

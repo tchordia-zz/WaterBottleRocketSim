@@ -14,6 +14,8 @@ import javax.swing.UIManager;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.ChangeEvent;
 
+import mathPack.AngularLaunch;
+
 public class RocketFAnimated extends JPanel  {
 	
 	public SPanel spanel = new SPanel();
@@ -146,7 +148,7 @@ public class RocketFAnimated extends JPanel  {
 					Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
 	   }
    }
-   public class customRocket extends SliderPanel
+   public class customRocket extends SliderPanel2
    {
 	   public customRocket() 
 	   {

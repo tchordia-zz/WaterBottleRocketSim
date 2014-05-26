@@ -19,6 +19,8 @@ import javafx.scene.transform.Rotate;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import mathPack.Barrowman;
+
 
 
 /**
@@ -46,20 +48,20 @@ public class CreateRocket extends JPanel
 	  * @param N	=	number of fins
 	*/
 	
-	double Ln;
-	double D;
-	double Df;
-	double Dr;
-	double Lt;
-	double Xp;
-	double Cr;
-	double Ct;
-	double S;
-	double Lf;
-	double R;
-	double Xr;
-	double Xb;
-	double N;
+	public double Ln;
+	public double D;
+	public double Df;
+	public double Dr;
+	public double Lt;
+	public double Xp;
+	public double Cr;
+	public double Ct;
+	public double S;
+	public double Lf;
+	public double R;
+	public double Xr;
+	public double Xb;
+	public double N;
 	
 	int i=1;
 	

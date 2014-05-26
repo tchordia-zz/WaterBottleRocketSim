@@ -14,6 +14,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import mathPack.RocketMath;
+
 public class LoadWindow extends JDialog implements ActionListener {
 
 	CoolButton save = new CoolButton("Load", CoolButton.SMALL);
@@ -58,7 +60,7 @@ public class LoadWindow extends JDialog implements ActionListener {
 		if (a.equals("Save"))
 		{
 			try {
-				RocketF.mRocket =DataSave.retrieve(user, savename);
+				RocketF.mRocket =DataSave.retrieve(user, savename).getAngularLaunch();
 			} catch (ClassNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
