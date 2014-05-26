@@ -46,6 +46,7 @@ public class RocketCreation extends JPanel{
 			System.out.println("Xp: " + Xp.getValue());
 			System.out.println("Cr: " + Cr.getValue());
 			System.out.println("Ct: " + Ct.getValue());
+			System.out.println("Xb: " + Ct.getValue());
 			
 			rocket.updateRocket(
 					Ln.getValue(),
