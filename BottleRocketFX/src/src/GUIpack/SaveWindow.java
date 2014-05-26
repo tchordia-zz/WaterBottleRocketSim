@@ -15,7 +15,7 @@ import javax.swing.border.TitledBorder;
 
 import mathPack.RocketMath;
 
-public class SaveWindow extends JDialog implements ActionListener {
+public class SaveWindow extends JPanel implements ActionListener {
 
 	CoolButton save = new CoolButton("Save", CoolButton.SMALL);
 	JTextField text = new JTextField(10);
@@ -43,7 +43,7 @@ public class SaveWindow extends JDialog implements ActionListener {
 		pane.setBackground(Color.black);
 		 pane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Name your Rocket, then press enter.",TitledBorder.CENTER, TitledBorder.CENTER, font, Color.white));
 		pane.add(text);
-		getContentPane().setBackground(Color.black);
+		setBackground(Color.black);
 		add(pane);
 		pane.setPreferredSize(new Dimension(400,130));
 		add(save);
@@ -58,7 +58,8 @@ public class SaveWindow extends JDialog implements ActionListener {
 		if (a.equals("Save"))
 		{
 			DataSave.saveAs(user,savename, rocket);
-			this.dispose();
+			save.setEnabled(false);
+			text.setText("");
 		}
 		else 
 		{
@@ -72,6 +73,14 @@ public class SaveWindow extends JDialog implements ActionListener {
 				save.setEnabled(true);
 			}
 		}
+	}
+	public void update(String u)
+	{
+		user = u;
+	}
+	public void update(FullRocket u)
+	{
+		rocket = u;
 	}
 	public static void main(String[] args)
 	{

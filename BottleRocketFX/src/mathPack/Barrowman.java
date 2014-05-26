@@ -35,8 +35,10 @@ public class Barrowman {
 	public static final String semiCircle = "s";
 	public final static String parabola = "p";
 	public static final String square = "sq";
+
 	public static final Double cone = .50;
 	public static final double conversionFactor = (1.0) / 30;
+	
 	double cft = conversionFactor;
 	double centerOfMass;
 	
