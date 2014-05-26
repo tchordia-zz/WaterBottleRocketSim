@@ -1,10 +1,14 @@
+package src.GUIpack;
+
+import javafx.scene.Group;
+
 /**
  * barrowman eqns: calcs center of pressure / volume
  * 
  * @author Sahil
- *
+ * 
  */
-public class barrowman {
+public class Barrowman {
 	double ln;
 	double d;
 	double df;
@@ -31,6 +35,8 @@ public class barrowman {
 	public final static String parabola = "p";
 	public static final String square = "sq";
 	public static final String cone = "c";
+	public static final double conversionFactor = (1.0) / 30;
+	double cft = conversionFactor;
 	double centerOfMass;
 	String conetype;
 
@@ -67,7 +73,7 @@ public class barrowman {
 	 * @param n
 	 *            number of fins
 	 */
-	public barrowman(double ln, double d, double df, double dr, double lt,
+	public Barrowman(double ln, double d, double df, double dr, double lt,
 			double xp, double cr, double ct, double s, double lf, double r,
 			double xr, double xb, double n, String conetype) {
 		this.ln = ln;
@@ -86,6 +92,27 @@ public class barrowman {
 		this.xb = xb;
 		this.n = n;
 		this.conetype = conetype;
+
+	}
+
+	public Barrowman(CreateRocket r) {
+		Group a = r.getRocket();
+		this.ln = r.Ln * cft;
+		xn = ln * .666;// this is intended for cone
+		this.d = r.D * cft;
+		this.df = r.Df * cft;
+		this.dr = r.Dr * cft;
+		this.lt = r.Lt* cft;
+		this.xp = r.Xp* cft;
+		this.cr = r.Cr* cft;
+		this.ct = r.Ct* cft;
+		this.s = r.S* cft;
+		this.lf = r.Lf* cft;
+		this.r = r.R* cft;
+		this.xr = r.Xr* cft;
+		this.xb = r.Xb* cft;
+		this.n = r.N* cft;
+		this.conetype = Barrowman.cone;
 
 	}
 
@@ -136,8 +163,8 @@ public class barrowman {
 		double v2 = Math.PI * lt / 3
 				* (df / 2 * df / 2 + df / 2 * dr / 2 + dr / 2 * dr / 2);
 		double v3 = Math.PI * dr * dr * (xb - xp - lt + cr);// includes all the
-															// way to bottom of
-															// nozzle
+		System.out.println(dr + " " + df + " " +d + " " +cr + " "); // way to bottom of
+		// nozzle
 		volume = v1 + v2 + v3;
 		return volume;
 	}
@@ -154,16 +181,17 @@ public class barrowman {
 		else
 			return 1;
 	}
-	public double centerOfMass()
-	{
-		this.centerOfMass = (xb+xr+ct)*2/3;
+
+	public double centerOfMass() {
+		this.centerOfMass = (xb + xr + ct) * 2 / 3;
 		return centerOfMass;
 	}
-	public boolean stabilityCheck()
-	{
-		
-		return this.centerOfPressure()>this.centerOfMass;
+
+	public boolean stabilityCheck() {
+
+		return this.centerOfPressure() > this.centerOfMass;
 	}
+
 	public RocketMath returnLoadedRocket(double m0, double mW, double vB,
 			double p0, double rNoz) {
 

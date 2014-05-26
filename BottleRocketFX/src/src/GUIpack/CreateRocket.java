@@ -95,7 +95,7 @@ public class CreateRocket extends JPanel
 	boolean running=true;
 	
 	boolean stool;
-		
+	Barrowman barrow; 
 	Group entireRocket = new Group();
 	
 	Circle point;
@@ -179,6 +179,8 @@ public class CreateRocket extends JPanel
 					fxPanel.setScene(scene);
 				}
 			});
+			
+			barrow = new Barrowman(this);	
 	}
 	CreateRocket ()
 	{

@@ -14,7 +14,7 @@ import javax.swing.UIManager;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.ChangeEvent;
 
-public class RocketFAnimated extends JFrame  {
+public class RocketFAnimated extends JPanel  {
 	
 	public SPanel spanel = new SPanel();
 	public ProjectileBall apanel;
@@ -53,13 +53,12 @@ public class RocketFAnimated extends JFrame  {
         add(apanel);
         apanel.setVisible(true);
 
-        setTitle("Button Panel Example");
+        
         setSize(new Dimension(1000, 1000));
         setLayout(new GridLayout(0,2));
         setBackground(Color.white);
         setPreferredSize(new Dimension(1000,1000));
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
         setVisible(true);
     }
 	
@@ -74,7 +73,7 @@ public class RocketFAnimated extends JFrame  {
     			rocket2 = new AngularLaunch(
     					spanel.massRocket.getValue()/(10 + 0.0),
     					spanel.massWater.getValue()/(10 + 0.0),
-    					spanel.volumeBottle.getValue()/(10000 + 0.0),
+    					apanel.rocket.barrow.volume(),
     					spanel.airPressure.getValue()*10000,
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
@@ -88,7 +87,7 @@ public class RocketFAnimated extends JFrame  {
     			rocket2 = new AngularLaunch(
     					spanel.massRocket.getValue()/(10 + 0.0),
     					spanel.massWater.getValue()/(10 + 0.0),
-    					spanel.volumeBottle.getValue()/(10000 + 0.0),
+    					apanel.rocket.barrow.volume(),
     					spanel.airPressure.getValue()*10000,
     					spanel.dragC.getValue(),
     					spanel.bottleRadius.getValue()/(100 + 0.0),
@@ -109,7 +108,13 @@ public class RocketFAnimated extends JFrame  {
 
    public static void main(String[] args) 
    {
-	   RocketFAnimated frame = new RocketFAnimated();
+	   JFrame frame = new JFrame();
+	   frame.getContentPane().add(new RocketFAnimated());
+	   frame.setLocationRelativeTo(null);
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       frame.setVisible(true);
+       frame.setSize(1000,1000);
+       frame.setLocation(100,100);
    }
 
    public class SPanel extends SliderPanel2
@@ -124,7 +129,7 @@ public class RocketFAnimated extends JFrame  {
 	   {
 		   	System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
 			System.out.println("massWater: " + massWater.getValue()/(10+0.0)) ;
-			System.out.println("volumeBottle: " + volumeBottle.getValue()/(10000+0.0)) ;
+			System.out.println("volumeBottle: " + apanel.rocket.barrow.volume()) ;
 			System.out.println("airPressure: " + airPressure.getValue()*10000) ;
 			System.out.println("dragC: " + dragC.getValue()) ;
 			System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
@@ -133,7 +138,7 @@ public class RocketFAnimated extends JFrame  {
 			rocket2 = new AngularLaunch(
 					spanel.massRocket.getValue()/(10 + 0.0),
 					spanel.massWater.getValue()/(10 + 0.0),
-					spanel.volumeBottle.getValue()/(10000 + 0.0),
+					apanel.rocket.barrow.volume(),
 					spanel.airPressure.getValue()*10000,
 					spanel.dragC.getValue(),
 					spanel.bottleRadius.getValue()/(100 + 0.0),
