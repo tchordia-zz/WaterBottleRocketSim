@@ -75,7 +75,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		
 		JTabbedPane tabbedPane = new JTabbedPane();
 		
-		Ln = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 10, 7); // divide by 100
+		Ln = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 100, 50);
 
 		Ln.setMajorTickSpacing(1);
 
@@ -91,7 +91,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		noseLengthPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Nose"));
 		
 
-		D = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 10, 6);
+		D = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 50, 20);
 
 		D.setMajorTickSpacing(1);
 
@@ -107,7 +107,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		noseBaseDiameterPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter of Nose Base"));
 
 
-		Df = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 100, 20); // divide value by 1000
+		Df = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 50, 14); // divide value by 1000
 
 		Df.setMajorTickSpacing(10);
 
@@ -121,7 +121,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		DfPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter at Front Transition"));
 
 
-		Dr = new MinimalSlider(MinimalSlider.HORIZONTAL, 20, 100, 26);
+		Dr = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 50, 10);
 
 		Dr.setMajorTickSpacing(10);
 
@@ -136,8 +136,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		DrPanel.add(Dr);
 		DrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter at Rear Transition"));
 		
-		
-		Lt = new MinimalSlider(MinimalSlider.HORIZONTAL, 20, 100, 26);
+		Lt = new MinimalSlider(MinimalSlider.HORIZONTAL, 1, 100, 40);
 
 		Lt.setMajorTickSpacing(10);
 
@@ -153,7 +152,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		LtPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Transition"));
 
 
-		Xp = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 5, 1);
+		Xp = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 200, 100);
 
 		Xp.setMajorTickSpacing(1);
 
@@ -170,7 +169,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		XpoefficientPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Distance from Nose to Transition"));
 
 
-		Cr = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 10, 5);// divide by 100
+		Cr = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 50, 40);// divide by 100
 		
 		Cr.setMajorTickSpacing(1);
 
@@ -186,7 +185,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		CrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin root chord"));
 		
 		
-		Ct = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1); // divide by
+		Ct = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20); // divide by
 																			  // 100
 		Ct.setMajorTickSpacing(1);
 
@@ -202,7 +201,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		CtPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Tip Chord"));
 		
 		
-		S = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
+		S = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20);
 		
 		S.setMajorTickSpacing(1);
 
@@ -218,7 +217,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		SPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Semi Span"));
 		
 		
-		Lf = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
+		Lf = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20);
 		
 		Lf.setMajorTickSpacing(1);
 
@@ -233,7 +232,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		LfPanel.add(Lf);
 		LfPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Fin Mid-Chord"));
 		
-		R = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
+		R = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20);
 		
 		R.setMajorTickSpacing(1);
 
@@ -248,7 +247,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		RPanel.add(R);
 		RPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Radius of Body at Aft End"));
 		
-		Xr = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
+		Xr = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 40);
 		
 		Xr.setMajorTickSpacing(1);
 
@@ -263,7 +262,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		XrPanel.add(Xr);
 		XrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Edge and Fin Tip Leading Edge"));
 		
-		Xb= new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
+		Xb= new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 300, 200);
 		
 		Xb.setMajorTickSpacing(1);
 
@@ -320,6 +319,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 				.addComponent(SPanel)
 				.addComponent(RPanel)
 				.addComponent(XbPanel)
+				.addComponent(LtPanel)
 				);
 
 		sliderLayout.setHorizontalGroup(horizontalLayout);
@@ -343,7 +343,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 				.addComponent(XrPanel).addComponent(XbPanel));
 		
 		verticalLayout.addGroup(sliderLayout.createParallelGroup(Alignment.CENTER)
-				.addComponent(NPanel));
+				.addComponent(NPanel).addComponent(LtPanel));
 		
 		sliderLayout.setVerticalGroup(verticalLayout);
 		sliders.setBackground(Color.white);

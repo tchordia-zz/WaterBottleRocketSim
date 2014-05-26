@@ -116,6 +116,28 @@ public class CreateRocket extends JPanel
 	
 	Group whoops = new Group();
 	
+	Line aftRightSide;
+	Line aftLeftSide;
+	Line aftBottom;
+		
+	Line bottomTransitionLeft;
+	Line bottomTransitionRight;
+	Line topTransitionLeft;
+	Line topTransitionRight;
+		
+	Line coneLeft;
+	Line coneRight;
+		
+	Line leftFinTop;
+	Line leftFinLeft;
+	Line leftFinBottom;
+		
+	Line rightFinTop;
+	Line rightFinRight;
+	Line rightFinBottom;
+	
+	
+	
 	CreateRocket(double noseLength,
 				 double noseBaseDiameter,
 				 double diameterAtFrontTransition,
@@ -156,14 +178,14 @@ public class CreateRocket extends JPanel
 		 Dr=5*2 * factor;
 		 Lt=20*2 * factor;
 		 Xp=50*2 * factor;
-		 Cr=20*2* factor;
-		 Ct=10*2* factor;
-		 S=10*2* factor;
-		 Lf=10*2* factor;
-		 R=10*2* factor;
-		 Xr=20*2* factor;
-		 Xb=100*2* factor;
-		 N=2* factor;
+		 Cr=20*2 * factor;
+		 Ct=10*2 * factor;
+		 S=10*2 * factor;
+		 Lf=10*2 * factor;
+		 R=10*2 * factor;
+		 Xr=20*2 * factor;
+		 Xb=100*2 * factor;
+		 N=2 * factor;
 		 
 			totalBodyLength = Xb + Cr;
 
@@ -222,41 +244,80 @@ public class CreateRocket extends JPanel
 //		centerLine.setEndY(y+totalBodyLength/2);
 //		centerLine.setStroke(Color.BLUE);
 		
-		Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
-		Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
-		Line aftBottom = new Line(aftBodyRightSide,aftBodyBottom,aftBodyLeftSide,aftBodyBottom);
+		aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
+		aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
+		aftBottom = new Line(aftBodyRightSide,aftBodyBottom,aftBodyLeftSide,aftBodyBottom);
 		
-		entireRocket.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);//0-2
+		root.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);//0-2
 		
-		Line bottomTransitionLeft = new Line(aftBodyLeftSide, aftBodyTop, transitionTopLeft, transitionHeight);
-		Line bottomTransitionRight = new Line(aftBodyRightSide, aftBodyTop, transitionTopRight, transitionHeight);
-		Line topTransitionLeft = new Line(transitionTopLeft, transitionHeight, transitionTopLeft, topTransitionHeight);
-		Line topTransitionRight = new Line(transitionTopRight, transitionHeight, transitionTopRight, topTransitionHeight);
+		bottomTransitionLeft = new Line(aftBodyLeftSide, aftBodyTop, transitionTopLeft, transitionHeight);
+		bottomTransitionRight = new Line(aftBodyRightSide, aftBodyTop, transitionTopRight, transitionHeight);
+		topTransitionLeft = new Line(transitionTopLeft, transitionHeight, transitionTopLeft, topTransitionHeight);
+		topTransitionRight = new Line(transitionTopRight, transitionHeight, transitionTopRight, topTransitionHeight);
 		
-		entireRocket.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);//3-6
+		root.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);//3-6
 		
-		Line coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, topTransitionHeight-Ln);
-		Line coneRight = new Line(transitionTopRight, topTransitionHeight, x, topTransitionHeight-Ln);	
+		coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, topTransitionHeight-Ln);
+		coneRight = new Line(transitionTopRight, topTransitionHeight, x, topTransitionHeight-Ln);	
 		
-		entireRocket.getChildren().addAll(coneLeft, coneRight);//7-8
+		root.getChildren().addAll(coneLeft, coneRight);//7-8
 		
-		Line leftFinTop = new Line(aftBodyLeftSide, finHeight, leftFinTip, finTipTop);
-		Line leftFinLeft = new Line(leftFinTip, finTipTop, leftFinTip, finTipBottom);
-		Line leftFinBottom = new Line(leftFinTip, finTipBottom, aftBodyLeftSide,aftBodyBottom);
+		leftFinTop = new Line(aftBodyLeftSide, finHeight, leftFinTip, finTipTop);
+		leftFinLeft = new Line(leftFinTip, finTipTop, leftFinTip, finTipBottom);
+		leftFinBottom = new Line(leftFinTip, finTipBottom, aftBodyLeftSide,aftBodyBottom);
 		
-		entireRocket.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);//9-11 666
+		root.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);//9-11 666
 		
-		Line rightFinTop = new Line(aftBodyRightSide, finHeight, rightFinTip, finTipTop);
-		Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
-		Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
+		rightFinTop = new Line(aftBodyRightSide, finHeight, rightFinTip, finTipTop);
+		rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
+		rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
 		
-		entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14
+		aftRightSide.setLayoutX(200);
+		aftRightSide.setLayoutY(200);
 		
-		entireRocket.setLayoutX(200);
-		entireRocket.setLayoutY(200);
-						
-		System.out.println(entireRocket.getRotationAxis());		
+		aftLeftSide.setLayoutX(200);
+		aftLeftSide.setLayoutY(200);
+
+		aftBottom.setLayoutX(200);
+		aftBottom.setLayoutY(200);
+			
+		bottomTransitionLeft.setLayoutX(200);
+		bottomTransitionLeft.setLayoutY(200);
+
+		bottomTransitionRight.setLayoutX(200);
+		bottomTransitionRight.setLayoutY(200);
+
+		topTransitionLeft.setLayoutX(200);
+		topTransitionLeft.setLayoutY(200);
+
+		topTransitionRight.setLayoutX(200);
+		topTransitionRight.setLayoutY(200);
+
+		coneLeft.setLayoutX(200);
+		coneLeft.setLayoutY(200);
+
+		coneRight.setLayoutX(200);
+		coneRight.setLayoutY(200);
+			
+		leftFinTop.setLayoutX(200);
+		leftFinTop.setLayoutY(200);
+
+		leftFinLeft.setLayoutX(200);
+		leftFinLeft.setLayoutY(200);
+
+		leftFinBottom.setLayoutX(200);
+		leftFinBottom.setLayoutY(200);
 		
+		rightFinTop.setLayoutX(200);
+		rightFinTop.setLayoutY(200);
+
+		rightFinRight.setLayoutX(200);
+		rightFinRight.setLayoutY(200);
+
+		rightFinBottom.setLayoutX(200);
+		rightFinBottom.setLayoutY(200);
+		
+		root.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14		
 		
 		//!!!!!!!!!!!
 		
@@ -291,7 +352,7 @@ public class CreateRocket extends JPanel
 		
 		whoops.getChildren().addAll(parentBoundingLine);
 		
-		root.getChildren().addAll(entireRocket, point, btn, whoops);
+		root.getChildren().addAll(point, btn, whoops);
 		
 		double phi= Math.atan((Df)/Ln)*180/Math.PI;
 		fallingAngle = 90-(180-entireRocket.getRotate());
@@ -352,6 +413,27 @@ public class CreateRocket extends JPanel
 			@Override
 			public void handle(long l) 
 			{
+				
+				updateRocket(
+						 20*5+i,
+						 20*2,
+						 14*2,
+						 5*2,
+						 20*2,
+						 50*2,
+						 20*2,
+						 10*2,
+						 10*2,
+						 10*2,
+						 10*2,
+						 20*2,
+						 100*2,
+						 2
+						);
+				
+				i++;
+				
+				running = false;
 				if(running == true)
 				{
 					
@@ -446,6 +528,37 @@ public class CreateRocket extends JPanel
 
 	public Group getRocket()
 	{
+		
+		Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
+		Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
+		Line aftBottom = new Line(aftBodyRightSide,aftBodyBottom,aftBodyLeftSide,aftBodyBottom);
+		
+		entireRocket.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);//0-2
+		
+		Line bottomTransitionLeft = new Line(aftBodyLeftSide, aftBodyTop, transitionTopLeft, transitionHeight);
+		Line bottomTransitionRight = new Line(aftBodyRightSide, aftBodyTop, transitionTopRight, transitionHeight);
+		Line topTransitionLeft = new Line(transitionTopLeft, transitionHeight, transitionTopLeft, topTransitionHeight);
+		Line topTransitionRight = new Line(transitionTopRight, transitionHeight, transitionTopRight, topTransitionHeight);
+		
+		entireRocket.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);//3-6
+		
+		Line coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, topTransitionHeight-Ln);
+		Line coneRight = new Line(transitionTopRight, topTransitionHeight, x, topTransitionHeight-Ln);	
+		
+		entireRocket.getChildren().addAll(coneLeft, coneRight);//7-8
+		
+		Line leftFinTop = new Line(aftBodyLeftSide, finHeight, leftFinTip, finTipTop);
+		Line leftFinLeft = new Line(leftFinTip, finTipTop, leftFinTip, finTipBottom);
+		Line leftFinBottom = new Line(leftFinTip, finTipBottom, aftBodyLeftSide,aftBodyBottom);
+		
+		entireRocket.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);//9-11 666
+		
+		Line rightFinTop = new Line(aftBodyRightSide, finHeight, rightFinTip, finTipTop);
+		Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
+		Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
+		
+		entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14
+		
 		return entireRocket;
 	}
 	
@@ -466,10 +579,8 @@ public class CreateRocket extends JPanel
 		 double numberOfFins)
 	{
 
-	entireRocket.getChildren().removeAll();
+	entireRocket = new Group();
 	
-	System.out.println(entireRocket.getChildren());
-
 	Ln=noseLength;
 	D=noseBaseDiameter;
 	Df=diameterAtFrontTransition;
@@ -484,6 +595,8 @@ public class CreateRocket extends JPanel
 	Xr=edgeAndFinTipLeadingEdgeParallelToBody;
 	Xb=distanceFromNoseTipToFinRoot;
 	N=numberOfFins;
+	
+	totalBodyLength = Xb + Cr;
 	
 	aftBodyLeftSide = x-Dr;
 	aftBodyRightSide = x+Dr;
@@ -501,36 +614,170 @@ public class CreateRocket extends JPanel
 	leftFinTip = x-(Dr+S);
 	rightFinTip = x+(Dr+S);
 	
-	Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
-	Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
-	Line aftBottom = new Line(aftBodyRightSide,aftBodyBottom,aftBodyLeftSide,aftBodyBottom);
 	
-	entireRocket.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);//0-2
-	
-	Line bottomTransitionLeft = new Line(aftBodyLeftSide, aftBodyTop, transitionTopLeft, transitionHeight);
-	Line bottomTransitionRight = new Line(aftBodyRightSide, aftBodyTop, transitionTopRight, transitionHeight);
-	Line topTransitionLeft = new Line(transitionTopLeft, transitionHeight, transitionTopLeft, topTransitionHeight);
-	Line topTransitionRight = new Line(transitionTopRight, transitionHeight, transitionTopRight, topTransitionHeight);
-	
-	entireRocket.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);//3-6
-	
-	Line coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, topTransitionHeight-Ln);
-	Line coneRight = new Line(transitionTopRight, topTransitionHeight, x, topTransitionHeight-Ln);	
-	
-	entireRocket.getChildren().addAll(coneLeft, coneRight);//7-8
-	
-	Line leftFinTop = new Line(aftBodyLeftSide, finHeight, leftFinTip, finTipTop);
-	Line leftFinLeft = new Line(leftFinTip, finTipTop, leftFinTip, finTipBottom);
-	Line leftFinBottom = new Line(leftFinTip, finTipBottom, aftBodyLeftSide,aftBodyBottom);
-	
-	entireRocket.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);//9-11 666
-	
-	Line rightFinTop = new Line(aftBodyRightSide, finHeight, rightFinTip, finTipTop);
-	Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
-	Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
-	
-	entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14
+	Platform.runLater(new Runnable(){
+		@Override
+		public void run()
+		{
+			aftRightSide.setStartX(aftBodyRightSide);
+			aftRightSide.setStartY(aftBodyTop);
+			aftRightSide.setEndX(aftBodyRightSide);
+			aftRightSide.setEndY(aftBodyBottom);
+			
+			aftLeftSide.setStartX(aftBodyLeftSide);
+			aftLeftSide.setStartY(aftBodyTop);
+			aftLeftSide.setEndX(aftBodyLeftSide);
+			aftLeftSide.setEndY(aftBodyBottom);
+						
+			aftBottom.setStartX(aftBodyRightSide);
+			aftBottom.setStartY(aftBodyBottom);
+			aftBottom.setEndX(aftBodyLeftSide);
+			aftBottom.setEndY(aftBodyBottom);
+							
+			bottomTransitionLeft.setStartX(aftBodyLeftSide);
+			bottomTransitionLeft.setStartY(aftBodyTop);
+			bottomTransitionLeft.setEndX(transitionTopLeft);
+			bottomTransitionLeft.setEndY(transitionHeight);
+						
+			bottomTransitionRight.setStartX(aftBodyRightSide);
+			bottomTransitionRight.setStartY(aftBodyTop);
+			bottomTransitionRight.setEndX(transitionTopRight);
+			bottomTransitionRight.setEndY(transitionHeight);
+						
+			topTransitionLeft.setStartX(transitionTopLeft);
+			topTransitionLeft.setStartY(transitionHeight);
+			topTransitionLeft.setEndX(transitionTopLeft);
+			topTransitionLeft.setEndY(topTransitionHeight);
+						
+			topTransitionRight.setStartX(transitionTopRight);
+			topTransitionRight.setStartY(transitionHeight);
+			topTransitionRight.setEndX(transitionTopRight);
+			topTransitionRight.setEndY(topTransitionHeight);
+				
+			
+			coneLeft.setStartX(transitionTopLeft);
+			coneLeft.setStartY(topTransitionHeight);
+			coneLeft.setEndX(x);
+			coneLeft.setEndY(topTransitionHeight-Ln);
+			
+			
+			coneRight.setStartX(transitionTopRight);
+			coneRight.setStartY(topTransitionHeight);
+			coneRight.setEndX(x);
+			coneRight.setEndY(topTransitionHeight-Ln);
+						
+			leftFinTop.setStartX(aftBodyLeftSide);
+			leftFinTop.setStartY(finHeight);
+			leftFinTop.setEndX(leftFinTip);
+			leftFinTop.setEndY(finTipTop);
+						
+			leftFinLeft.setStartX(leftFinTip);
+			leftFinLeft.setStartY(finTipTop);
+			leftFinLeft.setEndX(leftFinTip);
+			leftFinLeft.setEndY(finTipBottom);
+						
+			leftFinBottom.setStartX(leftFinTip);
+			leftFinBottom.setStartY(finTipBottom);
+			leftFinBottom.setEndX(aftBodyLeftSide);
+			leftFinBottom.setEndY(aftBodyBottom);
+			
+			rightFinTop.setStartX(aftBodyRightSide);
+			rightFinTop.setStartY(finHeight);
+			rightFinTop.setEndX(rightFinTip);
+			rightFinTop.setEndY(finTipTop);
+						
+			rightFinRight.setStartX(rightFinTip);
+			rightFinRight.setStartY(finTipTop);
+			rightFinRight.setEndX(rightFinTip);
+			rightFinRight.setEndY(finTipBottom);
+						
+			rightFinBottom.setStartX(rightFinTip);
+			rightFinBottom.setStartY(finTipBottom);
+			rightFinBottom.setEndX(aftBodyRightSide);
+			rightFinBottom.setEndY(aftBodyBottom);
+
+		}
 	}
+	);				
+//			aftRightSide.setStartX(aftBodyRightSide);
+//			aftRightSide.setStartY(aftBodyTop);
+//			aftRightSide.setEndX(aftBodyRightSide);
+//			aftRightSide.setEndY(aftBodyBottom);
+
+			
+//			aftLeftSide;
+//			aftLeftSide;
+//			aftLeftSide;
+//			aftLeftSide;
+//
+//
+//			aftBottom;
+//			aftBottom;
+//			aftBottom;
+//			aftBottom;
+//
+//				
+//			bottomTransitionLeft;
+//			bottomTransitionLeft;
+//			bottomTransitionLeft;
+//			bottomTransitionLeft;
+//
+//
+//			bottomTransitionRight;
+//			bottomTransitionRight;
+//			bottomTransitionRight;
+//			bottomTransitionRight;
+//
+//			topTransitionLeft;
+//			topTransitionLeft;
+//			topTransitionLeft;
+//			topTransitionLeft;
+//
+//			topTransitionRight;
+//			topTransitionRight;
+//			topTransitionRight;
+//			topTransitionRight;
+//
+//			coneLeft;
+//			coneLeft;
+//			coneLeft;
+//			coneLeft;
+//
+//			coneRight;
+//			coneRight;
+//			coneRight;
+//			coneRight;
+//				
+//			leftFinTop;
+//			leftFinTop;
+//			leftFinTop;
+//			leftFinTop;
+//
+//			leftFinLeft;
+//			leftFinLeft;
+//			leftFinLeft;
+//			leftFinLeft;
+//
+//			leftFinBottom;
+//			leftFinBottom;
+//			leftFinBottom;
+//			leftFinBottom;
+//			
+//			rightFinTop;
+//			rightFinTop;
+//			rightFinTop;
+//			rightFinTop;
+//
+//			rightFinRight;
+//			rightFinRight;
+//			rightFinRight;
+//			rightFinRight;
+//
+//			rightFinBottom;
+//			rightFinBottom;
+//			rightFinBottom;
+//			rightFinBottom;
+		}
 	
 	
 	
