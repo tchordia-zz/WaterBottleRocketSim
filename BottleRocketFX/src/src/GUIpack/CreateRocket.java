@@ -242,7 +242,7 @@ public class CreateRocket extends JPanel
 		Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
 		Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
 		
-		entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14	
+		entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14
 		
 		entireRocket.setLayoutX(200);
 		entireRocket.setLayoutY(200);
@@ -441,12 +441,109 @@ public class CreateRocket extends JPanel
 		return entireRocket;
 	}
 	
+	public void updateRocket(
+		 double noseLength,
+		 double noseBaseDiameter,
+		 double diameterAtFrontTransition,
+		 double diameterAtRearTransition,
+		 double lengthOfTransition,
+		 double distanceFromNoseToTransition,
+		 double finRootChord,
+		 double finTipChord,
+		 double finSemispan,
+		 double lengthOfFinMidChordLine,
+		 double radiusOfBodyAtAftEnd,
+		 double edgeAndFinTipLeadingEdgeParallelToBody,
+		 double distanceFromNoseTipToFinRoot,
+		 double numberOfFins)
+	{
+
+	entireRocket.getChildren().removeAll();
+
+	Ln=noseLength;
+	D=noseBaseDiameter;
+	Df=diameterAtFrontTransition;
+	Dr=diameterAtRearTransition;
+	Lt=lengthOfTransition;
+	Xp=distanceFromNoseToTransition;
+	Cr=finRootChord;
+	Ct=finTipChord;
+	S=finSemispan;
+	Lf=lengthOfFinMidChordLine;
+	R=radiusOfBodyAtAftEnd;
+	Xr=edgeAndFinTipLeadingEdgeParallelToBody;
+	Xb=distanceFromNoseTipToFinRoot;
+	N=numberOfFins;
+	
+	aftBodyLeftSide = x-Dr;
+	aftBodyRightSide = x+Dr;
+	aftBodyBottom = y+totalBodyLength/2;
+	aftBodyTop = y-totalBodyLength/2+Xp+Lt;
+	
+	transitionTopLeft=x-Df;
+	transitionTopRight=x+Df;
+	transitionHeight=aftBodyTop-Lt;
+	topTransitionHeight=transitionHeight-Xp+Ln;
+	
+	finHeight = aftBodyBottom-Cr;
+	finTipTop = finHeight+Xr;
+	finTipBottom = finTipTop+Ct;
+	leftFinTip = x-(Dr+S);
+	rightFinTip = x+(Dr+S);
+	
+	Line aftRightSide = new Line(aftBodyRightSide,aftBodyTop,aftBodyRightSide,aftBodyBottom);
+	Line aftLeftSide = new Line(aftBodyLeftSide,aftBodyTop,aftBodyLeftSide,aftBodyBottom);
+	Line aftBottom = new Line(aftBodyRightSide,aftBodyBottom,aftBodyLeftSide,aftBodyBottom);
+	
+	entireRocket.getChildren().addAll(aftRightSide, aftLeftSide, aftBottom);//0-2
+	
+	Line bottomTransitionLeft = new Line(aftBodyLeftSide, aftBodyTop, transitionTopLeft, transitionHeight);
+	Line bottomTransitionRight = new Line(aftBodyRightSide, aftBodyTop, transitionTopRight, transitionHeight);
+	Line topTransitionLeft = new Line(transitionTopLeft, transitionHeight, transitionTopLeft, topTransitionHeight);
+	Line topTransitionRight = new Line(transitionTopRight, transitionHeight, transitionTopRight, topTransitionHeight);
+	
+	entireRocket.getChildren().addAll(bottomTransitionLeft, bottomTransitionRight, topTransitionLeft, topTransitionRight);//3-6
+	
+	Line coneLeft = new Line(transitionTopLeft, topTransitionHeight, x, topTransitionHeight-Ln);
+	Line coneRight = new Line(transitionTopRight, topTransitionHeight, x, topTransitionHeight-Ln);	
+	
+	entireRocket.getChildren().addAll(coneLeft, coneRight);//7-8
+	
+	Line leftFinTop = new Line(aftBodyLeftSide, finHeight, leftFinTip, finTipTop);
+	Line leftFinLeft = new Line(leftFinTip, finTipTop, leftFinTip, finTipBottom);
+	Line leftFinBottom = new Line(leftFinTip, finTipBottom, aftBodyLeftSide,aftBodyBottom);
+	
+	entireRocket.getChildren().addAll(leftFinTop, leftFinLeft, leftFinBottom);//9-11 666
+	
+	Line rightFinTop = new Line(aftBodyRightSide, finHeight, rightFinTip, finTipTop);
+	Line rightFinRight = new Line(rightFinTip, finTipTop, rightFinTip, finTipBottom);
+	Line rightFinBottom = new Line(rightFinTip, finTipBottom, aftBodyRightSide,aftBodyBottom);
+	
+	entireRocket.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14
+	}
+	
 	
 	
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
 		CreateRocket rocket = new CreateRocket();
+		rocket.updateRocket(
+				 10*5,
+				 10*2,
+				 7*2,
+				 5*2,
+				 20*2,
+				 50*2,
+				 20*2,
+				 10*2,
+				 10*2,
+				 10*2,
+				 10*2,
+				 20*2,
+				 100*2,
+				 2
+				);
 		frame.add(rocket);
 		frame.setSize(600,600);
 		frame.setTitle("Rocket Creation");
