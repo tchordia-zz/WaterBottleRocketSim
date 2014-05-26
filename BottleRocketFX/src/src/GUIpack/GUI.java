@@ -12,13 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+import mathPack.RocketMath;
+
 //notice javax
 
 public class GUI extends JPanel implements ActionListener {
 	JPanel masterpane = new JPanel();
 	JPanel pane = new JPanel();
 	JLabel l = new JLabel("Please fill all fields correctly");
-	BouncingBall ball = new BouncingBall();
+//	BouncingBall ball = new BouncingBall();
 	JTextField m0 = new JTextField(10);
 	JTextField mW = new JTextField(10);
 	JTextField vB = new JTextField(10);

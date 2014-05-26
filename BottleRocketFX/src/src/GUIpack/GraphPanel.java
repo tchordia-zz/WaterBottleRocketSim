@@ -11,6 +11,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import mathPack.RocketMath;
+
 /**
  * @author Tanmay
  * @date Mar 2, 2014

@@ -13,15 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import mathPack.RocketMath;
+
 public class SaveWindow extends JDialog implements ActionListener {
 
 	CoolButton save = new CoolButton("Save", CoolButton.SMALL);
 	JTextField text = new JTextField(10);
 	JPanel pane = new JPanel();
-	RocketMath rocket;
+	FullRocket rocket;
 	String user;
 	String savename;
-	public SaveWindow(RocketMath r, String user)
+	public SaveWindow(FullRocket r, String user)
 	{
 		super();
 		this.user = user;
@@ -73,7 +75,7 @@ public class SaveWindow extends JDialog implements ActionListener {
 	}
 	public static void main(String[] args)
 	{
-		SaveWindow l = new SaveWindow(new RocketMath(), "Tanmay" );
+		SaveWindow l = new SaveWindow(new FullRocket(), "Tanmay" );
 		
 	}
 }

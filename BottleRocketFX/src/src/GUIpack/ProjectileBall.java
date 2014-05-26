@@ -86,7 +86,7 @@ public class ProjectileBall extends JPanel {
 	// used to see if the pointer is in the circle or not
 	// used to prevent the angle from changing while clicking inside the circle
 	static boolean inCircle = false;
-
+	int score = 0;
 	// it's a rect
 	private Rectangle square;
 
@@ -370,7 +370,7 @@ public class ProjectileBall extends JPanel {
 
 		framesPerSecond = new Text();
 
-		framesPerSecond.setText("FPS: " + 0);
+		framesPerSecond.setText("Score " + 0);
 		framesPerSecond.setX(200);
 		framesPerSecond.setY(windowHeight + 150);
 
@@ -543,11 +543,8 @@ public class ProjectileBall extends JPanel {
 
 					clock = new Date();
 
-					if (oldTime != 0) {
-						time = clock.getTime();
-						framesPerSecond.setText("FPS: "
-								+ (1000 / (time - oldTime)));
-					}
+					
+					//System.out.println("SCORE BITCHES " + score);
 					oldTime = clock.getTime();
 
 					frameNumber += 1;
@@ -590,6 +587,8 @@ public class ProjectileBall extends JPanel {
 						intersectTest = true;
 						System.out.println("OH SHIT I HIT THE BOX NIGGA"
 								+ falling);
+						score += 1;
+						framesPerSecond.setText("Score: " + score);
 
 					}
 				}
@@ -597,22 +596,21 @@ public class ProjectileBall extends JPanel {
 				if (intersectTest == true && falling == false) {
 
 					System.out.println("INTERSECT");
-					if (!squareTest)
-					{
-					bottleRocket
-							.setTranslateY(bottleRocket.getTranslateY()
-									- (bottleRocket.getBoundsInParent()
-											.getMaxY() - ground
-											.getBoundsInLocal().getMinY()));
+					if (!squareTest) {
+						bottleRocket
+								.setTranslateY(bottleRocket.getTranslateY()
+										- (bottleRocket.getBoundsInParent()
+												.getMaxY() - ground
+												.getBoundsInLocal().getMinY()));
 					}
-//					else
-//					{
-//						bottleRocket
-//						.setTranslateY(bottleRocket.getTranslateY()
-//								- (bottleRocket.getBoundsInParent()
-//										.getMaxY() - square
-//										.getBoundsInLocal().getMinY()));
-//					}
+					// else
+					// {
+					// bottleRocket
+					// .setTranslateY(bottleRocket.getTranslateY()
+					// - (bottleRocket.getBoundsInParent()
+					// .getMaxY() - square
+					// .getBoundsInLocal().getMinY()));
+					// }
 					bottleRocket.setLayoutX(bottleRocket.getTranslateX() + 35);
 					bottleRocket.setLayoutY(yInit
 							- ((rocket.totalBodyLength / 2) - rocket.Cr
