@@ -49,7 +49,8 @@ public class RocketF extends JFrame {
 
 	public RocketF() {
 		super();
-
+		Myusic x = new Myusic();
+		x.loopAudio(Myusic.wonder);
 		UIManager.put(Options.USE_SYSTEM_FONTS_APP_KEY, Boolean.TRUE);
 		Options.setDefaultIconSize(new Dimension(18, 18));
 
