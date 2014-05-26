@@ -41,7 +41,7 @@ public class RocketF extends JFrame {
 	public RocketBuilderPanel rBuilder = new RocketBuilderPanel();
 	public static RocketMath mRocket;
 	// public CPanel cpanel = new CPanel();
-	public String user;
+	public static String user;
 	/**
 	 * 
 	 */

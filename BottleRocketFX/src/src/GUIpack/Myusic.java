@@ -14,26 +14,35 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 
-public class Myusic {
+public class Myusic extends Application {
 	public static String launchSound = "music/bottlerocketsound.wav";
 	public static String tsunami = "music/tsunami.mp3";
 	public static String wonder = "music/POL-wonder-place-short.wav";
 	public static Thread t = null;
 	public static loopRunnable looper = null;
 	public static void main(String[] args) {
+		Myusic m = new Myusic();
+		m.playAudio(Myusic.wonder);
+	}
+	public Myusic()
+	{
+		
+	}
+	@Override
+	public void start(Stage primaryStage) {
 		// these two lines play the bottle rocket sound
-				// playAudio("music/bottlerocketsound.wav");
+		// playAudio("music/bottlerocketsound.wav");
 
-				playAudio(launchSound);
-				loopAudio(wonder);
-				RocketF.sleep(10000);
-				stopLoop();
-				//loopAudio(wonder);
-				System.out.println("hello");
+		playAudio(launchSound);
+		//loopAudio(wonder);
+		//RocketF.sleep(10000);
+		//stopLoop();
+		//loopAudio(wonder);
+		System.out.println("hello");
 
 	}
 
-	public static boolean playAudio(String fileName) {
+	public boolean playAudio(String fileName) {
 		try {
 			MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(
 					fileName).toURI().toString()));
@@ -45,7 +54,7 @@ public class Myusic {
 		}
 	}
 
-	public static void loopAudio(String filename) {
+	public void loopAudio(String filename) {
 	
 		
 		looper = new loopRunnable(filename);
@@ -54,12 +63,12 @@ public class Myusic {
 		
 		
 	}
-	public static void stopLoop()
+	public void stopLoop()
 	{
 		looper.musicPlayer.stop(looper.loop);
 	}
 	@SuppressWarnings("deprecation")
-	public static void stopMusic()
+	public void stopMusic()
 	{
 		if (t!= null)
 		{
@@ -69,7 +78,7 @@ public class Myusic {
 	
 
 	
-	public static class loopRunnable implements Runnable  
+	public class loopRunnable implements Runnable  
 	{
 		String f;
 		AudioPlayer musicPlayer;
@@ -103,6 +112,7 @@ public class Myusic {
 			
 		}
 	}
+	
 	
 	
 }

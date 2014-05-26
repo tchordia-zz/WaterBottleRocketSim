@@ -36,7 +36,7 @@ public class Barrowman {
 	public final static String parabola = "p";
 	public static final String square = "sq";
 	public static final String cone = "c";
-	public static final double conversionFactor = (1.0) / 30;
+	public static final double conversionFactor = (1.0) / 200;
 	double cft = conversionFactor;
 	double centerOfMass;
 	String conetype;

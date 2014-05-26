@@ -3,6 +3,7 @@ package src.GUIpack;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,13 +12,17 @@ import javax.swing.event.ChangeEvent;
 public class RocketCreation extends JPanel{
 	
 	RocketSliders2 sliders = new RocketSliders2();
-	CreateRocket rocket = new CreateRocket();
 	
+	CreateRocket rockett = new CreateRocket();
+	FullRocket f = new FullRocket(rockett, null, null);
+	SavePanel save = new SavePanel();
 	RocketCreation()
 	{
 		setLayout(new BorderLayout());		
 		add(sliders, BorderLayout.LINE_START);
-		add(rocket, BorderLayout.CENTER);
+		add(rockett, BorderLayout.CENTER);
+		add(save,BorderLayout.WEST);
+		
 	}
 	
 	public static void main(String[] args)
@@ -47,7 +52,7 @@ public class RocketCreation extends JPanel{
 			System.out.println("Cr: " + Cr.getValue());
 			System.out.println("Ct: " + Ct.getValue());
 			
-			rocket.updateRocket(
+			rockett.updateRocket(
 					Ln.getValue(),
 					D.getValue(),
 					Df.getValue(),
@@ -62,6 +67,33 @@ public class RocketCreation extends JPanel{
 					Xr.getValue(),
 					Xb.getValue(),
 					2);
+		}
+	}
+	
+	private class SavePanel extends SaveWindow
+	{
+		public SavePanel()
+		{
+			super(f, RocketF.user);
+			
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String a = e.getActionCommand();
+			System.out.println(a);
+			if (a.equals("Save")) {
+				DataSave.saveAs(user, savename, f);
+				save.setEnabled(false);
+				text.setText("");
+			} else {
+				savename = a;
+				if (DataSave.checkExists(user, savename)) {
+					save.setText("Name exists. Click to overwrite");
+				}
+				if (savename.length() > 0) {
+					save.setEnabled(true);
+				}
+			}
 		}
 	}
 }
