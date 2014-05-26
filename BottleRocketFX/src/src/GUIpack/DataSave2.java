@@ -32,6 +32,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
+ * This class should always be used Statically, and should never actually be instantiated.
  * @author Tanmay
  * 
  */
@@ -48,13 +49,15 @@ public class DataSave2 implements Serializable {
 	private static String dirname = "Users";
 	private final static File dir = new File(dirname);
 	private static FullRocket rocket;
-	static boolean cl;
-	static boolean sleep = true;
 
-	public DataSave2() {
-		// TODO Auto-generated constructor stub
-	}
 
+
+
+	/**
+	 * Creates a file 
+	 * @param user
+	 * @param savename
+	 */
 	public static void setup(String user, String savename) {
 		String filename = new String(user + "array.txt");
 		dir.mkdir();
@@ -74,7 +77,7 @@ public class DataSave2 implements Serializable {
 		filename = new String(user + ":" + savename + ".ser");
 		fileser = new File(dir, filename);
 		try {
-			filetxt.createNewFile();
+			fileser.createNewFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,6 +136,11 @@ public class DataSave2 implements Serializable {
 		return false;
 	}
 
+	/**
+	 * @param user The user that wants to access data
+	 * @param savename 
+	 * @return The list of things that the user has saved.
+	 */
 	public static String[] getList(String user, String savename) {
 		ArrayList<String> list = new ArrayList();
 		DataSave2.setup(user, savename);
@@ -144,11 +152,15 @@ public class DataSave2 implements Serializable {
 				System.out.println(a);
 			}
 		}
-		// return false;
+		
 		return (String[]) list.toArray(new String[list.size()]);
 
 	}
 
+	/**
+	 * This method actually saves the FullRocket object into a serializeable file (.ser). Meant to be called only by uploadS
+	 * @param rocket the FullRocket object that you want to save
+	 */
 	private static void uploadO(FullRocket rocket) {
 
 		try {
@@ -157,13 +169,21 @@ public class DataSave2 implements Serializable {
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(rocket);
 			oos.close();
-			System.out.println("Done");
+			//System.out.println("Done");
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
+	/**
+	 * Returns the FullRocket object in the file saved under the name of the user. 
+	 * @param user 
+	 * @param savename
+	 * @return the Full Rocket Object
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public static FullRocket retrieve(String user, String savename)
 			throws IOException, ClassNotFoundException {
 		DataSave2.setup(user, savename);

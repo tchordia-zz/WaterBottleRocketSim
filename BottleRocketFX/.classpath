@@ -7,5 +7,9 @@
 	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar"/>
 	<classpathentry kind="lib" path="jgoodies-looks-2.6.0-sources.jar"/>
 	<classpathentry kind="lib" path="jgoodies-looks-2.6.0.jar"/>
+	<classpathentry kind="lib" path="ICEpdf-5.0.6-P01-src.zip"/>
+	<classpathentry kind="lib" path="icepdf-core-4.3.3.jar"/>
+	<classpathentry kind="lib" path="icepdf-viewer-4.3.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
+	<referencedentry kind="lib" path="icepdf-viewer.jar" sourcepath="ICEpdf-5.0.6-P01-src"/>
 </classpath>

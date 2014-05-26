@@ -1,0 +1,7 @@
+body
+{
+color:blue;
+background-image:url("skyPageBack.jpeg");
+background-repeat:no-repeat;
+background-position:right top;
+}

@@ -1,0 +1,28 @@
+package src.GUIpack;
+
+import java.io.Serializable;
+
+import javafx.scene.Group;
+
+public class FullRocket implements Serializable {
+CreateRocket g = null;
+AngularLaunch a = null;
+ProjectileBall b = null;
+
+public FullRocket()
+public FullRocket(CreateRocket b, AngularLaunch c)
+{
+	g = b;
+	a = c;
+}
+
+public CreateRocket getCreateRocket()
+{
+	return g;
+}
+
+public AngularLaunch getAngularLaunch()
+{
+	return a;
+}
+}

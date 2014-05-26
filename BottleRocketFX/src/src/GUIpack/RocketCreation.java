@@ -10,7 +10,7 @@ import javax.swing.event.ChangeEvent;
 
 public class RocketCreation extends JPanel{
 	
-	RocketSliders sliders = new RocketSliders();
+	RocketSliders2 sliders = new RocketSliders2();
 	CreateRocket rocket = new CreateRocket();
 	
 	RocketCreation()

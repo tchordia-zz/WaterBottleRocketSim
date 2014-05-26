@@ -135,6 +135,22 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		DrPanel.setBackground(Color.white);
 		DrPanel.add(Dr);
 		DrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter at Rear Transition"));
+		
+		
+		Lt = new minimalSlider(minimalSlider.HORIZONTAL, 20, 100, 26);
+
+		Lt.setMajorTickSpacing(10);
+
+		Lt.setMinorTickSpacing(1);
+
+		Lt.setPaintLabels(true);
+
+		Lt.addChangeListener(this);
+
+		JPanel LtPanel = new JPanel();
+		LtPanel.setBackground(Color.white);
+		LtPanel.add(Lt);
+		LtPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Transition"));
 
 
 		Xp = new minimalSlider(minimalSlider.HORIZONTAL, 0, 5, 1);

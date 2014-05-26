@@ -146,22 +146,22 @@ public class CreateRocket extends JPanel
 		 N=numberOfFins;
 	}
 	
-	CreateRocket()
+	CreateRocket(double factor)
 	{
-		 Ln=10*5;
-		 D=10*2;
-		 Df=7*2;
-		 Dr=5*2;
-		 Lt=20*2;
-		 Xp=50*2;
-		 Cr=20*2;
-		 Ct=10*2;
-		 S=10*2;
-		 Lf=10*2;
-		 R=10*2;
-		 Xr=20*2;
-		 Xb=100*2;
-		 N=2;
+		 Ln=10*5 * factor;
+		 D=10*2 * factor;
+		 Df=7*2 * factor;
+		 Dr=5*2 * factor;
+		 Lt=20*2 * factor;
+		 Xp=50*2 * factor;
+		 Cr=20*2* factor;
+		 Ct=10*2* factor;
+		 S=10*2* factor;
+		 Lf=10*2* factor;
+		 R=10*2* factor;
+		 Xr=20*2* factor;
+		 Xb=100*2* factor;
+		 N=2* factor;
 		 
 			totalBodyLength = Xb + Cr;
 
@@ -179,6 +179,10 @@ public class CreateRocket extends JPanel
 					fxPanel.setScene(scene);
 				}
 			});
+	}
+	CreateRocket ()
+	{
+		this(1);
 	}
 	
 	private Scene createScene()
@@ -459,6 +463,8 @@ public class CreateRocket extends JPanel
 	{
 
 	entireRocket.getChildren().removeAll();
+	
+	System.out.println(entireRocket.getChildren());
 
 	Ln=noseLength;
 	D=noseBaseDiameter;

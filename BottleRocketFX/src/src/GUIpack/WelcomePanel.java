@@ -32,6 +32,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
 	JButton launch = new CoolButton("Launch Mode", CoolButton.BIG);
 	JButton target = new CoolButton("Target Mode", CoolButton.BIG, CoolButton.CRED);
 	JButton builder = new CoolButton("Rocket Builder", CoolButton.BIG, CoolButton.CGREEN);
+	JButton exp = new CoolButton ("Rocket Science", CoolButton.BIG, Color.black);
 	JTextField j = new JTextField(20);
 	public WelcomePanel()
 	{
@@ -75,6 +76,8 @@ public class WelcomePanel extends JPanel implements ActionListener {
 		launch.setActionCommand("launch");
 		target.addActionListener(this);
 		target.setActionCommand("target");
+		exp.addActionListener(this);
+		exp.setActionCommand("exp");
 		add(pane);
 		Border bord = BorderFactory.createLineBorder(Color.black, 5);
 		setBorder(bord);

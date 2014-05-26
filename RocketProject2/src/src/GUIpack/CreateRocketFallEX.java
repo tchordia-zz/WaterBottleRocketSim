@@ -27,7 +27,7 @@ import javax.swing.JPanel;
  * 
 **/
 
-public class CreateRocket extends JPanel
+public class CreateRocketFallEX extends JPanel
 {
 	
 	/** @param Ln	=	length of nose
@@ -109,7 +109,7 @@ public class CreateRocket extends JPanel
 	
 	Group whoops = new Group();
 	
-	CreateRocket(double noseLength,
+	CreateRocketFallEX(double noseLength,
 				 double noseBaseDiameter,
 				 double diameterAtFrontTransition,
 				 double diameterAtRearTransition,
@@ -141,7 +141,7 @@ public class CreateRocket extends JPanel
 		 N=numberOfFins;
 	}
 	
-	CreateRocket()
+	CreateRocketFallEX()
 	{
 		 Ln=10*5;
 		 D=10*2;
@@ -398,7 +398,7 @@ public class CreateRocket extends JPanel
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		CreateRocket rocket = new CreateRocket();
+		CreateRocketFallEX rocket = new CreateRocketFallEX();
 		frame.add(rocket);
 		frame.setSize(600,600);
 		frame.setTitle("Rocket Creation");

@@ -122,7 +122,7 @@ public class ProjectileBall extends JPanel {
 
 		final JFXPanel fxPanel = new JFXPanel();
 		
-		CreateRocket rocket = new CreateRocket();
+		CreateRocketFallEX rocket = new CreateRocketFallEX();
 		
 		circle = rocket.getRocket();
 				
