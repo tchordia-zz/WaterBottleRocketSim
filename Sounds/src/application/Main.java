@@ -9,18 +9,27 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	@Override
+	public void start(Stage primaryStage) {
+		// these two lines play the bottle rocket sound
+		playAudio("bottlerocketsound.wav");
+		
 
-    @Override
-    public void start(Stage primaryStage) {
-    	// these two lines play the bottle rocket sound
-    	MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("bottlerocketsound.wav").toURI().toString()));
-    	mediaPlayer.play();
-    	
-        
-    }
+	}
+
+	public boolean playAudio(String fileName) {
+		try {
+
+			MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(fileName)
+					.toURI().toString()));
+			mediaPlayer.play();
+			return true;
+		} catch (Exception x) {
+			return false;
+		}
+	}
 }
