@@ -1,8 +1,7 @@
-package src.GUIpack;
+package application;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -14,7 +13,7 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 
-public class Myusic extends Application {
+public class Myusic  {
 	public static String launchSound = "music/bottlerocketsound.wav";
 	public static String tsunami = "music/tsunami.mp3";
 	public static String wonder = "music/POL-wonder-place-short.wav";
@@ -24,25 +23,9 @@ public class Myusic extends Application {
 		Myusic m = new Myusic();
 		m.playAudio(Myusic.wonder);
 	}
-	public Myusic()
-	{
-		
-	}
-	@Override
-	public void start(Stage primaryStage) {
-		// these two lines play the bottle rocket sound
-		// playAudio("music/bottlerocketsound.wav");
 
-		playAudio(launchSound);
-		//loopAudio(wonder);
-		//RocketF.sleep(10000);
-		//stopLoop();
-		//loopAudio(wonder);
-		System.out.println("hello");
 
-	}
-
-	public boolean playAudio(String fileName) {
+	public static boolean playAudio(String fileName) {
 		try {
 			MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(
 					fileName).toURI().toString()));
