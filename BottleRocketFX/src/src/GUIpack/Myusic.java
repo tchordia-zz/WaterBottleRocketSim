@@ -19,10 +19,7 @@ public class Myusic  {
 	public static String wonder = "music/POL-wonder-place-short.wav";
 	public static Thread t = null;
 	public static loopRunnable looper = null;
-	public static void main(String[] args) {
-		Myusic m = new Myusic();
-		m.playAudio(Myusic.wonder);
-	}
+	
 
 
 	public static boolean playAudio(String fileName) {
