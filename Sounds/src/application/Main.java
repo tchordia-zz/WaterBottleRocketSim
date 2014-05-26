@@ -17,9 +17,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-    	// these two lines play the musics
-    	MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("tsunami.mp3").toURI().toString()));
+    	// these two lines play the bottle rocket sound
+    	MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File("bottlerocketsound.wav").toURI().toString()));
     	mediaPlayer.play();
+    	
         
     }
 }
