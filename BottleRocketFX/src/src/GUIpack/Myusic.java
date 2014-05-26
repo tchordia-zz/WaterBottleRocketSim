@@ -1,4 +1,4 @@
-package application;
+package src.GUIpack;
 
 import java.io.File;
 import java.io.FileInputStream;
