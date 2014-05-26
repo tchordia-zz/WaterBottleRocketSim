@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
@@ -18,10 +18,10 @@ public class RocketCreation extends JPanel{
 	SavePanel save = new SavePanel();
 	RocketCreation()
 	{
-		setLayout(new BorderLayout());		
-		add(sliders, BorderLayout.LINE_START);
-		add(rockett, BorderLayout.CENTER);
-		add(save,BorderLayout.WEST);
+		setLayout(new GridLayout());		
+		add(sliders);
+		add(rockett);
+		add(save);
 		
 	}
 	
