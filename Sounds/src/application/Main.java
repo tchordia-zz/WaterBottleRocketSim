@@ -8,7 +8,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+	public static String bottleRocketSound = "bottlerocketsound.wav";
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
