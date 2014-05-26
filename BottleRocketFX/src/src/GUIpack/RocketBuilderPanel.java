@@ -34,12 +34,7 @@ public class RocketBuilderPanel extends JPanel {
 						  RocketSliders.Lf.getValue(),
 						  RocketSliders.R.getValue(),
 						  RocketSliders.Xr.getValue(),
-						  RocketSliders.Xb.getValue(),
-						  RocketSliders.N.getValue()
-						 
-						
-						
-						);
+						  RocketSliders.Xb.getValue());
 				Platform.runLater(new Runnable() {
 					public void run() {
 						r.entireRocket.setTranslateX(300);

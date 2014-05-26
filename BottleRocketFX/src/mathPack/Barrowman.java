@@ -111,8 +111,7 @@ public class Barrowman {
 		this.r = r.R* cft;
 		this.xr = r.Xr* cft;
 		this.xb = r.Xb* cft;
-		this.n = r.N* cft;
-
+		this.n=2;
 	}
 
 	private double calcCNT() {

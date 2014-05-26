@@ -144,12 +144,8 @@ public class LaunchPanel2 extends JPanel  {
 	   @Override
 	   public void stateChanged(ChangeEvent arg0)
 	   {
-		   	System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
 			System.out.println("massWater: " + massWater.getValue()/(10+0.0)) ;
-			System.out.println("volumeBottle: " + volumeBottle.getValue()/(10000+0.0)) ;
 			System.out.println("airPressure: " + airPressure.getValue()*10000) ;
-			System.out.println("dragC: " + dragC.getValue()) ;
-			System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
 			System.out.println("nozzleRadius: " + nozzleRadius.getValue()/(100+0.0)) ;
 			System.out.println("angle: " + rocket2.angle);
 			rocket2 = new AngularLaunch(

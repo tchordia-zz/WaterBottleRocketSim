@@ -154,7 +154,7 @@ public class CreateRocket extends JPanel
 				 double lengthOfFinMidChordLine,
 				 double radiusOfBodyAtAftEnd,
 				 double edgeAndFinTipLeadingEdgeParallelToBody,
-				 double distanceFromNoseTipToFinRoot,
+				 double distanceFromNoseTipToFinRoot
 				 )
 	{
 		 Ln=noseLength;
@@ -189,7 +189,6 @@ public class CreateRocket extends JPanel
 		 R=10*2 * factor;
 		 Xr=20*2 * factor;
 		 Xb=100*2 * factor;
-		 N=2 * factor;
 		 
 			totalBodyLength = Xb + Cr;
 			
@@ -318,11 +317,11 @@ public class CreateRocket extends JPanel
 		
 		root.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14
 		
-		nozleLeft = new Line(x+nozzleRadius);
+		nozleLeft = new Line(x+nozzleRadius, aftBodyBottom, x+nozzleRadius, 10);
 		nozleRight = new Line();
 		nozleBottom = new Line();
 		
-		root.getChildren().addAll(rightFinTop, rightFinRight, rightFinBottom);//12-14
+		root.getChildren().addAll(nozleLeft, nozleRight, nozleBottom);//12-14
 		
 		
 		aftRightSide.setLayoutX(200);
@@ -631,7 +630,6 @@ public class CreateRocket extends JPanel
 	R=radiusOfBodyAtAftEnd;
 	Xr=edgeAndFinTipLeadingEdgeParallelToBody;
 	Xb=distanceFromNoseTipToFinRoot;
-	N=numberOfFins;
 	
 	totalBodyLength = Xb + Cr;
 	

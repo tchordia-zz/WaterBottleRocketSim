@@ -81,28 +81,28 @@ public class RocketFAnimated extends JPanel  {
         	{
         		super.resetBall();
     			rocket2 = new AngularLaunch(
-    					spanel.massRocket.getValue()/(10 + 0.0),
-    					spanel.massWater.getValue()/(10 + 0.0),
-    					apanel.rocket.barrow.volume(),
-    					spanel.airPressure.getValue()*10000,
-    					spanel.dragC.getValue(),
-    					spanel.bottleRadius.getValue()/(100 + 0.0),
-    					spanel.nozzleRadius.getValue()/(500 + 0.0),
-    					Math.toDegrees(Math.PI/2));
+    	    			0,
+    	    			spanel.massWater.getValue()/(10 + 0.0),
+    	    			apanel.rocket.barrow.volume(),
+    	    			spanel.airPressure.getValue()*10000,
+    	    			Barrowman.cone,
+    	    			(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df:apanel.rocket.Dr,
+    	    			spanel.nozzleRadius.getValue()/(500 + 0.0),
+    	    			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
         	}
        
         	public void angleAdjust(MouseEvent e)
         	{
         		super.angleAdjust(e);
     			rocket2 = new AngularLaunch(
-    					spanel.massRocket.getValue()/(10 + 0.0),
-    					spanel.massWater.getValue()/(10 + 0.0),
-    					apanel.rocket.barrow.volume(),
-    					spanel.airPressure.getValue()*10000,
-    					spanel.dragC.getValue(),
-    					spanel.bottleRadius.getValue()/(100 + 0.0),
-    					spanel.nozzleRadius.getValue()/(500 + 0.0),
-    					Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
+    	    			0,
+    	    			spanel.massWater.getValue()/(10 + 0.0),
+    	    			apanel.rocket.barrow.volume(),
+    	    			spanel.airPressure.getValue()*10000,
+    	    			Barrowman.cone,
+    	    			(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df:apanel.rocket.Dr,
+    	    			spanel.nozzleRadius.getValue()/(500 + 0.0),
+    	    			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
     			System.out.println(rocket2.angle);
         	}
 
@@ -137,23 +137,20 @@ public class RocketFAnimated extends JPanel  {
 	   @Override
 	   public void stateChanged(ChangeEvent arg0)
 	   {
-		   	System.out.println("massRocket: " + (massRocket.getValue()/(10+0.0))) ;
 			System.out.println("massWater: " + massWater.getValue()/(10+0.0)) ;
 			System.out.println("volumeBottle: " + apanel.rocket.barrow.volume()) ;
-			System.out.println("airPressure: " + airPressure.getValue()*10000) ;
-			System.out.println("dragC: " + dragC.getValue()) ;
-			System.out.println("bottleRadius: " + bottleRadius.getValue()/(100+0.0)) ;
+			System.out.println("airPressure: " + airPressure.getValue()*10000) ; ;
 			System.out.println("nozzleRadius: " + nozzleRadius.getValue()/(100+0.0)) ;
 			System.out.println("angle: " + rocket2.angle);
 			rocket2 = new AngularLaunch(
-					spanel.massRocket.getValue()/(10 + 0.0),
-					spanel.massWater.getValue()/(10 + 0.0),
-					apanel.rocket.barrow.volume(),
-					spanel.airPressure.getValue()*10000,
-					spanel.dragC.getValue(),
-					spanel.bottleRadius.getValue()/(100 + 0.0),
-					spanel.nozzleRadius.getValue()/(500 + 0.0),
-					Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
+	    			0,
+	    			spanel.massWater.getValue()/(10 + 0.0),
+	    			apanel.rocket.barrow.volume(),
+	    			spanel.airPressure.getValue()*10000,
+	    			Barrowman.cone,
+	    			(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df:apanel.rocket.Dr,
+	    			spanel.nozzleRadius.getValue()/(500 + 0.0),
+	    			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
 	   }
    }
    public class customRocket extends SliderPanel2
