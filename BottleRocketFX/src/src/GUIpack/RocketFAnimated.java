@@ -3,6 +3,7 @@ package src.GUIpack;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.util.Random;
 
 import javafx.scene.input.MouseEvent;
 
@@ -15,20 +16,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.ChangeEvent;
 
 import mathPack.AngularLaunch;
+import mathPack.Barrowman;
 
 public class RocketFAnimated extends JPanel  {
 	
 	public SPanel spanel = new SPanel();
 	public ProjectileBall apanel;
-	AngularLaunch rocket2 = new AngularLaunch(
-			spanel.massRocket.getValue()/(10 + 0.0),
-			spanel.massWater.getValue()/(10 + 0.0),
-			spanel.volumeBottle.getValue()/(10000 + 0.0),
-			spanel.airPressure.getValue()*10000,
-			spanel.dragC.getValue(),
-			spanel.bottleRadius.getValue()/(100 + 0.0),
-			spanel.nozzleRadius.getValue()/(500 + 0.0),
-			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
+	AngularLaunch rocket2;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -49,6 +43,16 @@ public class RocketFAnimated extends JPanel  {
         }
         
         setupAnimation();
+        
+        rocket2 = new AngularLaunch(
+    			0,
+    			spanel.massWater.getValue()/(10 + 0.0),
+    			apanel.rocket.barrow.volume(),
+    			spanel.airPressure.getValue()*10000,
+    			Barrowman.cone,
+    			(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df:apanel.rocket.Dr,
+    			spanel.nozzleRadius.getValue()/(500 + 0.0),
+    			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
 
         spanel.setBackground(Color.white);
         add(spanel);
@@ -66,8 +70,12 @@ public class RocketFAnimated extends JPanel  {
 	
 	public void setupAnimation()
 	{
+		
+		Random aynRand = new Random();
+		
+		int randomNumber = aynRand.nextInt(300)+100;
         
-        apanel = new ProjectileBall(300, 400)
+        apanel = new ProjectileBall(300, 400, randomNumber)
         {
         	public void resetBall()
         	{
@@ -154,6 +162,7 @@ public class RocketFAnimated extends JPanel  {
 	   {
 		   super();
 		   setSize(getWidth(),getHeight());
+		   
 	   }
 	   @Override
 	   public void stateChanged(ChangeEvent arg0)

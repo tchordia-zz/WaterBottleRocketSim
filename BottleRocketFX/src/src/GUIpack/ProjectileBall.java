@@ -3,7 +3,6 @@ package src.GUIpack;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
-
 import java.util.Date;
 
 import javax.swing.JPanel;
@@ -135,13 +134,18 @@ public class ProjectileBall extends JPanel {
 	int i = 0;
 
 	double youngJeans;
+	
+	double targetDistance;
 
 	/**
 	 * Class constructor. pretty basic, sets up the jfxPanel. The new thread
 	 * starts the JavaFX
 	 * 
 	 */
-	public ProjectileBall(int W, int H) {
+	public ProjectileBall(int W, int H, double distance) {
+		
+		targetDistance = distance;
+		
 		windowWidth = W;
 		windowHeight = H;
 
@@ -349,7 +353,7 @@ public class ProjectileBall extends JPanel {
 
 		// sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
-		square.setX(xInit + 400);
+		square.setX(xInit + targetDistance);
 		square.setY(yInit - 50);
 
 		// sets up line
@@ -581,16 +585,26 @@ public class ProjectileBall extends JPanel {
 
 					intersectTest = ground.intersects(bottleRocket
 							.getBoundsInParent());
+					
+					//
+					for(int z=0; z<=14 && !squareTest; ++z){
+						
+					System.out.println(z);
 					squareTest = square.intersects(bottleRocket
-							.getBoundsInParent());
+							.getChildren()
+							.get(z)
+							.localToScene(
+									bottleRocket.getChildren().get(z)
+											.getBoundsInLocal()));							
+					}
 					if (squareTest) {
 						intersectTest = true;
-						System.out.println("OH SHIT I HIT THE BOX NIGGA"
-								+ falling);
+						
 						score += 1;
 						framesPerSecond.setText("Score: " + score);
-
 					}
+					//
+					
 				}
 
 				if (intersectTest == true && falling == false) {

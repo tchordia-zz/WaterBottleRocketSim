@@ -33,12 +33,8 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 
 	FlowLayout experimentLayout = new FlowLayout();
 
-	public static JSlider massRocket;  
 	public static JSlider massWater;
-	public static JSlider volumeBottle;
 	public static JSlider airPressure;
-	public static JSlider dragC;
-	public static JSlider bottleRadius;
 	public static JSlider nozzleRadius;
 	JPanel sliders = new JPanel();
 	public GUI gui = new GUI();
@@ -94,29 +90,8 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
                 g.fillRoundRect(0, 8, w-1, 4, 8, 8);
             }
         });
-		
-		
         
         
-		
-		
-		
-		
-		massRocket = customize(new JSlider(JSlider.HORIZONTAL, 0, 10, 7)); // divide by 100
-
-		massRocket.setMajorTickSpacing(1);
-
-		massRocket.setMinorTickSpacing(1);
-
-		massRocket.setPaintLabels(true);
-		massRocket.addChangeListener(this);
-		
-		JPanel rocketMassPanel = new JPanel();
-		rocketMassPanel.setBackground(Color.white);
-		rocketMassPanel.add(massRocket);
-		rocketMassPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Rocket Mass"));
-		
-		
 		massWater = customize(new JSlider(JSlider.HORIZONTAL, 0, 10, 6));
 
 		massWater.setMajorTickSpacing(1);
@@ -136,27 +111,6 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 		waterMassPanel.add(massWater);
 		waterMassPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Water Mass"));
 		
-		
-		volumeBottle = customize(new JSlider(JSlider.HORIZONTAL, 0, 100, 20)); // divide value by 1000
-
-		volumeBottle.setMajorTickSpacing(10);
-
-//		volumeBottle.setMinorTickSpacing(1);
-
-//		volumeBottle.setPaintTicks(true);
-
-		volumeBottle.setPaintLabels(true);
-
-//		volumeBottle.setSnapToTicks(true);
-		
-		volumeBottle.addChangeListener(this);
-		
-		JPanel bottleVolumePanel = new JPanel();
-		bottleVolumePanel.setBackground(Color.white);
-		bottleVolumePanel.add(volumeBottle);
-		bottleVolumePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Bottle Volume"));
-		
-
 		airPressure = customize (new JSlider(JSlider.HORIZONTAL, 20, 100, 26));
 
 		airPressure.setMajorTickSpacing(10);
@@ -177,46 +131,6 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 		airPressurePanel.setBackground(Color.white);
 		airPressurePanel.add(airPressure);
 		airPressurePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Air Pressure in ten-thousands"));
-		
-		
-		dragC = customize(new JSlider(JSlider.HORIZONTAL, 0, 5, 1));
-
-		dragC.setMajorTickSpacing(1);
-
-		dragC.setMinorTickSpacing(1);
-
-//		dragC.setPaintTicks(true);
-
-		dragC.setPaintLabels(true);
-
-//		dragC.setSnapToTicks(true);
-		
-		dragC.addChangeListener(this);
-		
-		JPanel dragCoefficientPanel = new JPanel();
-		dragCoefficientPanel.setBackground(Color.white);
-		dragCoefficientPanel.add(dragC);
-		dragCoefficientPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Drag Coefficient"));
-
-
-		bottleRadius = customize(new JSlider(JSlider.HORIZONTAL, 0, 10, 5));// divide by
-																// 100
-		bottleRadius.setMajorTickSpacing(1);
-
-		bottleRadius.setMinorTickSpacing(1);
-
-//		bottleRadius.setPaintTicks(true);
-
-		bottleRadius.setPaintLabels(true);
-
-//		bottleRadius.setSnapToTicks(true);
-		
-		bottleRadius.addChangeListener(this);
-		
-		JPanel bottleRadiusPanel = new JPanel();
-		bottleRadiusPanel.setBackground(Color.white);
-		bottleRadiusPanel.add(bottleRadius);
-		bottleRadiusPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Bottle Radius"));
 		
 		
 		nozzleRadius = customize(new JSlider(JSlider.HORIZONTAL, 1, 10, 5)); // divide by
@@ -251,27 +165,17 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 		GroupLayout.SequentialGroup verticalLayout = sliderLayout.createSequentialGroup();
 		
 		horizontalLayout.addGroup(sliderLayout.createParallelGroup(Alignment.TRAILING)
-				.addComponent(rocketMassPanel)
 				.addComponent(airPressurePanel)
-				.addComponent(bottleRadiusPanel)
-				.addComponent(nozzleRadiusPanel));
-
-		horizontalLayout.addGroup(sliderLayout.createParallelGroup()
-				.addComponent(waterMassPanel)
-				.addComponent(dragCoefficientPanel)
-				.addComponent(bottleVolumePanel)
-				);
-
+				.addComponent(nozzleRadiusPanel)
+				.addComponent(waterMassPanel));
+		
 		sliderLayout.setHorizontalGroup(horizontalLayout);
 		
 		verticalLayout.addGroup(sliderLayout.createParallelGroup(Alignment.BASELINE)
-				.addComponent(rocketMassPanel).addComponent(waterMassPanel)
+				.addComponent(waterMassPanel)
 				);
 		verticalLayout.addGroup(sliderLayout.createParallelGroup()
-				.addComponent(airPressurePanel).addComponent(dragCoefficientPanel)
-				);
-		verticalLayout.addGroup(sliderLayout.createParallelGroup()
-				.addComponent(bottleVolumePanel).addComponent(bottleRadiusPanel)
+				.addComponent(airPressurePanel)
 				);
 		verticalLayout.addGroup(sliderLayout.createParallelGroup(Alignment.CENTER)
 				.addComponent(nozzleRadiusPanel)
@@ -357,15 +261,8 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 	@Override
 	public void stateChanged(ChangeEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("massRocket: "
-				+ (massRocket.getValue() / (100 + 0.0)));
 		System.out.println("massWater: " + massWater.getValue() / (100 + 0.0));
-		System.out.println("volumeBottle: " + volumeBottle.getValue()
-				/ (1000 + 0.0));
 		System.out.println("airPressure: " + airPressure.getValue()*10000);
-		System.out.println("dragC: " + dragC.getValue());
-		System.out.println("bottleRadius: " + bottleRadius.getValue()
-				/ (100 + 0.0));
 		System.out.println("nozzleRadius: " + nozzleRadius.getValue()
 				/ (100 + 0.0));
 

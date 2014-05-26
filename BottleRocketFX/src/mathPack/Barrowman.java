@@ -35,11 +35,11 @@ public class Barrowman {
 	public static final String semiCircle = "s";
 	public final static String parabola = "p";
 	public static final String square = "sq";
-	public static final String cone = "c";
+	public static final Double cone = .50;
 	public static final double conversionFactor = (1.0) / 30;
 	double cft = conversionFactor;
 	double centerOfMass;
-	String conetype;
+	
 
 	/**
 	 * cnn is hardcoded btw LOL
@@ -92,7 +92,6 @@ public class Barrowman {
 		this.xr = xr;
 		this.xb = xb;
 		this.n = n;
-		this.conetype = conetype;
 
 	}
 
@@ -113,7 +112,6 @@ public class Barrowman {
 		this.xr = r.Xr* cft;
 		this.xb = r.Xb* cft;
 		this.n = r.N* cft;
-		this.conetype = Barrowman.cone;
 
 	}
 
@@ -171,16 +169,7 @@ public class Barrowman {
 	}
 
 	public double dragC() {
-		if (conetype == this.cone)
-			return .5; // cone
-		if (conetype == this.parabola)
-			return .04; // parabolic
-		if (conetype == this.square)
-			return 1.15; // square
-		if (conetype == this.semiCircle)
-			return .42; // sphere
-		else
-			return 1;
+		return Barrowman.cone;
 	}
 
 	public double centerOfMass() {
