@@ -21,9 +21,9 @@ import javax.swing.KeyStroke;
 public class RMenu extends JMenuBar implements ActionListener {
 
 	String[] fileItems = new String[] { "Change User", "Launch Mode",
-			"Target Mode", "Save", "Load" };
+			"Target Mode", "Save", "Load", "Toggle Music" };
 	String[] editItems = new String[] { "Undo", "Cut", "Copy", "Paste" };
-	char[] fileShortcuts = { 'N', 'O', 'S', 'X' , 'L'};
+	char[] fileShortcuts = { 'N', 'O', 'S', 'X' , 'L','M'};
 	char[] editShortcuts = { 'Z', 'X', 'C', 'V' };
 
 	public RMenu() {
