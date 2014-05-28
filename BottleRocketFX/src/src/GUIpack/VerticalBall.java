@@ -1,38 +1,31 @@
 package src.GUIpack;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.LayoutManager;
+import java.awt.Graphics;
+import java.io.File;
 
-import javax.print.attribute.standard.JobName;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.QuadCurveTo;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
-import javafx.application.*;
+import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Point3D;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.QuadCurveTo;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+
+import javax.swing.JPanel;
 
 /**
  * Projectile Ball Class
@@ -117,7 +110,7 @@ public class VerticalBall extends JPanel {
 	public VerticalBall(int W, int H) {
 		windowWidth = W;
 		windowHeight = H;
-
+		
 		x = W/2;
 		y = H + 52;
 
@@ -166,7 +159,8 @@ public class VerticalBall extends JPanel {
 		setLayout(new BorderLayout());
 
 		add(fxPanel, BorderLayout.CENTER);
-
+		
+		
 		establishTimer();
 
 		Platform.runLater(new Runnable() {
@@ -245,14 +239,27 @@ public class VerticalBall extends JPanel {
 	private Scene createScene() {
 		// establishes scene hierarchy.
 		Group root = new Group();
-		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
+		Scene scene = new Scene(root,Color.TRANSPARENT);
 		Group group = new Group();
 
 		// sets up circles
 //		circle.setRadius(10);
 //		circle.setCenterX(xInit);
 //		circle.setCenterY(yInit);
-
+//		Image img = new Image("http://1.bp.blogspot.com/-WlNrn0ygjeY/UQFbOBgo0eI/AAAAAAAABjg/1eotqCyv6nM/s1600/blade+of+grass.jpg");
+		
+		File file = new File("blade.jpg");
+		Image img = new Image(file.toURI().toString());
+	
+		ImageView imgView = new ImageView(img);
+		imgView.setImage(img);
+		
+		imgView.setFitHeight(this.getHeight());
+		imgView.setPreserveRatio(true);
+		imgView.setSmooth(true);
+		imgView.setCache(true);
+		
+		
 		// sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
 		square.setX(xInit + 400);
@@ -276,9 +283,7 @@ public class VerticalBall extends JPanel {
 		buttonText.setX(button.getWidth()/2-buttonText.getBoundsInLocal().getWidth()/2);
 		buttonText.setY(windowHeight+150+button.getHeight()/2+buttonText.getBoundsInLocal().getHeight()/4);
 		
-		Button btn = new Button();
-		
-		btn.setText("fucking tanmay");
+	
 		
 		currentHeight=new Text(0,windowHeight+200,"Current Height: 0");
 		
@@ -294,7 +299,9 @@ public class VerticalBall extends JPanel {
 			root.getChildren().add(distanceMarkers[i]);
 		}
 		// adds everything to the scene
-		root.getChildren().addAll(line, circle, btn, ground, group, currentHeight);
+		root.getChildren().addAll(imgView,line, circle, ground, group, currentHeight);
+		imgView.fitHeightProperty();
+		imgView.fitWidthProperty();
 		
 		group.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET,
 				new EventHandler<MouseEvent>()
@@ -375,16 +382,8 @@ public class VerticalBall extends JPanel {
 					}
 				});
 		
-		btn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event)
-			{
-				if(tanmayHatesGround)
-				tanmayHatesGround=false;
-				else
-				tanmayHatesGround=true;
-			}
-		});
+		
+		
 
 		// this starts the timer when the ball is clicked
 		circle.addEventFilter(MouseEvent.MOUSE_RELEASED,
