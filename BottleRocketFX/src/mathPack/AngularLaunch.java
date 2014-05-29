@@ -3,6 +3,12 @@ package mathPack;
 import java.io.Serializable;
 
 
+/**
+ * @author Sahil Sancheti
+ * 
+ * Allows for two dimensional movement with rocket math, allowing a launch at an angle
+ *
+ */
 public class AngularLaunch extends RocketMath implements Serializable {
 
 	public double angle;
@@ -33,9 +39,6 @@ public class AngularLaunch extends RocketMath implements Serializable {
 		this.angle = Math.PI/2;
 	}
 
-	// methods to be used
-	// drag, thrust1
-	// since each step is 1 second i didn't bother putting that in
 	public void calculateXAcc() {
 
 		thrust1 = this.thrust;
@@ -86,6 +89,9 @@ public class AngularLaunch extends RocketMath implements Serializable {
 		return drag;
 	}
 
+	/**
+	 * The equivalent of doStep from RocketMath, does a step ove movement
+	 */
 	public void doStepThrust()
 	{
 		super.doStep();
