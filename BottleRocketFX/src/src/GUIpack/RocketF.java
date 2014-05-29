@@ -35,7 +35,7 @@ import com.jgoodies.looks.Options;
 
 public class RocketF extends JFrame {
 
-	public LaunchPanel2 mpanel = new LaunchPanel2();
+//	public LaunchPanel2 mpanel = new LaunchPanel2();
 	Music x = new Music();
 	Boolean musicon = true;
 	public WPanel wpanel = new WPanel();
@@ -127,7 +127,6 @@ public class RocketF extends JFrame {
 		remove(htmlpanel);
 		remove(pdfpanel);
 		remove(targetpanel);
-
 	}
 
 	public void switchTo(JComponent p) {
@@ -135,7 +134,6 @@ public class RocketF extends JFrame {
 		getContentPane().add(p);
 		repaint();
 		refFrame(this);
-
 	}
 
 	public void switchUser() {
@@ -282,7 +280,6 @@ public class RocketF extends JFrame {
 
 	public static void setRocket(RocketMath r) {
 		RocketF.mRocket = r;
-
 	}
 
 	public class HTMLFile extends JScrollPane {
@@ -418,7 +415,6 @@ public class RocketF extends JFrame {
 			super();
 		}
 		
-		@Override
 		public void updateUsers()
 		{
 			subMenu2.removeAll();
@@ -437,6 +433,7 @@ public class RocketF extends JFrame {
 				String readin = reader.next();
 				System.out.println(readin);
 				i = new JMenuItem(readin);
+				i.addActionListener(changeUsers);
 				subMenu2.add(i);
 				}
 			}
@@ -448,7 +445,7 @@ public class RocketF extends JFrame {
 		
 		public void updateRocketList()
 		{
-			subMenu.removeAll();
+			String rocket;
 			File usersText = new File("Users" , user +"array.txt");
 			Scanner reader = null;
 			JMenuItem i;
@@ -457,18 +454,47 @@ public class RocketF extends JFrame {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			if(usersText.exists())
+			
+			if(usersText.exists() && reader.hasNext())
 			{
+				subMenu.removeAll();
 				while(reader.hasNext())
 				{
-				System.out.println(reader.next());
-				i = new JMenuItem(reader.next());
+				System.out.println(rocket = reader.next());
+				i = new JMenuItem(rocket);
+				i.addActionListener(changeRockets);
 				subMenu.add(i);
 				}
 			}
 			else
 			{
-				System.out.println("List of Users does not exist");
+				subMenu.removeAll();
+				i = new JMenuItem("User has no rockets.");
+				subMenu.add(i);
+				System.out.println("User has no rockets");
+			}
+		}
+		
+		@Override
+		public void userChangeFunction(ActionEvent e)
+		{
+			user = e.getActionCommand();
+			System.out.println(user);
+			updateRocketList();
+			rBuilder.load.updateCombo(user);
+		}
+		
+		@Override
+		public void rocketChangeFunction(ActionEvent e)
+		{
+			try {
+				System.out.println(DataSave.retrieve(user, e.getActionCommand()).getCreateRocket().getValues());
+				rBuilder.rockett.updateRocket(DataSave.retrieve(user, e.getActionCommand()).getCreateRocket().getValues());
+				targetpanel.loadNewRocket(DataSave.retrieve(user, e.getActionCommand()).getCreateRocket().getValues());
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		}
 
@@ -479,26 +505,11 @@ public class RocketF extends JFrame {
 			} else if (e.getActionCommand().equals("Launch Mode")) {
 				//mInit();
 			} else if (e.getActionCommand().equals("Save"))
-
 			{
-				//
-				// RocketMath r = mpanel.sliderp.spanel.rocket2;
-				// if (r != null)
-				// {
-				// SaveWindow s = new SaveWindow(r, user); // FIX
-				// } // from
-				// // test1
-				// // to
-				// // acctually
-				// // collect
-				// // input
-
+				
 			} else if (e.getActionCommand().equals("Load")) {
 				LoadWindow s = new LoadWindow(user);
 			}
-<<<<<<< HEAD
-			
-=======
 			else if (e.getActionCommand().equals("Toggle Music"))
 			{
 				System.out.println("lol");
@@ -509,13 +520,11 @@ public class RocketF extends JFrame {
 				}
 				else
 				{
-					
 					x.loopAudio(Music.wonder);
 					musicon=true;
 				}
 				// stop background music
 			}
->>>>>>> f0ffd9d8c5016f9f3a9dcd7f75a050b97f526b6a
 		}
 	}
 }

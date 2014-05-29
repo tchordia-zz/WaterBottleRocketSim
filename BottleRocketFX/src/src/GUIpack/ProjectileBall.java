@@ -132,6 +132,8 @@ public class ProjectileBall extends JPanel implements Serializable {
 	double youngJeans;
 	
 	double targetDistance;
+	
+	final JFXPanel fxPanel = new JFXPanel();
 
 	/**
 	 * Class constructor. pretty basic, sets up the jfxPanel. The new thread
@@ -151,14 +153,12 @@ public class ProjectileBall extends JPanel implements Serializable {
 		xInit = x;
 		yInit = y;
 
-		final JFXPanel fxPanel = new JFXPanel();
-
 		bottleRocket = rocket.getRocket();
-
+		
+		bottleRocket.setTranslateX(0);
+		bottleRocket.setTranslateY(0);
 		bottleRocket.setLayoutX(x + 25);
-		bottleRocket
-				.setLayoutY(y
-						- ((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
 
 		System.out.println("Circle Height: "
 				+ (rocket.Xb + rocket.Xr + rocket.Ct));
@@ -190,8 +190,6 @@ public class ProjectileBall extends JPanel implements Serializable {
 
 		xInit = x;
 		yInit = y;
-
-		final JFXPanel fxPanel = new JFXPanel();
 
 		fxPanel.setSize(windowWidth, windowHeight);
 
@@ -348,6 +346,13 @@ public class ProjectileBall extends JPanel implements Serializable {
 		Group root = new Group();
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
 		Group group = new Group();
+		
+		bottleRocket = rocket.getRocket();
+		
+		bottleRocket.setTranslateX(0);
+		bottleRocket.setTranslateY(0);
+		bottleRocket.setLayoutX(x + 25);
+		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
 
 		// sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
@@ -466,8 +471,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 									/ 2);
 							timerRunning = true;
 							timer.start();
-							
-							music.playAudio(Music.rocket);
+//							music.playAudio(Music.rocket);
 						}
 					}
 				});
@@ -738,5 +742,15 @@ public class ProjectileBall extends JPanel implements Serializable {
 		x = 0 + (vInitialX * t + accelerationX * t * t);
 		y = 0 - (vInitialY * t + gravity * t * t);
 	}
+
+	public void loadNewRocket(CreateRocket r)
+	{
+		rocket = r;
+		Platform.runLater(new Runnable() {
+			public void run() {
+				Scene scene = createScene();
+				fxPanel.setScene(scene);
+			}
+		});	}
 
 }

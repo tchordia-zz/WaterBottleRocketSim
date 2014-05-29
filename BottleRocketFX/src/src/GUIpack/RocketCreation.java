@@ -137,14 +137,10 @@ public class RocketCreation extends JPanel{
 					System.out.println(DataSave.retrieve(user, savename).getCreateRocket().getValues());
 					rockett.updateRocket(DataSave.retrieve(user, savename).getCreateRocket().getValues());
 				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
-				
 			}
 			else 
 			{

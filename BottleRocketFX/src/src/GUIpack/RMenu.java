@@ -20,7 +20,7 @@ import javax.swing.KeyStroke;
 
 public class RMenu extends JMenuBar implements ActionListener {
 
-	String[] fileItems = new String[] {"Save", "Launch Mode", "Target Mode",};
+	String[] fileItems = new String[] {"Save", "Launch Mode", "Target Mode", "Toggle Music"};
 
 	String[] editItems = new String[] { "Undo", "Cut", "Copy", "Paste" };
 	char[] fileShortcuts = { 'N', 'O', 'S', 'X' , 'L','M'};
@@ -32,17 +32,20 @@ public class RMenu extends JMenuBar implements ActionListener {
 	JMenu otherMenu = new JMenu("Other");
 	JMenu subMenu = new JMenu("Load");
 	JMenu subMenu2 = new JMenu("Change User");
+	
+	ActionListener changeUsers = new userChangeListener();
+	ActionListener changeRockets = new rocketChangeLisetener();
 
 	public RMenu() {
-
 		setBackground(Color.pink);
 		fileMenu.setBackground(Color.black);
 		Font font = new Font("Verdana", Font.BOLD, 15);
 
 		setForeground(Color.red);
 		setFont(font);
-		
+
 		JMenuItem item = new JMenuItem("No Users!");
+		item.addActionListener(changeUsers);
 		subMenu2.add(item);
 		fileMenu.add(subMenu2);
 		
@@ -96,6 +99,16 @@ public class RMenu extends JMenuBar implements ActionListener {
 //		add(editMenu);
 //		add(otherMenu);
 	}
+	
+	public void userChangeFunction(ActionEvent e)
+	{
+		System.out.println("User Selected: " + e.getActionCommand());
+	}
+	
+	public void rocketChangeFunction(ActionEvent e)
+	{
+		System.out.println("User Selected: " + e.getActionCommand());
+	}
 
 	public static void main(String s[]) {
 		JFrame frame = new JFrame("Simple Menu Example");
@@ -104,15 +117,27 @@ public class RMenu extends JMenuBar implements ActionListener {
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
-	public void updateUsers()
-	{
-		
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		System.out.println("Selected: " + e.getActionCommand());
+	}
+	
+	public class userChangeListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			userChangeFunction(e);
+		}
+	}
+	
+	public class rocketChangeLisetener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			rocketChangeFunction(e);
+		}
 	}
 }

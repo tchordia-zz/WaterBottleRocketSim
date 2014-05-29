@@ -99,8 +99,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
 		j.setLocationRelativeTo(null);
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.setVisible(true);
-        
-        }
+    }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

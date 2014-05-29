@@ -61,6 +61,7 @@ public class DataSave implements Serializable {
 	 */
 	public static void setup(String user, String savename) {
 		String filename = new String(user + "array.txt");
+		PrintWriter specOut = null;
 		dir.mkdir();
 		filetxt = new File(dir, filename);
 		try {
@@ -92,15 +93,32 @@ public class DataSave implements Serializable {
 			e.printStackTrace();
 		}
 		try {
-			out = new PrintWriter(new FileWriter(usertxt, true));
+			specOut = new PrintWriter(new FileWriter(usertxt, true));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (user!=null)
-		{
-			out.println(user);
+		
+		Scanner scan = null;
+		boolean nameExists = false;
+		try {
+			scan = new Scanner(usertxt);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
-		out.close();
+		while(scan.hasNext() && !nameExists)
+		{
+			String name = scan.next();
+			System.out.println("usernames: " + name);
+			nameExists = (name.equals(user));
+		}
+		if (user!=null && !nameExists)
+		{
+			specOut.println(user);
+		}		else
+		{
+			System.out.println("Name Exists!!!");
+		}
+		specOut.close();
 	}
 
 	public static boolean saveAs(String user, String savename, FullRocket ro) {
@@ -119,9 +137,7 @@ public class DataSave implements Serializable {
 				}
 
 				if (checkExists(user, savename)) {
-
 				}
-
 				out.println(savename);
 				System.out.println("entered if");
 				out.close();

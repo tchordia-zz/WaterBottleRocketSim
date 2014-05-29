@@ -71,16 +71,13 @@ public class LoadWindow extends JDialog implements ActionListener {
 			System.out.println(RocketF.mRocket.m);
 			this.dispose();
 		}
-		else 
+		else
 		{
-				
 				save.setEnabled(true);
-			
 		}
 	}
 	public static void main(String[] args)
 	{
 		LoadWindow l = new LoadWindow( "Tanmay" );
-		
 	}
 }
