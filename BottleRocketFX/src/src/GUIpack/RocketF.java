@@ -8,7 +8,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Scanner;
@@ -54,7 +53,7 @@ public class RocketF extends JFrame {
 	public RocketF() {
 		super();
 		
-		x.loopAudio(Music.wonder);
+		x.loopAudio(Music.riskyplan);
 		UIManager.put(Options.USE_SYSTEM_FONTS_APP_KEY, Boolean.TRUE);
 		Options.setDefaultIconSize(new Dimension(18, 18));
 
@@ -499,10 +498,44 @@ public class RocketF extends JFrame {
 				}
 				else
 				{
-					x.loopAudio(Music.wonder);
+					x.loopAudio(x.current);
 					musicon=true;
 				}
 				// stop background music
+			}
+			else if (e.getActionCommand().equals("Change Tune"))
+			{
+				if (x.current.equals(x.wonder))
+				{
+					x.stopLoop();
+					x.loopAudio(x.numberone);
+					System.out.println("numberone");
+				}
+				else if (x.current.equals(x.numberone))
+				{
+					x.stopLoop();
+					x.loopAudio(x.riskyplan);
+					System.out.println("riskyplan");
+				}
+				else if (x.current.equals(x.riskyplan))
+				{
+					x.stopLoop();
+					x.loopAudio(x.seamemories);
+					System.out.println("seamemories");
+				}
+				else if (x.current.equals(x.seamemories))
+				{
+					x.stopLoop();
+					x.loopAudio(x.wonder);
+					System.out.println("wonder");
+				}
+//				else if (x.current.equals(x.tsunami))
+//				{
+//					x.stopLoop();
+//					x.loopAudio(x.wonder);
+//					System.out.println("wonder");
+//				}
+				
 			}
 		}
 	}
