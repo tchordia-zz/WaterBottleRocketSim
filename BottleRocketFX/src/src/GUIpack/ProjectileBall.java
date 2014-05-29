@@ -3,7 +3,7 @@ package src.GUIpack;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
-
+import java.io.File;
 import java.util.Date;
 
 import javax.swing.JPanel;
@@ -40,7 +40,7 @@ import javafx.event.EventHandler;
 public class ProjectileBall extends JPanel {
 
 	static double frameNumber = 0;
-
+	Myusic music = new Myusic();
 	// x and y values of the ball
 	public static double x;
 	public static double y;
@@ -224,6 +224,8 @@ public class ProjectileBall extends JPanel {
 		angle = 0;
 		bottleRocket.setRotate(angle);
 		timer.stop();
+		music.stopMusic();
+		
 		timerRunning = false;
 		intersectTest = false;
 		squareTest = false;
@@ -464,6 +466,8 @@ public class ProjectileBall extends JPanel {
 									/ 2);
 							timerRunning = true;
 							timer.start();
+							
+							music.playAudio(Myusic.rocket);
 						}
 					}
 				});

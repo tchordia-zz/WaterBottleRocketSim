@@ -42,6 +42,7 @@ import javax.swing.JPanel;
 public class VerticalBall extends JPanel {
 	static double frameNumber = 0;
 
+	Myusic music = new Myusic();
 	// x and y values of the ball
 	public static double x;
 	public static double y;
@@ -469,6 +470,7 @@ public class VerticalBall extends JPanel {
 	
 	public void createAndLaunchPath()
 	{
+		
 		Path path = new Path();
 		PathTransition pathTransition = new PathTransition();
 		QuadCurveTo quadCurve= new QuadCurveTo();
