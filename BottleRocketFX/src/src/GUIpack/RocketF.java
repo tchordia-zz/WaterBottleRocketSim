@@ -35,8 +35,9 @@ import com.jgoodies.looks.Options;
 
 public class RocketF extends JFrame {
 
-	//public LaunchPanel2 mpanel = new LaunchPanel2();
-
+	public LaunchPanel2 mpanel = new LaunchPanel2();
+	Music x = new Music();
+	Boolean musicon = true;
 	public WPanel wpanel = new WPanel();
 	public MenuP menubar = new MenuP();
 	public JPanel htmlpanel = new JPanel();
@@ -54,8 +55,8 @@ public class RocketF extends JFrame {
 
 	public RocketF() {
 		super();
-		Myusic x = new Myusic();
-		x.loopAudio(Myusic.wonder);
+		
+		x.loopAudio(Music.wonder);
 		UIManager.put(Options.USE_SYSTEM_FONTS_APP_KEY, Boolean.TRUE);
 		Options.setDefaultIconSize(new Dimension(18, 18));
 
@@ -495,7 +496,26 @@ public class RocketF extends JFrame {
 			} else if (e.getActionCommand().equals("Load")) {
 				LoadWindow s = new LoadWindow(user);
 			}
+<<<<<<< HEAD
 			
+=======
+			else if (e.getActionCommand().equals("Toggle Music"))
+			{
+				System.out.println("lol");
+				if (musicon)
+				{
+					x.stopLoop();
+					musicon = false;
+				}
+				else
+				{
+					
+					x.loopAudio(Music.wonder);
+					musicon=true;
+				}
+				// stop background music
+			}
+>>>>>>> f0ffd9d8c5016f9f3a9dcd7f75a050b97f526b6a
 		}
 	}
 }

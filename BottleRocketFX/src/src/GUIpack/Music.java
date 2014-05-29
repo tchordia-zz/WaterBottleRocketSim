@@ -13,10 +13,11 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 
-public class Myusic  {
+public class Music  {
 	public static String launchSound = "music/bottlerocketsound.wav";
 	public static String tsunami = "music/tsunami.mp3";
 	public static String wonder = "music/POL-wonder-place-short.wav";
+	public static String rocket = "/BottleRocketFX/Music/rocket.wav";
 	public static Thread t = null;
 	public static loopRunnable looper = null;
 	

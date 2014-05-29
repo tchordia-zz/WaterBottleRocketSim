@@ -2,6 +2,9 @@ package src.GUIpack;
 
 import java.awt.BorderLayout;
 import java.io.Serializable;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
+import java.io.File;
 import java.util.Date;
 
 import javafx.animation.AnimationTimer;
@@ -32,7 +35,7 @@ import javax.swing.JPanel;
 public class ProjectileBall extends JPanel implements Serializable {
 
 	static double frameNumber = 0;
-
+	Music music = new Music();
 	// x and y values of the ball
 	public static double x;
 	public static double y;
@@ -221,6 +224,8 @@ public class ProjectileBall extends JPanel implements Serializable {
 		angle = 0;
 		bottleRocket.setRotate(angle);
 		timer.stop();
+		music.stopMusic();
+		
 		timerRunning = false;
 		intersectTest = false;
 		squareTest = false;
@@ -461,6 +466,8 @@ public class ProjectileBall extends JPanel implements Serializable {
 									/ 2);
 							timerRunning = true;
 							timer.start();
+							
+							music.playAudio(Music.rocket);
 						}
 					}
 				});
