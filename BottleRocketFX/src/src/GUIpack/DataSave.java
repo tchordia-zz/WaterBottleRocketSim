@@ -44,10 +44,11 @@ public class DataSave implements Serializable {
 
 	private static File filetxt;
 	private static File fileser;
+	private static File usertxt;
 	private static Scanner txtf;
 	private static PrintWriter out;
 	private static String dirname = "Users";
-	private final static File dir = new File(dirname);
+	private static File dir = new File(dirname);
 	private static FullRocket rocket;
 
 
@@ -82,7 +83,24 @@ public class DataSave implements Serializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		filename = new String("UsersList");
+		usertxt = new File(dir, filename);
+		try{
+			usertxt.createNewFile();
+		}catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		try {
+			out = new PrintWriter(new FileWriter(usertxt, true));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (user!=null)
+		{
+			out.println(user);
+		}
+		out.close();
 	}
 
 	public static boolean saveAs(String user, String savename, FullRocket ro) {
@@ -145,7 +163,6 @@ public class DataSave implements Serializable {
 		ArrayList<String> list = new ArrayList();
 		DataSave.setup(user, savename);
 		while (txtf.hasNext()) {
-
 			String a = txtf.next();
 			if (!list.contains(a)) {
 				list.add(a);
@@ -188,7 +205,7 @@ public class DataSave implements Serializable {
 			throws IOException, ClassNotFoundException {
 		DataSave.setup(user, savename);
 		FileInputStream fin;
-		System.out.println(fileser);
+		System.out.println("Please do not do this: "+fileser);
 		try {
 			fin = new FileInputStream(fileser);
 

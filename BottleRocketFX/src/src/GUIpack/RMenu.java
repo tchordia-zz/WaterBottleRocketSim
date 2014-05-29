@@ -20,19 +20,19 @@ import javax.swing.KeyStroke;
 
 public class RMenu extends JMenuBar implements ActionListener {
 
-	String[] fileItems = new String[] { "Change User", "Launch Mode",
-			"Target Mode", "Save", "Load" };
+	String[] fileItems = new String[] {"Save", "Launch Mode", "Target Mode",};
 	String[] editItems = new String[] { "Undo", "Cut", "Copy", "Paste" };
 	char[] fileShortcuts = { 'N', 'O', 'S', 'X' , 'L'};
 	char[] editShortcuts = { 'Z', 'X', 'C', 'V' };
+	
+
+	JMenu fileMenu = new JMenu("File");
+	JMenu editMenu = new JMenu("Edit");
+	JMenu otherMenu = new JMenu("Other");
+	JMenu subMenu = new JMenu("Load");
+	JMenu subMenu2 = new JMenu("Change User");
 
 	public RMenu() {
-
-		JMenu fileMenu = new JMenu("File");
-		JMenu editMenu = new JMenu("Edit");
-		JMenu otherMenu = new JMenu("Other");
-		JMenu subMenu = new JMenu("SubMenu");
-		JMenu subMenu2 = new JMenu("SubMenu2");
 
 		setBackground(Color.pink);
 		fileMenu.setBackground(Color.black);
@@ -40,19 +40,26 @@ public class RMenu extends JMenuBar implements ActionListener {
 
 		setForeground(Color.red);
 		setFont(font);
-
+		
+		JMenuItem item = new JMenuItem("No Users!");
+		subMenu2.add(item);
+		fileMenu.add(subMenu2);
+		
+		subMenu.add(item = new JMenuItem("Nothing to load!"));
+		item.addActionListener(this);
+		fileMenu.add(subMenu);
 		
 		fileMenu.setFont(font);
 
 		for (int i = 0; i < fileItems.length; i++) {
-			JMenuItem item = new JMenuItem(fileItems[i], fileShortcuts[i]);
+			item = new JMenuItem(fileItems[i], fileShortcuts[i]);
 			item.addActionListener(this);
 			fileMenu.add(item);
 		}
 
 		// Assemble the File menus with keyboard accelerators.
 		for (int i = 0; i < editItems.length; i++) {
-			JMenuItem item = new JMenuItem(editItems[i]);
+			item = new JMenuItem(editItems[i]);
 			item.setAccelerator(KeyStroke
 					.getKeyStroke(editShortcuts[i], Toolkit.getDefaultToolkit()
 							.getMenuShortcutKeyMask(), false));
@@ -65,15 +72,9 @@ public class RMenu extends JMenuBar implements ActionListener {
 		editMenu.insertSeparator(1);
 
 		// Assemble the submenus of the Other menu.
-		JMenuItem item;
-		subMenu2.add(item = new JMenuItem("Extra 2"));
-		item.addActionListener(this);
-		subMenu.add(item = new JMenuItem("Extra 1"));
-		item.addActionListener(this);
-		subMenu.add(subMenu2);
 
 		// Assemble the Other menu itself.
-		otherMenu.add(subMenu);
+//		otherMenu.add(subMenu);
 		otherMenu.add(item = new JCheckBoxMenuItem("Check Me"));
 		item.addActionListener(this);
 		otherMenu.addSeparator();
@@ -91,8 +92,8 @@ public class RMenu extends JMenuBar implements ActionListener {
 
 		// Finally, add all the menus to the menu bar.
 		add(fileMenu);
-		// add(editMenu);
-		// add(otherMenu);
+//		add(editMenu);
+//		add(otherMenu);
 	}
 
 	public static void main(String s[]) {
@@ -102,9 +103,15 @@ public class RMenu extends JMenuBar implements ActionListener {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+	public void updateUsers()
+	{
+		
+	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-
+	public void actionPerformed(ActionEvent e)
+	{
+		System.out.println("Selected: " + e.getActionCommand());
 	}
 }

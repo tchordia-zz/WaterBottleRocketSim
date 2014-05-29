@@ -1,11 +1,9 @@
 package mathPack;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.io.Serializable;
 
-import javax.swing.JFrame;
 
-public class AngularLaunch extends RocketMath {
+public class AngularLaunch extends RocketMath implements Serializable {
 
 	public double angle;
 	double accx;

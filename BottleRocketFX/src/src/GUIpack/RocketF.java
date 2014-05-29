@@ -7,12 +7,16 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Scanner;
 
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
@@ -31,14 +35,15 @@ import com.jgoodies.looks.Options;
 
 public class RocketF extends JFrame {
 
-	public LaunchPanel2 mpanel = new LaunchPanel2();
+	//public LaunchPanel2 mpanel = new LaunchPanel2();
 
 	public WPanel wpanel = new WPanel();
 	public MenuP menubar = new MenuP();
 	public JPanel htmlpanel = new JPanel();
 	public JPanel pdfpanel = new JPanel();
+	public RocketFAnimated targetpanel = new RocketFAnimated(); 
 	HTMLFile html = new HTMLFile("st");
-	public RocketBuilderPanel rBuilder = new RocketBuilderPanel();
+	public RocketCreation rBuilder = new RocketCreation();
 	public static RocketMath mRocket;
 	// public CPanel cpanel = new CPanel();
 	public static String user;
@@ -107,19 +112,20 @@ public class RocketF extends JFrame {
 															// http://www.icesoft.org/JForum/posts/list/20535.page#sthash.cagw5UDN.dpuf
 	}
 
-	public void mInit() {
-		removeAll();
-		// add(cpanel,BorderLayout.NORTH);
-		add(mpanel);
-		repaint();
-	}
+//	public void mInit() {
+//		removeAll();
+//		// add(cpanel,BorderLayout.NORTH);
+//		add(mpanel);
+//		repaint();
+//	}
 
 	public void removeAll() {
 		remove(wpanel);
-		remove(mpanel);
+//		remove(mpanel);
 		remove(rBuilder);
 		remove(htmlpanel);
 		remove(pdfpanel);
+		remove(targetpanel);
 
 	}
 
@@ -178,7 +184,6 @@ public class RocketF extends JFrame {
 		public WPanel() {
 			super();
 			setSize(getWidth(), getHeight());
-
 		}
 
 		public void reset() {
@@ -186,7 +191,6 @@ public class RocketF extends JFrame {
 			pane.remove(target);
 			pane.remove(builder);
 			pane.remove(exp);
-
 			pane.add(tpane);
 			pane.setLayout(new BorderLayout());
 			tpane.add(j);
@@ -200,17 +204,21 @@ public class RocketF extends JFrame {
 			if (e.getActionCommand().equals("launch")) {
 				System.out.println(e.getActionCommand());
 
-				mInit();
+				//mInit();
 
 			} else if (e.getActionCommand().equals("user")) {
 				user = j.getText();
+				System.out.println(user);
 				// mpanel.updateUser(user);
+				rBuilder.load.updateCombo(user);
 				pane.remove(tpane);
 				pane.setLayout(new GridLayout());
 				pane.add(launch, BorderLayout.NORTH);
 				pane.add(target, BorderLayout.NORTH);
 				pane.add(builder, BorderLayout.NORTH);
 				pane.add(exp, BorderLayout.NORTH);
+				menubar.updateUsers();
+				menubar.updateRocketList();
 				repaint();
 			} else if (e.getActionCommand().equals("builder")) {
 				switchTo(rBuilder);
@@ -218,6 +226,10 @@ public class RocketF extends JFrame {
 				switchTo(htmlpanel);
 				// switchTo(pdfpanel);
 				
+			}
+			else if (e.getActionCommand().equals("target"))
+			{
+				switchTo(targetpanel);
 			}
 			pane.repaint();
 
@@ -403,7 +415,60 @@ public class RocketF extends JFrame {
 	public class MenuP extends RMenu {
 		public MenuP() {
 			super();
-
+		}
+		
+		@Override
+		public void updateUsers()
+		{
+			subMenu2.removeAll();
+			File usersText = new File("Users" , "UsersList");
+			Scanner reader = null;
+			JMenuItem i;
+			try {
+				reader = new Scanner(usersText);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			if(usersText.exists())
+			{
+				while(reader.hasNext())
+				{
+				String readin = reader.next();
+				System.out.println(readin);
+				i = new JMenuItem(readin);
+				subMenu2.add(i);
+				}
+			}
+			else
+			{
+				System.out.println("List of Users does not exist");
+			}
+		}
+		
+		public void updateRocketList()
+		{
+			subMenu.removeAll();
+			File usersText = new File("Users" , user +"array.txt");
+			Scanner reader = null;
+			JMenuItem i;
+			try {
+				reader = new Scanner(usersText);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			if(usersText.exists())
+			{
+				while(reader.hasNext())
+				{
+				System.out.println(reader.next());
+				i = new JMenuItem(reader.next());
+				subMenu.add(i);
+				}
+			}
+			else
+			{
+				System.out.println("List of Users does not exist");
+			}
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -411,7 +476,7 @@ public class RocketF extends JFrame {
 			if (e.getActionCommand().equals("Change User")) {
 				switchUser();
 			} else if (e.getActionCommand().equals("Launch Mode")) {
-				mInit();
+				//mInit();
 			} else if (e.getActionCommand().equals("Save"))
 
 			{
@@ -430,6 +495,7 @@ public class RocketF extends JFrame {
 			} else if (e.getActionCommand().equals("Load")) {
 				LoadWindow s = new LoadWindow(user);
 			}
+			
 		}
 	}
 }

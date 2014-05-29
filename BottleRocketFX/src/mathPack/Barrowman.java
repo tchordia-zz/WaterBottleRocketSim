@@ -37,7 +37,7 @@ public class Barrowman {
 	public static final String square = "sq";
 
 	public static final Double cone = .50;
-	public static final double conversionFactor = (1.0) / 30;
+	public static final double conversionFactor = (1.25) / 150;
 	
 	double cft = conversionFactor;
 	double centerOfMass;
@@ -98,7 +98,6 @@ public class Barrowman {
 	}
 
 	public Barrowman(CreateRocket r) {
-		Group a = r.getRocket();
 		this.ln = r.Ln * cft;
 		xn = ln * .666;// this is intended for cone
 		this.d = r.D * cft;
@@ -159,11 +158,11 @@ public class Barrowman {
 	 * @return volume
 	 */
 	public double volume() {
-		double v1 = Math.PI * d / 2 * d / 2 * (xp - ln);
+		double v1 = Math.PI * df / 2 * df / 2 * (xp - ln);
 		double v2 = Math.PI * lt / 3
 				* (df / 2 * df / 2 + df / 2 * dr / 2 + dr / 2 * dr / 2);
 		double v3 = Math.PI * dr * dr * (xb - xp - lt + cr);// includes all the
-		System.out.println(dr + " " + df + " " +d + " " +cr + " "); // way to bottom of
+		System.out.println(dr + " " + df + " " + df + " " +cr + " "); // way to bottom of
 		// nozzle
 		volume = v1 + v2 + v3;
 		return volume;

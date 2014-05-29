@@ -53,7 +53,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 	public static MinimalSlider R;
 	public static MinimalSlider Xr;
 	public static MinimalSlider Xb;
-	public static MinimalSlider N;
+	public static MinimalSlider Nz;
 	
     UIDefaults sliderDefaults = new UIDefaults();
     
@@ -277,20 +277,20 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		XbPanel.add(Xb);
 		XbPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Distance from Nose Tip to Fin Root"));
 		
-		N = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
+		Nz = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 10, 1);
 		
-		N.setMajorTickSpacing(1);
+		Nz.setMajorTickSpacing(1);
 
-		N.setMinorTickSpacing(1);
+		Nz.setMinorTickSpacing(1);
 
-		N.setPaintLabels(true);
+		Nz.setPaintLabels(true);
 
-		N.addChangeListener(this);
+		Nz.addChangeListener(this);
 		
 		JPanel NPanel = new JPanel();
 		NPanel.setBackground(Color.white);
-		NPanel.add(N);
-		NPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Number of Fins"));
+		NPanel.add(Nz);
+		NPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "nozzleRadius"));
 		
 		GroupLayout sliderLayout = new GroupLayout(sliders);
 		

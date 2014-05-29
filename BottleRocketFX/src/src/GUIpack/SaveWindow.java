@@ -57,6 +57,7 @@ public class SaveWindow extends JPanel implements ActionListener {
 		System.out.println(a);
 		if (a.equals("Save"))
 		{
+			System.out.println("Users fools: " + user);
 			DataSave.saveAs(user,savename, rocket);
 			save.setEnabled(false);
 			text.setText("");

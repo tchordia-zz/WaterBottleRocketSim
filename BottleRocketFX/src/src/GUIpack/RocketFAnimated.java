@@ -17,6 +17,7 @@ import javax.swing.event.ChangeEvent;
 
 import mathPack.AngularLaunch;
 import mathPack.Barrowman;
+import mathPack.RocketMath;
 
 public class RocketFAnimated extends JPanel  {
 	
@@ -89,19 +90,23 @@ public class RocketFAnimated extends JPanel  {
     	    			(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df:apanel.rocket.Dr,
     	    			spanel.nozzleRadius.getValue()/(500 + 0.0),
     	    			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
+    			
+    			RocketMath.printStats(rocket2);
         	}
        
         	public void angleAdjust(MouseEvent e)
         	{
         		super.angleAdjust(e);
+        		System.out.println("Nozzle Radius: " + apanel.rocket.Nz*Barrowman.conversionFactor);
+        		System.out.println("Volume: " + apanel.rocket.barrow.volume());
     			rocket2 = new AngularLaunch(
     	    			0,
     	    			spanel.massWater.getValue()/(10 + 0.0),
     	    			apanel.rocket.barrow.volume(),
     	    			spanel.airPressure.getValue()*10000,
     	    			Barrowman.cone,
-    	    			(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df:apanel.rocket.Dr,
-    	    			spanel.nozzleRadius.getValue()/(500 + 0.0),
+    	    			((apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df :apanel.rocket.Dr) * Barrowman.conversionFactor,
+    	    			apanel.rocket.Nz*Barrowman.conversionFactor,
     	    			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
     			System.out.println(rocket2.angle);
         	}
@@ -126,7 +131,7 @@ public class RocketFAnimated extends JPanel  {
        frame.setSize(1000,1000);
        frame.setLocation(100,100);
    }
-
+   
    public class SPanel extends SliderPanel2
    {
 	   public SPanel() 

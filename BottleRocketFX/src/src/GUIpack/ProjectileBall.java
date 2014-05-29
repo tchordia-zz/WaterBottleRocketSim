@@ -1,30 +1,23 @@
 package src.GUIpack;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.LayoutManager;
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.swing.JPanel;
-
+import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.QuadCurveTo;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
-import javafx.animation.AnimationTimer;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
-import javafx.application.*;
-import javafx.embed.swing.JFXPanel;
-import javafx.event.EventHandler;
+
+import javax.swing.JPanel;
 
 /**
  * Projectile Ball Class
@@ -36,7 +29,7 @@ import javafx.event.EventHandler;
  *              math class. This program is meant to be used to model a
  *              projectile with a path given by the math class.
  */
-public class ProjectileBall extends JPanel {
+public class ProjectileBall extends JPanel implements Serializable {
 
 	static double frameNumber = 0;
 
@@ -555,6 +548,9 @@ public class ProjectileBall extends JPanel {
 
 					bottleRocket.setTranslateX(x);
 					bottleRocket.setTranslateY(y);
+					
+					System.out.println("Current X: " + x);
+					System.out.println("Current Y: " + y);
 
 					bottleRocket.setRotate(angle);
 

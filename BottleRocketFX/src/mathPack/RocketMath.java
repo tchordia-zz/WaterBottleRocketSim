@@ -282,7 +282,7 @@ public class RocketMath {
 	}
 	public static void printStats(RocketMath rocket)
 	{
-		System.out.println(rocket.m0+ " " + rocket.mW+ " " + rocket.vB+ " " + rocket.p0+ " " + rocket.cD+ " " + rocket.rBot+ " " + rocket.rNoz);
+		System.out.println("Stats: "+rocket.m0+ " " + rocket.mW+ " " + rocket.vB+ " " + rocket.p0+ " " + rocket.cD+ " " + rocket.rBot+ " " + rocket.rNoz);
 	}
 	/**
 	 * @param args

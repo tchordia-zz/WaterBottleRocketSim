@@ -24,10 +24,10 @@ public class LoadPanel extends JPanel implements ActionListener {
 	RocketMath rocket;
 	String user;
 	String savename;
-	public LoadPanel( String user)
+	public LoadPanel( String u)
 	{
 		super();
-		this.user = user;
+		this.user = RocketF.user;
 		
 				save.addActionListener(this);
 		combo.addActionListener(this);
@@ -39,9 +39,10 @@ public class LoadPanel extends JPanel implements ActionListener {
 		save.setActionCommand("Save");
 		
 		combo.setMaximumSize( combo.getPreferredSize() );
+		
 		Font font = new Font("Verdana", Font.BOLD, 15);
 		pane.setBackground(Color.black);
-		 pane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Which rocket do you want to load?",TitledBorder.CENTER, TitledBorder.CENTER, font, Color.white));
+		pane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Which rocket do you want to load?",TitledBorder.CENTER, TitledBorder.CENTER, font, Color.white));
 		pane.add(combo);
 		setBackground(Color.black);
 		add(pane);
@@ -51,31 +52,10 @@ public class LoadPanel extends JPanel implements ActionListener {
 		this.setVisible(true);
 		
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String a = e.getActionCommand();
-		System.out.println(a);
-		savename = (String) combo.getSelectedItem();
-		if (a.equals("Save"))
-		{
-			try {
-				RocketF.mRocket =DataSave.retrieve(user, savename).getAngularLaunch();
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			System.out.println(RocketF.mRocket.m);
-			
-		}
-		else 
-		{
-				
-				save.setEnabled(true);
-			
-		}
+		
 	}
 	public static void main(String[] args)
 	{
