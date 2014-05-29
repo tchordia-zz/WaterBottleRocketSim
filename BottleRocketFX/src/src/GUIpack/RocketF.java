@@ -32,7 +32,7 @@ import com.jgoodies.looks.Options;
 public class RocketF extends JFrame {
 
 	public LaunchPanel2 mpanel = new LaunchPanel2();
-	Myusic x = new Myusic();
+	Music x = new Music();
 	Boolean musicon = true;
 	public WPanel wpanel = new WPanel();
 	public MenuP menubar = new MenuP();
@@ -51,7 +51,7 @@ public class RocketF extends JFrame {
 	public RocketF() {
 		super();
 		
-		x.loopAudio(Myusic.wonder);
+		x.loopAudio(Music.wonder);
 		UIManager.put(Options.USE_SYSTEM_FONTS_APP_KEY, Boolean.TRUE);
 		Options.setDefaultIconSize(new Dimension(18, 18));
 
@@ -442,7 +442,7 @@ public class RocketF extends JFrame {
 				else
 				{
 					
-					x.loopAudio(Myusic.wonder);
+					x.loopAudio(Music.wonder);
 					musicon=true;
 				}
 				// stop background music

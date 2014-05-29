@@ -42,7 +42,7 @@ import javax.swing.JPanel;
 public class VerticalBall extends JPanel {
 	static double frameNumber = 0;
 
-	Myusic music = new Myusic();
+	Music music = new Music();
 	// x and y values of the ball
 	public static double x;
 	public static double y;

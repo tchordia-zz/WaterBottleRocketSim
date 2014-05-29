@@ -40,7 +40,7 @@ import javafx.event.EventHandler;
 public class ProjectileBall extends JPanel {
 
 	static double frameNumber = 0;
-	Myusic music = new Myusic();
+	Music music = new Music();
 	// x and y values of the ball
 	public static double x;
 	public static double y;
@@ -467,7 +467,7 @@ public class ProjectileBall extends JPanel {
 							timerRunning = true;
 							timer.start();
 							
-							music.playAudio(Myusic.rocket);
+							music.playAudio(Music.rocket);
 						}
 					}
 				});
