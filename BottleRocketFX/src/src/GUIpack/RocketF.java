@@ -35,7 +35,7 @@ import com.jgoodies.looks.Options;
 
 public class RocketF extends JFrame {
 
-	public LaunchPanel2 mpanel = new LaunchPanel2();
+	//public LaunchPanel2 mpanel = new LaunchPanel2();
 	Music x = new Music();
 	Boolean musicon = true;
 	public WPanel wpanel = new WPanel();
@@ -259,26 +259,7 @@ public class RocketF extends JFrame {
 
 	}
 
-	public class CPanel extends ControlPanel {
-		public CPanel() {
-			super();
-			setSize(getWidth(), getHeight() / 5);
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			switchUser();
-			// System.out.println("restart");
-			// try {
-			// Thread.sleep(1000);
-			// } catch (InterruptedException e1) {
-			// // TODO Auto-generated catch block
-			// e1.printStackTrace();
-			// }
-
-		}
-
-	}
+	
 
 	public static void setRocket(RocketMath r) {
 		RocketF.mRocket = r;
@@ -496,9 +477,6 @@ public class RocketF extends JFrame {
 			} else if (e.getActionCommand().equals("Load")) {
 				LoadWindow s = new LoadWindow(user);
 			}
-<<<<<<< HEAD
-			
-=======
 			else if (e.getActionCommand().equals("Toggle Music"))
 			{
 				System.out.println("lol");
@@ -515,7 +493,7 @@ public class RocketF extends JFrame {
 				}
 				// stop background music
 			}
->>>>>>> f0ffd9d8c5016f9f3a9dcd7f75a050b97f526b6a
+
 		}
 	}
 }

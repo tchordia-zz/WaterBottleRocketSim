@@ -122,36 +122,25 @@ public class RocketMath {
 	}
 	
 	
-	public double round(double num,double a)
+	protected double round(double num,double a)
 	{
 		return (Math.round((num * Math.pow(10,a)))) / (Math.pow(10, a)*1.0);
 	}
 	/**
 	 * @return iP, return the internal air pressure of the water bottle rocket
 	 */
-	public double iPc()
+	protected double iPc()
 	{
-		//iP = p0 * Math.pow((( vA0 + (m0 - m)/pW)/ vA0), -y);
-		//System.out.println();
+		
 		if (iP > oP)
 		{
-		//System.out.println(iP + " " + m);
-			//System.out.println(a);
-//		int a = (int)(1000 * (m0 - m));
-//		double b = (a + 0.0)/1000;
+		
 		double b = m0 - m;
-		//System.out.println(Math.pow( ((vA0 + b/pW)/ vA0), -y));
-		//System.out.println(b/pW);
-		//System.out.println(( vA0 + (m0 - m)/pW)/ vA0);
-		//System.out.println(( m0 - mW));
-		//System.out.println(m);
-		//System.out.println(a + " " + b);
+		
 		iP = p0 * Math.pow((( vA0 + b/pW)/ vA0), -y);
-//		double a = vA0 + (b/pW);
-		//System.out.println(b + " " + ( vA0) + " " + ( vA0));
+
 		}
-//		System.out.println();
-		//System.out.println("Internal Pressure " + iP);
+
 		return iP;
 		
 	}
@@ -159,7 +148,7 @@ public class RocketMath {
 	/**
 	 * @return dM/dt for a given value of t, edit the instance variable
 	 */
-	public double dM_dt()
+	protected double dM_dt()
 	{
 		if ((iP > oP))
 		{
@@ -172,7 +161,7 @@ public class RocketMath {
 	/**
 	 * @return thrust at a given time, edit the instance variable
 	 */
-	public double thrust()
+	protected double thrust()
 	{
 		thrust = 0;
 //		System.out.println("dm/dt thrust" + dMdt);
@@ -188,7 +177,7 @@ public class RocketMath {
 	/**
 	 * @return the mass of the rocket at a given time, edit the instance variable
 	 */
-	public double m()
+	protected double m()
 	{
 //		System.out.println("Mass1 " + m);
 		if (m > (m0 - mW))
@@ -214,7 +203,7 @@ public class RocketMath {
 	 * @return return the acceleration at a given time.
 	 * calculate acceleration
 	 */
-	public double cA()
+	protected double cA()
 	{
 		a = thrust/m - g + drag()/m; 
 //		System.out.println("Acceleration " + a + " thrust/m " + thrust/m + " gravity " + m * g );
@@ -224,7 +213,7 @@ public class RocketMath {
 	/**
 	 * @return the new velocity, change the value of v
 	 */
-	public double cV()
+	protected double cV()
 	{
 		v += a * step;
 //		System.out.println("velocity " + v);
@@ -234,7 +223,7 @@ public class RocketMath {
 	/**
 	 * @return the new height, change the value of H
 	 */
-	public double cH()
+	protected double cH()
 	{
 		h += v * step;
 //		System.out.println("Height " + h);
@@ -244,7 +233,7 @@ public class RocketMath {
 	/**
 	 * @return the amount of drag
 	 */
-	public double drag()
+	protected double drag()
 	{
 		double drag = -.5 * cD * pA * Math.PI * rBot * rBot * v * Math.abs(v);
 //		System.out.println("    " + -.5 * cD * pA * Math.PI * rBot * rBot );

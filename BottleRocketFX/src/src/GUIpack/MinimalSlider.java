@@ -19,10 +19,11 @@ import java.io.IOException;
 
 /**
  * 
- * @author Cameron Yang (I stole but who doesn't I mean come on)
+ * @author Cameron Yang 
  * 
- * RAISE YOUR DONGERS 
- * RAISE YOUR DONGERS
+ * A slider 
+ * 
+ * 
  */
 
 public class MinimalSlider extends JSlider{

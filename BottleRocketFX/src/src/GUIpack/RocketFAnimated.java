@@ -97,7 +97,7 @@ public class RocketFAnimated extends JPanel  {
         	public void angleAdjust(MouseEvent e)
         	{
         		super.angleAdjust(e);
-        		System.out.println("Nozzle Radius: " + apanel.rocket.Nz*Barrowman.conversionFactor);
+        		System.out.println("Nozzle Radius: " + apanel.rocket.Nz*Barrowman.toMeasurements);
         		System.out.println("Volume: " + apanel.rocket.barrow.volume());
     			rocket2 = new AngularLaunch(
     	    			0,
@@ -105,8 +105,8 @@ public class RocketFAnimated extends JPanel  {
     	    			apanel.rocket.barrow.volume(),
     	    			spanel.airPressure.getValue()*10000,
     	    			Barrowman.cone,
-    	    			((apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df :apanel.rocket.Dr) * Barrowman.conversionFactor,
-    	    			apanel.rocket.Nz*Barrowman.conversionFactor,
+    	    			((apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df :apanel.rocket.Dr) * Barrowman.toMeasurements,
+    	    			apanel.rocket.Nz*Barrowman.toMeasurements,
     	    			Math.toDegrees(Math.asin(ProjectileBall.sineTheta)));
     			System.out.println(rocket2.angle);
         	}

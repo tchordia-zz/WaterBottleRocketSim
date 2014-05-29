@@ -24,28 +24,25 @@ import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.theme.DesertBlue;
 
+/**
+ * @author Tanmay
+ * The very first panel you see, with the opening button, the username entry text box, and the 4 buttons to check modes
+ */
 public class WelcomePanel extends JPanel implements ActionListener {
-	JPanel pane;
-	JPanel tpane = new JPanel();
+	JPanel pane; // The JPanel containing all of the others
+	JPanel tpane = new JPanel(); 
 	JButton start = new CoolButton("<html><p><font size=\"30\" color = \"white\">Welcome to Rocket Sim</font><br> <center><font color = \"white\"> Click to Start</center></font></p></html>" );
 	
-	JButton launch = new CoolButton("Launch Mode", CoolButton.BIG);
-	JButton target = new CoolButton("Target Mode", CoolButton.BIG, CoolButton.CRED);
+	
+	JButton launch = new CoolButton("Launch Mode", CoolButton.BIG); //Launch Mode button
+	JButton target = new CoolButton("Target Mode", CoolButton.BIG, CoolButton.CRED); //
 	JButton builder = new CoolButton("Rocket Builder", CoolButton.BIG, CoolButton.CGREEN);
 	JButton exp = new CoolButton ("Rocket Science", CoolButton.BIG, Color.black);
 	JTextField j = new JTextField(20);
 	public WelcomePanel()
 	{
 		Font font = new Font("Verdana", Font.BOLD, 30);
-//		start.setBackground(Color.black);
-//		start.setForeground(Color.white);
-//		start.setFont(font);
-//		launch.setBackground(Color.black);
-//		launch.setForeground(Color.white);
-//		launch.setFont(font);
-//		target.setBackground(Color.black);
-//		target.setForeground(Color.white);
-//		target.setFont(font);
+//		
 		PlasticLookAndFeel.setPlasticTheme(new DesertBlue());  
 		try {
 	            
@@ -56,7 +53,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
 	        }
 		setLayout(new BorderLayout());
 		//setLayout(new FlowLayout());
-		pane = ControlPanel.addBack(new JPanel(),"bottleBack.jpg", 1850,1000);
+		pane = new JPanel();
 		
 		pane.setPreferredSize(new Dimension(2000, 1000));
 		//setBackground(Color.cyan);
@@ -91,16 +88,7 @@ public class WelcomePanel extends JPanel implements ActionListener {
 		 tpane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Enter Your Name",TitledBorder.CENTER, TitledBorder.CENTER, font, Color.white));
 		}
 	
-	public static void main (String args[])
-	{
-		JFrame j = new JFrame();
-		j.setSize(100,100);
-		j.add(new WelcomePanel());
-		j.setLocationRelativeTo(null);
-        j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        j.setVisible(true);
-        
-        }
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -13,6 +13,10 @@ import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 
+/**
+ * @author Tanmay
+ * Class that plays music on the JavaFX thread. 
+ */
 public class Music  {
 	public static String launchSound = "music/bottlerocketsound.wav";
 	public static String tsunami = "music/tsunami.mp3";
@@ -23,6 +27,11 @@ public class Music  {
 	
 
 
+	/**
+	 * @param fileName Play an audio file stored in the given file
+	 * This is used to play a single sound effect, not a continuous music stream.
+	 * @return
+	 */
 	public static boolean playAudio(String fileName) {
 		try {
 			MediaPlayer mediaPlayer = new MediaPlayer(new Media(new File(
@@ -35,6 +44,11 @@ public class Music  {
 		}
 	}
 
+	/**
+	 * Run a coninuous stream of music at the given address, use the preset locations saved as static variable
+	 * 
+	 * @param filename = filename 
+	 */
 	public void loopAudio(String filename) {
 	
 		
@@ -44,21 +58,22 @@ public class Music  {
 		
 		
 	}
+	
+	/**
+	 * Stop the loop of myusic
+	 */
 	public void stopLoop()
 	{
 		looper.musicPlayer.stop(looper.loop);
 	}
-	@SuppressWarnings("deprecation")
-	public void stopMusic()
-	{
-		if (t!= null)
-		{
-			t.stop();
-		}
-	}
+	
 	
 
 	
+	/**
+	 * @author Tanmay
+	 * A class that implements runnable that runs a continuous stream of music on a different thread
+	 */
 	public class loopRunnable implements Runnable  
 	{
 		String f;

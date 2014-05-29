@@ -224,7 +224,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 		angle = 0;
 		bottleRocket.setRotate(angle);
 		timer.stop();
-		music.stopMusic();
+		
 		
 		timerRunning = false;
 		intersectTest = false;

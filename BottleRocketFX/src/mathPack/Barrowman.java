@@ -4,7 +4,8 @@ import src.GUIpack.CreateRocket;
 import javafx.scene.Group;
 
 /**
- * barrowman eqns: calcs center of pressure / volume
+ * barrowman equations: calcs center of pressure / volume, basically takes measurements of rocket a
+ * and convert to pixel
  * 
  * @author Sahil
  * 
@@ -37,9 +38,10 @@ public class Barrowman {
 	public static final String square = "sq";
 
 	public static final Double cone = .50;
-	public static final double conversionFactor = (1.25) / 150;
+	public static final double toMeasurements = (1.25) / 150;
+	public static final double toPixels = 1.0/toMeasurements;
 	
-	double cft = conversionFactor;
+	double cft = toMeasurements;
 	double centerOfMass;
 	
 
