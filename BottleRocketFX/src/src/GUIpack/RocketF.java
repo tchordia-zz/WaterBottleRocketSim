@@ -35,6 +35,7 @@ import com.jgoodies.looks.Options;
 public class RocketF extends JFrame {
 	Music x = new Music();
 	Boolean musicon = true;
+	LaunchPanel2 launchpanel = new LaunchPanel2();
 	public WPanel wpanel = new WPanel();
 	public MenuP menubar = new MenuP();
 	public JPanel htmlpanel = new JPanel();
@@ -45,7 +46,7 @@ public class RocketF extends JFrame {
 	public static RocketMath mRocket;
 	// public CPanel cpanel = new CPanel();
 	public static String user;
-	/**
+	/**ew
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -119,7 +120,7 @@ public class RocketF extends JFrame {
 
 	public void removeAll() {
 		remove(wpanel);
-//		remove(mpanel);
+		remove(launchpanel);
 		remove(rBuilder);
 		remove(htmlpanel);
 		remove(pdfpanel);
@@ -187,6 +188,7 @@ public class RocketF extends JFrame {
 			pane.remove(target);
 			pane.remove(builder);
 			pane.remove(exp);
+			
 			pane.add(tpane);
 			pane.setLayout(new BorderLayout());
 			tpane.add(j);
@@ -200,7 +202,7 @@ public class RocketF extends JFrame {
 			if (e.getActionCommand().equals("launch")) {
 				System.out.println(e.getActionCommand());
 
-				//mInit();
+				switchTo(launchpanel);
 
 			} else if (e.getActionCommand().equals("user")) {
 				user = j.getText();

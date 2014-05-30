@@ -1,7 +1,0 @@
-body
-{
-color:blue;
-background-image:url("skyPageBack.jpeg");
-background-size:100% 100%;
-background-repeat:no-repeat;
-}
