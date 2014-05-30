@@ -9,7 +9,9 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.Scanner;
 
@@ -415,6 +417,7 @@ public class RocketF extends JFrame {
 				i.addActionListener(changeUsers);
 				subMenu2.add(i);
 				}
+				subMenu2.add(userbox);
 			}
 			else
 			{
@@ -479,6 +482,7 @@ public class RocketF extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(e.getActionCommand());
+			String abc = e.getActionCommand();
 			if (e.getActionCommand().equals("Change User")) {
 				switchUser();
 			} else if (e.getActionCommand().equals("Launch Mode")) {
@@ -488,6 +492,59 @@ public class RocketF extends JFrame {
 				
 			} else if (e.getActionCommand().equals("Load")) {
 				LoadWindow s = new LoadWindow(user);
+			}
+			else if (abc.equals("Target Mode")){
+				switchTo(targetpanel);
+			}
+			else if (abc.equals("Info"))
+			{
+				switchTo(htmlpanel);
+			}
+			else if (abc.equals("Rocket Builder")){
+				switchTo(rBuilder);
+			}
+			else if (abc.equals("newuser"))
+			{
+				PrintWriter specOut = null;
+				File usertxt = new File("Users", "UsersList");
+				try{
+					usertxt.createNewFile();
+				}catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				try {
+					specOut = new PrintWriter(new FileWriter(usertxt, true));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				Scanner scan = null;
+				boolean nameExists = false;
+				try {
+					scan = new Scanner(usertxt);
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				while(scan.hasNext() && !nameExists)
+				{
+					String name = scan.next();
+					System.out.println("usernames: " + name);
+					nameExists = (name.equals(user));
+				}
+				if (user!=null && !nameExists)
+				{
+					specOut.println(user);
+				}		else
+				{
+					System.out.println("Name Exists!!!");
+				}
+				specOut.close();
+				
+				user = userbox.getText();
+				System.out.println(user);
+				updateUsers();
+				updateRocketList();
+//				rBuilder.load.updateCombo(user);
 			}
 			else if (e.getActionCommand().equals("Toggle Music"))
 			{

@@ -121,7 +121,6 @@ public class RocketFAnimated extends JPanel {
 			super();
 			setSize(getWidth(), getHeight());
 		}
-
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
 			System.out.println("massWater: " + massWater.getValue()
@@ -146,7 +145,7 @@ public class RocketFAnimated extends JPanel {
 	
 	public void loadNewRocket(double[] d)
 	{
-		apanel.loadNewRocket(new CreateRocket(d));
+		apanel.loadNewRocket(new CreateRocket(d, ProjectileBall.rocketFactor));
 	}
 
 	public class customRocket extends SliderPanel2 {

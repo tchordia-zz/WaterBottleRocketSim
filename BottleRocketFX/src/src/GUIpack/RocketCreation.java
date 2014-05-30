@@ -23,8 +23,7 @@ public class RocketCreation extends JPanel{
 	String u;
 	RocketCreation()
 	{		
-		
-		setLayout(new GridLayout());		
+		setLayout(new GridLayout());
 		add(sliders);
 		add(rockett);
 		add(save);

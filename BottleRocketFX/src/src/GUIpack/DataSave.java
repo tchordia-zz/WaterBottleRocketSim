@@ -97,7 +97,7 @@ public class DataSave implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Scanner scan = null;
 		boolean nameExists = false;
 		try {

@@ -16,11 +16,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 public class RMenu extends JMenuBar implements ActionListener {
 
-	String[] fileItems = new String[] {"Save", "Launch Mode", "Target Mode", "Toggle Music"};
+	String[] fileItems = new String[] {"Save", "Launch Mode", "Target Mode", "Rocket Builder", "Info", "Toggle Music"};
 
 	String[] editItems = new String[] { "Undo", "Cut", "Copy", "Paste" };
 	char[] fileShortcuts = { 'N', 'O', 'S', 'X' , 'L','M'};
@@ -32,7 +33,7 @@ public class RMenu extends JMenuBar implements ActionListener {
 	JMenu otherMenu = new JMenu("Other");
 	JMenu subMenu = new JMenu("Load");
 	JMenu subMenu2 = new JMenu("Change User");
-	
+	JTextField userbox = new JTextField(10);
 	ActionListener changeUsers = new userChangeListener();
 	ActionListener changeRockets = new rocketChangeLisetener();
 
@@ -43,12 +44,12 @@ public class RMenu extends JMenuBar implements ActionListener {
 
 		setForeground(Color.red);
 		setFont(font);
-
+		userbox.addActionListener(this);
 		JMenuItem item = new JMenuItem("No Users!");
 		item.addActionListener(changeUsers);
 		subMenu2.add(item);
 		fileMenu.add(subMenu2);
-		
+		userbox.setActionCommand("newuser");
 		subMenu.add(item = new JMenuItem("Nothing to load!"));
 		item.addActionListener(this);
 		fileMenu.add(subMenu);
