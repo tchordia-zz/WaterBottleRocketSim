@@ -14,17 +14,21 @@ import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 
 /**
- * @author Tanmay
+ * @author Sahil
  * Class that plays music on the JavaFX thread. 
  */
 public class Music  {
 	public static String launchSound = "music/bottlerocketsound.wav";
-	public static String tsunami = "music/tsunami.mp3";
+	
 	public static String wonder = "music/POL-wonder-place-short.wav";
-	public static String rocket = "/BottleRocketFX/Music/rocket.wav";
+	public static String rocket = "music/rocket.wav";
+	public static String numberone = "music/POL-number-one-short.wav";
+	public static String seamemories = "music/POL-sea-of-memories-short.wav";
+	public static String riskyplan = "music/POL-risky-plan-short.wav";
 	public static Thread t = null;
 	public static loopRunnable looper = null;
 	
+	public static String current="";
 
 
 	/**
@@ -54,6 +58,7 @@ public class Music  {
 		
 		looper = new loopRunnable(filename);
 		t = new Thread(looper, "music");
+		current = filename;
 		t.start();
 		
 		
