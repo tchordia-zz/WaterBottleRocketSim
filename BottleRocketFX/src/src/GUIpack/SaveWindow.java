@@ -41,7 +41,7 @@ public class SaveWindow extends JPanel implements ActionListener {
 		text.setMaximumSize( text.getPreferredSize() );
 		Font font = new Font("Verdana", Font.BOLD, 15);
 		pane.setBackground(Color.black);
-		 pane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Name your Rocket, then press enter.",TitledBorder.CENTER, TitledBorder.CENTER, font, Color.white));
+		pane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Name your Rocket, then press enter.",TitledBorder.CENTER, TitledBorder.CENTER, font, Color.white));
 		pane.add(text);
 		setBackground(Color.black);
 		add(pane);
