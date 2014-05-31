@@ -192,15 +192,15 @@ public class SliderPanel2 extends JPanel implements ChangeListener {
 //      }
 		
 		
-		gui.setBackground(Color.white);
-		
-		setBackground(Color.white);
-		tabbedPane.add("sliders",sliders);
-		tabbedPane.addChangeListener(this);
-		tabbedPane.setName("tabs");
-		tabbedPane.add("exact values", gui);
+//		gui.setBackground(Color.white);
+//		
+//		setBackground(Color.white);
+//		tabbedPane.add("sliders",sliders);
+//		tabbedPane.addChangeListener(this);
+//		tabbedPane.setName("tabs");
+//		tabbedPane.add("exact values", gui);
 //		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		add(tabbedPane);
+		add(sliders);
 	}
 
 	private JPanel initBack(JPanel pane)

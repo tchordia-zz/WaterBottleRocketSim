@@ -7,7 +7,8 @@ import java.awt.Point;
 import java.util.Random;
 
 import javafx.scene.input.MouseEvent;
-
+import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.event.ChangeEvent;
@@ -20,6 +21,7 @@ public class RocketFAnimated extends JPanel {
 
 	public SPanel spanel = new SPanel();
 	public ProjectileBall apanel;
+	private JLayeredPane layeredPane;
 	AngularLaunch rocket2;
 
 	private static final long serialVersionUID = 1L;
@@ -49,16 +51,30 @@ public class RocketFAnimated extends JPanel {
 						: apanel.rocket.Dr, spanel.nozzleRadius.getValue()
 						/ (500 + 0.0), Math.toDegrees(Math
 						.asin(ProjectileBall.sineTheta)));
+		
+		layeredPane= new JLayeredPane();
+		
+		JPanel green = new JPanel();
+		
+		layeredPane.add(green, new Integer(0));
+
+		layeredPane.add(apanel, new Integer(0));
+		layeredPane.add(spanel, new Integer(1));
+		
+		layeredPane.setPreferredSize(new Dimension(1000, 1000));
 
 		spanel.setBackground(Color.white);
-		add(spanel);
-		add(apanel);
-		apanel.setVisible(true);
+
+		apanel.setBounds(0,0, 1000, 1000);
+		spanel.setBounds(300, 450, 300, 275);
+
+		add(layeredPane);
+		layeredPane.setBackground(Color.blue);
+		layeredPane.setVisible(true);
+
 		setSize(new Dimension(1000, 1000));
-		setLayout(new GridLayout(0, 2));
 		setBackground(Color.white);
 		setPreferredSize(new Dimension(1000, 1000));
-
 		setVisible(true);
 	}
 	private void updatePreferredSize(int n) {
@@ -79,7 +95,7 @@ public class RocketFAnimated extends JPanel {
 		
 		int randomNumber = aynRand.nextInt(300)+100;
         
-        apanel = new ProjectileBall(300, 400, randomNumber)
+        apanel = new ProjectileBall(0, 400, randomNumber)
         {
         	public void resetBall()
         	{
@@ -150,6 +166,18 @@ public class RocketFAnimated extends JPanel {
 							/ (500 + 0.0), Math.toDegrees(Math
 							.asin(ProjectileBall.sineTheta)));
 		}
+	}
+	
+	public static void main(String [] args)
+	{
+		JFrame frame = new JFrame();
+		
+		JPanel rockettt = new RocketFAnimated();
+				
+		frame.add(rockettt);
+		frame.setSize(400, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 	
 	public void loadNewRocket(double[] d)
