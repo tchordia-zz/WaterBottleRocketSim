@@ -66,7 +66,7 @@ public class RocketFAnimated extends JPanel {
 		spanel.setBackground(Color.white);
 
 		apanel.setBounds(0,0, 1000, 1000);
-		spanel.setBounds(0, 450, 300, 275);
+		spanel.setBounds(300, 450, 300, 275);
 
 		add(layeredPane);
 		layeredPane.setBackground(Color.blue);
@@ -95,7 +95,7 @@ public class RocketFAnimated extends JPanel {
 		
 		int randomNumber = aynRand.nextInt(300)+100;
         
-        apanel = new ProjectileBall(300, 400, randomNumber)
+        apanel = new ProjectileBall(0, 400, randomNumber)
         {
         	public void resetBall()
         	{

@@ -127,11 +127,7 @@ public class RocketF extends JFrame {
 
 	public void removeAll() {
 		remove(wpanel);
-<<<<<<< HEAD
 		remove(launchpanel);
-=======
-		// remove(mpanel);
->>>>>>> 72e17f7d8ed0999754353dc02d7f44629e7c7700
 		remove(rBuilder);
 		remove(htmlpanel);
 		remove(pdfpanel);
@@ -185,11 +181,7 @@ public class RocketF extends JFrame {
 			if (e.getActionCommand().equals("launch")) {
 				System.out.println(e.getActionCommand());
 
-<<<<<<< HEAD
 				switchTo(launchpanel);
-=======
-				// mInit();
->>>>>>> 72e17f7d8ed0999754353dc02d7f44629e7c7700
 
 			} else if (e.getActionCommand().equals("user")) {
 				user = j.getText();

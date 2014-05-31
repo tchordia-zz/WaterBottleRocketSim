@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.io.File;
 import java.util.Date;
+import java.util.Random;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -224,6 +225,15 @@ public class ProjectileBall extends JPanel implements Serializable {
 		
 		timerRunning = false;
 		intersectTest = false;
+		
+		if(squareTest == true)
+		{
+			Random rand = new Random();
+			targetDistance = rand.nextInt(700)+100;
+			square.setX(xInit + targetDistance);
+			square.setY(yInit - 50);
+		}
+		
 		squareTest = false;
 		falling = false;
 		bottleRocket.setTranslateX(0);
@@ -235,35 +245,35 @@ public class ProjectileBall extends JPanel implements Serializable {
 		frameNumber = 0;
 		i = 0;
 
-		bottleRocket.setLayoutX(x + 25);
+		bottleRocket.setLayoutX(x + 55);
 		bottleRocket
 				.setLayoutY(y
 						- ((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct)  - 30);
 
-		minX = bottleRocket.getBoundsInParent().getMinX();
-		minY = bottleRocket.getBoundsInParent().getMinY();
-		maxX = bottleRocket.getBoundsInParent().getMaxX();
-		maxY = bottleRocket.getBoundsInParent().getMaxY();
-
-		parentBoundingLineLeft.setStartX(minX);
-		parentBoundingLineLeft.setStartY(minY);
-		parentBoundingLineLeft.setEndX(minX);
-		parentBoundingLineLeft.setEndY(maxY);
-
-		parentBoundingLineRight.setStartX(maxX);
-		parentBoundingLineRight.setStartY(maxY);
-		parentBoundingLineRight.setEndX(maxX);
-		parentBoundingLineRight.setEndY(minY);
-
-		parentBoundingLineTop.setStartX(maxX);
-		parentBoundingLineTop.setStartY(maxY);
-		parentBoundingLineTop.setEndX(minX);
-		parentBoundingLineTop.setEndY(maxY);
-
-		parentBoundingLineBottom.setStartX(maxX);
-		parentBoundingLineBottom.setStartY(minY);
-		parentBoundingLineBottom.setEndX(minX);
-		parentBoundingLineBottom.setEndY(minY);
+//		minX = bottleRocket.getBoundsInParent().getMinX();
+//		minY = bottleRocket.getBoundsInParent().getMinY();
+//		maxX = bottleRocket.getBoundsInParent().getMaxX();
+//		maxY = bottleRocket.getBoundsInParent().getMaxY();
+//
+//		parentBoundingLineLeft.setStartX(minX);
+//		parentBoundingLineLeft.setStartY(minY);
+//		parentBoundingLineLeft.setEndX(minX);
+//		parentBoundingLineLeft.setEndY(maxY);
+//
+//		parentBoundingLineRight.setStartX(maxX);
+//		parentBoundingLineRight.setStartY(maxY);
+//		parentBoundingLineRight.setEndX(maxX);
+//		parentBoundingLineRight.setEndY(minY);
+//
+//		parentBoundingLineTop.setStartX(maxX);
+//		parentBoundingLineTop.setStartY(maxY);
+//		parentBoundingLineTop.setEndX(minX);
+//		parentBoundingLineTop.setEndY(maxY);
+//
+//		parentBoundingLineBottom.setStartX(maxX);
+//		parentBoundingLineBottom.setStartY(minY);
+//		parentBoundingLineBottom.setEndX(minX);
+//		parentBoundingLineBottom.setEndY(minY);
 
 		button.setFill(javafx.scene.paint.Color.web("#FFCC40"));
 		buttonText.setText("Launch!");
@@ -306,30 +316,30 @@ public class ProjectileBall extends JPanel implements Serializable {
 
 		bottleRocket.setRotate(angle);
 
-		minX = bottleRocket.getBoundsInParent().getMinX();
-		minY = bottleRocket.getBoundsInParent().getMinY();
-		maxX = bottleRocket.getBoundsInParent().getMaxX();
-		maxY = bottleRocket.getBoundsInParent().getMaxY();
+//		minX = bottleRocket.getBoundsInParent().getMinX();
+//		minY = bottleRocket.getBoundsInParent().getMinY();
+//		maxX = bottleRocket.getBoundsInParent().getMaxX();
+//		maxY = bottleRocket.getBoundsInParent().getMaxY();
 
-		parentBoundingLineLeft.setStartX(minX);
-		parentBoundingLineLeft.setStartY(minY);
-		parentBoundingLineLeft.setEndX(minX);
-		parentBoundingLineLeft.setEndY(maxY);
-
-		parentBoundingLineRight.setStartX(maxX);
-		parentBoundingLineRight.setStartY(maxY);
-		parentBoundingLineRight.setEndX(maxX);
-		parentBoundingLineRight.setEndY(minY);
-
-		parentBoundingLineTop.setStartX(maxX);
-		parentBoundingLineTop.setStartY(maxY);
-		parentBoundingLineTop.setEndX(minX);
-		parentBoundingLineTop.setEndY(maxY);
-
-		parentBoundingLineBottom.setStartX(maxX);
-		parentBoundingLineBottom.setStartY(minY);
-		parentBoundingLineBottom.setEndX(minX);
-		parentBoundingLineBottom.setEndY(minY);
+//		parentBoundingLineLeft.setStartX(minX);
+//		parentBoundingLineLeft.setStartY(minY);
+//		parentBoundingLineLeft.setEndX(minX);
+//		parentBoundingLineLeft.setEndY(maxY);
+//
+//		parentBoundingLineRight.setStartX(maxX);
+//		parentBoundingLineRight.setStartY(maxY);
+//		parentBoundingLineRight.setEndX(maxX);
+//		parentBoundingLineRight.setEndY(minY);
+//
+//		parentBoundingLineTop.setStartX(maxX);
+//		parentBoundingLineTop.setStartY(maxY);
+//		parentBoundingLineTop.setEndX(minX);
+//		parentBoundingLineTop.setEndY(maxY);
+//
+//		parentBoundingLineBottom.setStartX(maxX);
+//		parentBoundingLineBottom.setStartY(minY);
+//		parentBoundingLineBottom.setEndX(minX);
+//		parentBoundingLineBottom.setEndY(minY);
 	}
 
 	/**
@@ -353,7 +363,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 		
 		bottleRocket.setTranslateX(0);
 		bottleRocket.setTranslateY(0);
-		bottleRocket.setLayoutX(x + 25);
+		bottleRocket.setLayoutX(x + 55);
 		bottleRocket.setLayoutY(y-((rocket.totalBodyLength/ 2) - rocket.Cr + rocket.Xr + rocket.Ct) - 30);
 
 
@@ -380,7 +390,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 
 		framesPerSecond = new Text();
 
-		framesPerSecond.setText("Score " + 0);
+//		framesPerSecond.setText("Score " + 0);
 		framesPerSecond.setX(200);
 		framesPerSecond.setY(windowHeight + 150);
 
@@ -403,26 +413,26 @@ public class ProjectileBall extends JPanel implements Serializable {
 
 		boundsInParent = new Group();
 
-		parentBoundingLineLeft = new Line(minX, minY, minX, maxY);
-		parentBoundingLineRight = new Line(maxX, minY, maxX, maxY);
-		parentBoundingLineTop = new Line(minX, maxY, maxX, maxY);
-		parentBoundingLineBottom = new Line(minX, minY, maxX, minY);
+//		parentBoundingLineLeft = new Line(minX, minY, minX, maxY);
+//		parentBoundingLineRight = new Line(maxX, minY, maxX, maxY);
+//		parentBoundingLineTop = new Line(minX, maxY, maxX, maxY);
+//		parentBoundingLineBottom = new Line(minX, minY, maxX, minY);
+//
+//		actualDifferenceLine = new Line(0, 0, 0, 0);
+//		actualDifferenceLine.setStroke(Color.RED);
+//
+//		displayedDifferenceLine = new Line(0, 0, 0, 0);
+//		displayedDifferenceLine.setStroke(Color.BLUE);
+//
+//		parentBoundingLineLeft.setStroke(Color.CADETBLUE);
+//		parentBoundingLineRight.setStroke(Color.CADETBLUE);
+//		parentBoundingLineTop.setStroke(Color.CADETBLUE);
+//		parentBoundingLineBottom.setStroke(Color.CADETBLUE);
 
-		actualDifferenceLine = new Line(0, 0, 0, 0);
-		actualDifferenceLine.setStroke(Color.RED);
-
-		displayedDifferenceLine = new Line(0, 0, 0, 0);
-		displayedDifferenceLine.setStroke(Color.BLUE);
-
-		parentBoundingLineLeft.setStroke(Color.CADETBLUE);
-		parentBoundingLineRight.setStroke(Color.CADETBLUE);
-		parentBoundingLineTop.setStroke(Color.CADETBLUE);
-		parentBoundingLineBottom.setStroke(Color.CADETBLUE);
-
-		boundsInParent.getChildren().addAll(parentBoundingLineLeft,
-				parentBoundingLineRight, parentBoundingLineTop,
-				parentBoundingLineBottom, displayedDifferenceLine,
-				actualDifferenceLine);
+//		boundsInParent.getChildren().addAll(parentBoundingLineLeft,
+//				parentBoundingLineRight, parentBoundingLineTop,
+//				parentBoundingLineBottom, displayedDifferenceLine,
+//				actualDifferenceLine);
 
 		// adds everything to the scene
 		root.getChildren().addAll(line, bottleRocket, square, ground, group,
@@ -462,6 +472,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 										- buttonText.getBoundsInLocal()
 												.getWidth() / 2);
 								orangeColored = true;
+								resetBall();
 							}
 						} else if (orangeColored == true
 								&& timerRunning == false) {
@@ -555,7 +566,6 @@ public class ProjectileBall extends JPanel implements Serializable {
 					clock = new Date();
 
 					
-					//System.out.println("SCORE BITCHES " + score);
 					oldTime = clock.getTime();
 
 					frameNumber += 1;
@@ -568,30 +578,30 @@ public class ProjectileBall extends JPanel implements Serializable {
 
 					bottleRocket.setRotate(angle);
 
-					minX = bottleRocket.getBoundsInParent().getMinX();
-					minY = bottleRocket.getBoundsInParent().getMinY();
-					maxX = bottleRocket.getBoundsInParent().getMaxX();
-					maxY = bottleRocket.getBoundsInParent().getMaxY();
-
-					parentBoundingLineLeft.setStartX(minX);
-					parentBoundingLineLeft.setStartY(minY);
-					parentBoundingLineLeft.setEndX(minX);
-					parentBoundingLineLeft.setEndY(maxY);
-
-					parentBoundingLineRight.setStartX(maxX);
-					parentBoundingLineRight.setStartY(maxY);
-					parentBoundingLineRight.setEndX(maxX);
-					parentBoundingLineRight.setEndY(minY);
-
-					parentBoundingLineTop.setStartX(maxX);
-					parentBoundingLineTop.setStartY(minY);
-					parentBoundingLineTop.setEndX(minX);
-					parentBoundingLineTop.setEndY(minY);
-
-					parentBoundingLineBottom.setStartX(maxX);
-					parentBoundingLineBottom.setStartY(maxY);
-					parentBoundingLineBottom.setEndX(minX);
-					parentBoundingLineBottom.setEndY(maxY);
+//					minX = bottleRocket.getBoundsInParent().getMinX();
+//					minY = bottleRocket.getBoundsInParent().getMinY();
+//					maxX = bottleRocket.getBoundsInParent().getMaxX();
+//					maxY = bottleRocket.getBoundsInParent().getMaxY();
+//
+//					parentBoundingLineLeft.setStartX(minX);
+//					parentBoundingLineLeft.setStartY(minY);
+//					parentBoundingLineLeft.setEndX(minX);
+//					parentBoundingLineLeft.setEndY(maxY);
+//
+//					parentBoundingLineRight.setStartX(maxX);
+//					parentBoundingLineRight.setStartY(maxY);
+//					parentBoundingLineRight.setEndX(maxX);
+//					parentBoundingLineRight.setEndY(minY);
+//
+//					parentBoundingLineTop.setStartX(maxX);
+//					parentBoundingLineTop.setStartY(minY);
+//					parentBoundingLineTop.setEndX(minX);
+//					parentBoundingLineTop.setEndY(minY);
+//
+//					parentBoundingLineBottom.setStartX(maxX);
+//					parentBoundingLineBottom.setStartY(maxY);
+//					parentBoundingLineBottom.setEndX(minX);
+//					parentBoundingLineBottom.setEndY(maxY);
 
 					intersectTest = ground.intersects(bottleRocket
 							.getBoundsInParent());
@@ -612,7 +622,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 						
 						score += 1;
 						framesPerSecond.setText("Score: " + score);
-					}
+						}
 					//
 					
 				}
@@ -627,7 +637,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 												.getMaxY() - ground
 												.getBoundsInLocal().getMinY()));
 					}
-					bottleRocket.setLayoutX(bottleRocket.getTranslateX() + 35);
+					bottleRocket.setLayoutX(bottleRocket.getTranslateX() + 55);
 					bottleRocket.setLayoutY(yInit
 							- ((rocket.totalBodyLength / 2) - rocket.Cr
 									+ rocket.Xr + rocket.Ct)
