@@ -3,16 +3,13 @@ package src.GUIpack;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.util.Random;
 
 import javafx.scene.input.MouseEvent;
 
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.event.ChangeEvent;
 
 import mathPack.AngularLaunch;
@@ -64,7 +61,18 @@ public class RocketFAnimated extends JPanel {
 
 		setVisible(true);
 	}
+	private void updatePreferredSize(int n) {
+	    double d = (double) n * 1.08;
+	    d = (n > 0) ? 1 / d : -d;
 
+	    int w = (int) (getWidth() * d);
+	    int h = (int) (getHeight() * d);
+	    apanel.setPreferredSize(new Dimension(w, h));
+
+	    
+
+	    //getParent().doLayout();
+	}
 	public void setupAnimation() {
 
 		Random aynRand = new Random();
@@ -76,6 +84,7 @@ public class RocketFAnimated extends JPanel {
         	public void resetBall()
         	{
         		super.resetBall();
+        		updatePreferredSize(5);
     			rocket2 = new AngularLaunch(
     	    			0,
     	    			spanel.massWater.getValue()/(10 + 0.0),
