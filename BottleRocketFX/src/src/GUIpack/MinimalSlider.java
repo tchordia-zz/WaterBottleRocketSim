@@ -31,6 +31,7 @@ public class MinimalSlider extends JSlider{
 	public MinimalSlider(int x, int y, int z, int a)
 	{
 		super(x,y,z,a);
+	
 		for (UIManager.LookAndFeelInfo laf : UIManager.getInstalledLookAndFeels()) {
             if ("Nimbus".equals(laf.getName())){
                 try {

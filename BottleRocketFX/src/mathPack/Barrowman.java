@@ -1,6 +1,7 @@
 package mathPack;
 
 import src.GUIpack.CreateRocket;
+import src.GUIpack.RocketCreation;
 import javafx.scene.Group;
 
 /**
@@ -38,7 +39,7 @@ public class Barrowman {
 	public static final String square = "sq";
 
 	public static final Double cone = .50;
-	public static final double toMeasurements = (1.25) / 150;
+	public static final double toMeasurements = (1.25) /(150);
 	public static final double toPixels = 1.0/toMeasurements;
 	
 	double cft = toMeasurements;
