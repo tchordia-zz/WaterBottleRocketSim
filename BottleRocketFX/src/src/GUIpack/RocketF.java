@@ -144,37 +144,9 @@ public class RocketF extends JFrame {
 		// System.out.println(user);
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args)
+	{
 		RocketF frame = new RocketF();
-		// JFrame j = new JFrame();
-		// JEditorPane editorPane;
-		//
-		// editorPane = new JEditorPane();
-		// editorPane.setEditable(false);
-		//
-		// URL helpURL = null;
-		// helpURL =
-		// HTMLFile.class.getResource("/com/htmlPack/RocketExplanation.html");
-		// //URL("RocketExplanation.html");
-		// if (helpURL != null) {
-		// try {
-		// editorPane.setPage(helpURL);
-		// } catch (IOException e) {
-		// System.err.println("Attempted to read a bad URL: " + helpURL);
-		// }
-		// } else {
-		// System.err.println("Couldn't find file: TextSamplerDemoHelp.html");
-		// }
-		//
-		// //Put the editor pane in a scroll pane.
-		// JScrollPane s = new JScrollPane();
-		// s.setVerticalScrollBarPolicy(
-		// JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		// s.setPreferredSize(new Dimension(250, 145));
-		// s.setMinimumSize(new Dimension(10, 10));
-		//
-
 	}
 
 	public class WPanel extends WelcomePanel {
