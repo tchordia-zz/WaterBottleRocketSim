@@ -96,8 +96,6 @@ public class RMenu extends JMenuBar implements ActionListener {
 
 		// Finally, add all the menus to the menu bar.
 		add(fileMenu);
-//		add(editMenu);
-//		add(otherMenu);
 	}
 	
 	public void userChangeFunction(ActionEvent e)
