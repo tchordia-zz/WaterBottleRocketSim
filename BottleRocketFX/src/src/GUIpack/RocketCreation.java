@@ -15,7 +15,7 @@ import javax.swing.event.ChangeEvent;
 public class RocketCreation extends JPanel{
 	
 	RocketSliders2 sliders = new RocketSliders2();
-	
+	//public static double scale = 1;
 	CreateRocket rockett = new CreateRocket();
 	FullRocket f = new FullRocket(rockett, null, null);
 	SavePanel save = new SavePanel();
@@ -26,8 +26,8 @@ public class RocketCreation extends JPanel{
 		setLayout(new GridLayout());
 		add(sliders);
 		add(rockett);
-		add(save);
-		add(load);
+//		add(save);
+//		add(load);
 	}
 	
 	
@@ -46,7 +46,7 @@ public class RocketCreation extends JPanel{
 		frame.setVisible(true);
 	}
 	
-	private class RocketSliders2 extends RocketSliders
+	public class RocketSliders2 extends RocketSliders
 	{
 		@Override
 		public void stateChanged(ChangeEvent arg0) {
@@ -60,22 +60,22 @@ public class RocketCreation extends JPanel{
 			System.out.println("Ct: " + Ct.getValue());
 			System.out.println(": " + Ct.getValue());
 			System.out.println("Nz: " + Nz.getValue());
-			
+			int scale = 1;
 			rockett.updateRocket(
-					Ln.getValue(),
-					D.getValue(),
-					Df.getValue(),
-					Dr.getValue(),
-					Lt.getValue(),
-					Xp.getValue(),
-					Cr.getValue(),
-					Ct.getValue(),
-					S.getValue(),
-					Lf.getValue(),
-					R.getValue(),
-					Xr.getValue(),
-					Xb.getValue(),
-					Nz.getValue());
+					Ln.getValue()* scale,
+					D.getValue()* scale,
+					Df.getValue()* scale,
+					Dr.getValue()* scale,
+					Lt.getValue()* scale,
+					Xp.getValue()* scale,
+					Cr.getValue()* scale,
+					Ct.getValue()* scale,
+					S.getValue()* scale,
+					Lf.getValue()* scale,
+					R.getValue()* scale,
+					Xr.getValue()* scale,
+					Xb.getValue()* scale,
+					Nz.getValue() * scale);
 		}
 	}
 	

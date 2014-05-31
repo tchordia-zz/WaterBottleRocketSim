@@ -238,7 +238,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 		bottleRocket.setLayoutX(x + 25);
 		bottleRocket
 				.setLayoutY(y
-						- ((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+						- ((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct)  - 30);
 
 		minX = bottleRocket.getBoundsInParent().getMinX();
 		minY = bottleRocket.getBoundsInParent().getMinY();
@@ -287,14 +287,15 @@ public class ProjectileBall extends JPanel implements Serializable {
 		double height = yInit - event.getSceneY();
 		double width = event.getSceneX();
 		double hypotenuse = Math.sqrt(height * height + width * width);
-
+		width = Math.max(width,0);
+		height = (width == 0) ? hypotenuse * height/Math.abs(height):height;
 		magnitude = hypotenuse / 4;
 		cosineTheta = width / hypotenuse;
 		sineTheta = height / hypotenuse;
 
 		System.out.println("Mouse Clicked");
 		System.out.println(height);
-		System.out.println(width);
+		System.out.println("width" + width);
 		System.out.println(hypotenuse);
 		System.out.println("Cosine Theta: " + cosineTheta);
 		System.out.println("Sine Theta: " + sineTheta);
@@ -353,7 +354,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 		bottleRocket.setTranslateX(0);
 		bottleRocket.setTranslateY(0);
 		bottleRocket.setLayoutX(x + 25);
-		bottleRocket.setLayoutY(y-((rocket.totalBodyLength/ 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+		bottleRocket.setLayoutY(y-((rocket.totalBodyLength/ 2) - rocket.Cr + rocket.Xr + rocket.Ct) - 30);
 
 
 		// sets up the square
@@ -630,7 +631,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 					bottleRocket.setLayoutY(yInit
 							- ((rocket.totalBodyLength / 2) - rocket.Cr
 									+ rocket.Xr + rocket.Ct)
-							+ bottleRocket.getTranslateY());
+							+ bottleRocket.getTranslateY() - 30);
 					bottleRocket.setTranslateX(0);
 					bottleRocket.setTranslateY(0);
 
@@ -740,6 +741,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 	public void loadNewRocket(CreateRocket r)
 	{
 		rocket = r;
+		
 		Platform.runLater(new Runnable() {
 			public void run() {
 				Scene scene = createScene();

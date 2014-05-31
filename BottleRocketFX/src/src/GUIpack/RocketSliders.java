@@ -77,7 +77,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		
 		Ln = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 100, 50);
 
-		Ln.setMajorTickSpacing(1);
+		Ln.setMajorTickSpacing(20);
 
 		Ln.setMinorTickSpacing(1);
 
@@ -93,7 +93,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 
 		D = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 50, 20);
 
-		D.setMajorTickSpacing(1);
+		D.setMajorTickSpacing(10);
 
 		D.setMinorTickSpacing(1);
 
@@ -136,9 +136,9 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		DrPanel.add(Dr);
 		DrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Diameter at Rear Transition"));
 		
-		Lt = new MinimalSlider(MinimalSlider.HORIZONTAL, 1, 100, 40);
+		Lt = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 100, 40);
 
-		Lt.setMajorTickSpacing(10);
+		Lt.setMajorTickSpacing(20);
 
 		Lt.setMinorTickSpacing(1);
 
@@ -154,7 +154,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 
 		Xp = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 200, 100);
 
-		Xp.setMajorTickSpacing(1);
+		Xp.setMajorTickSpacing(40);
 
 		Xp.setMinorTickSpacing(1);
 
@@ -171,7 +171,7 @@ public class RocketSliders extends JPanel implements ChangeListener {
 
 		Cr = new MinimalSlider(MinimalSlider.HORIZONTAL, 0, 50, 40);// divide by 100
 		
-		Cr.setMajorTickSpacing(1);
+		Cr.setMajorTickSpacing(10);
 
 		Cr.setMinorTickSpacing(1);
 
@@ -185,9 +185,9 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		CrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin root chord"));
 		
 		
-		Ct = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20); // divide by
+		Ct = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 50, 20); // divide by
 																			  // 100
-		Ct.setMajorTickSpacing(1);
+		Ct.setMajorTickSpacing(10);
 
 		Ct.setMinorTickSpacing(1);
 
@@ -201,9 +201,9 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		CtPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Tip Chord"));
 		
 		
-		S = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20);
+		S = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 50, 20);
 		
-		S.setMajorTickSpacing(1);
+		S.setMajorTickSpacing(10);
 
 		S.setMinorTickSpacing(1);
 
@@ -217,9 +217,9 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		SPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Fin Semi Span"));
 		
 		
-		Lf = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20);
+		Lf = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 50, 20);
 		
-		Lf.setMajorTickSpacing(1);
+		Lf.setMajorTickSpacing(10);
 
 		Lf.setMinorTickSpacing(1);
 
@@ -232,9 +232,9 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		LfPanel.add(Lf);
 		LfPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Length of Fin Mid-Chord"));
 		
-		R = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 20);
+		R = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 50, 20);
 		
-		R.setMajorTickSpacing(1);
+		R.setMajorTickSpacing(10);
 
 		R.setMinorTickSpacing(1);
 
@@ -247,9 +247,9 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		RPanel.add(R);
 		RPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Radius of Body at Aft End"));
 		
-		Xr = new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 50, 40);
+		Xr = new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 50, 40);
 		
-		Xr.setMajorTickSpacing(1);
+		Xr.setMajorTickSpacing(10);
 
 		Xr.setMinorTickSpacing(1);
 
@@ -262,9 +262,9 @@ public class RocketSliders extends JPanel implements ChangeListener {
 		XrPanel.add(Xr);
 		XrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Edge and Fin Tip Leading Edge"));
 		
-		Xb= new MinimalSlider (MinimalSlider.HORIZONTAL, 1, 300, 200);
+		Xb= new MinimalSlider (MinimalSlider.HORIZONTAL, 0, 300, 200);
 		
-		Xb.setMajorTickSpacing(1);
+		Xb.setMajorTickSpacing(60);
 
 		Xb.setMinorTickSpacing(1);
 

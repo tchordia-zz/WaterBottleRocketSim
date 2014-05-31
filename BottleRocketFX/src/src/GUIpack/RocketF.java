@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 import javafx.application.Platform;
 
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
@@ -489,15 +490,34 @@ public class RocketF extends JFrame {
 		@Override
 		public void rocketChangeFunction(ActionEvent e) {
 			try {
+				
+				double[] ds = DataSave
+						.retrieve(user, e.getActionCommand()).getCreateRocket()
+						.getValues();
+				
 				System.out.println(DataSave
 						.retrieve(user, e.getActionCommand()).getCreateRocket()
 						.getValues());
-				rBuilder.rockett.updateRocket(DataSave
-						.retrieve(user, e.getActionCommand()).getCreateRocket()
-						.getValues());
-				targetpanel.loadNewRocket(DataSave
-						.retrieve(user, e.getActionCommand()).getCreateRocket()
-						.getValues());
+				
+				rBuilder.rockett.updateRocket(ds);
+
+				targetpanel.loadNewRocket(ds);
+				
+				RocketSliders.Ln.setValue((int)ds[0]);
+				RocketSliders.D.setValue((int)ds[1]);
+				RocketSliders.Df.setValue((int)ds[2]);
+				RocketSliders.Dr.setValue((int)ds[3]);
+				RocketSliders.Lt.setValue((int)ds[4]);
+				RocketSliders.Xp.setValue((int)ds[5]);
+				RocketSliders.Cr.setValue((int)ds[6]);
+				RocketSliders.Ct.setValue((int)ds[7]);
+				RocketSliders.S.setValue((int)ds[8]);
+				RocketSliders.Lf.setValue((int)ds[9]);
+				RocketSliders.R.setValue((int)ds[10]);
+				RocketSliders.Xr.setValue((int)ds[11]);
+				RocketSliders.Xb.setValue((int)ds[12]);
+				RocketSliders.Nz.setValue((int)ds[13]);
+		
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -515,9 +535,13 @@ public class RocketF extends JFrame {
 			} else if (e.getActionCommand().equals("Save")) {
 				
 				String b =  JOptionPane.showInputDialog(this, "Enter Savename:");
-				DataSave.saveAs (RocketF.user, b, new FullRocket(targetpanel.apanel.rocket,null,null));
+				DataSave.saveAs (RocketF.user, b, new FullRocket(rBuilder.rockett,null,null));
 				updateRocketList();
 				
+//				rBuilder.load.pane.remove(rBuilder.load.combo);
+//				rBuilder.load.combo = new JComboBox(DataSave.getList(user, "hey"));
+//				rBuilder.load.pane.add(rBuilder.load.combo);
+//				
 			} else if (e.getActionCommand().equals("Load")) {
 				LoadWindow s = new LoadWindow(user);
 			} else if (abc.equals("Target Mode")) {

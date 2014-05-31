@@ -541,60 +541,62 @@ public class CreateRocket extends JPanel implements Serializable {
 				aftBodyBottom + 5);
 
 		root.getChildren().addAll(nozzleLeft, nozzleRight, nozzleBottom);
+		
+		double position = 400;
 
-		aftRightSide.setLayoutX(200);
-		aftRightSide.setLayoutY(200);
+		aftRightSide.setLayoutX(position);
+		aftRightSide.setLayoutY(position);
 
-		aftLeftSide.setLayoutX(200);
-		aftLeftSide.setLayoutY(200);
+		aftLeftSide.setLayoutX(position);
+		aftLeftSide.setLayoutY(position);
 
-		aftBottom.setLayoutX(200);
-		aftBottom.setLayoutY(200);
+		aftBottom.setLayoutX(position);
+		aftBottom.setLayoutY(position);
 
-		bottomTransitionLeft.setLayoutX(200);
-		bottomTransitionLeft.setLayoutY(200);
+		bottomTransitionLeft.setLayoutX(position);
+		bottomTransitionLeft.setLayoutY(position);
 
-		bottomTransitionRight.setLayoutX(200);
-		bottomTransitionRight.setLayoutY(200);
+		bottomTransitionRight.setLayoutX(position);
+		bottomTransitionRight.setLayoutY(position);
 
-		topTransitionLeft.setLayoutX(200);
-		topTransitionLeft.setLayoutY(200);
+		topTransitionLeft.setLayoutX(position);
+		topTransitionLeft.setLayoutY(position);
 
-		topTransitionRight.setLayoutX(200);
-		topTransitionRight.setLayoutY(200);
+		topTransitionRight.setLayoutX(position);
+		topTransitionRight.setLayoutY(position);
 
-		coneLeft.setLayoutX(200);
-		coneLeft.setLayoutY(200);
+		coneLeft.setLayoutX(position);
+		coneLeft.setLayoutY(position);
 
-		coneRight.setLayoutX(200);
-		coneRight.setLayoutY(200);
+		coneRight.setLayoutX(position);
+		coneRight.setLayoutY(position);
 
-		leftFinTop.setLayoutX(200);
-		leftFinTop.setLayoutY(200);
+		leftFinTop.setLayoutX(position);
+		leftFinTop.setLayoutY(position);
 
-		leftFinLeft.setLayoutX(200);
-		leftFinLeft.setLayoutY(200);
+		leftFinLeft.setLayoutX(position);
+		leftFinLeft.setLayoutY(position);
 
-		leftFinBottom.setLayoutX(200);
-		leftFinBottom.setLayoutY(200);
+		leftFinBottom.setLayoutX(position);
+		leftFinBottom.setLayoutY(position);
 
-		rightFinTop.setLayoutX(200);
-		rightFinTop.setLayoutY(200);
+		rightFinTop.setLayoutX(position);
+		rightFinTop.setLayoutY(position);
 
-		rightFinRight.setLayoutX(200);
-		rightFinRight.setLayoutY(200);
+		rightFinRight.setLayoutX(position);
+		rightFinRight.setLayoutY(position);
 
-		rightFinBottom.setLayoutX(200);
-		rightFinBottom.setLayoutY(200);
+		rightFinBottom.setLayoutX(position);
+		rightFinBottom.setLayoutY(position);
 
-		nozzleLeft.setLayoutX(200);
-		nozzleLeft.setLayoutY(200);
+		nozzleLeft.setLayoutX(position);
+		nozzleLeft.setLayoutY(position);
 
-		nozzleRight.setLayoutX(200);
-		nozzleRight.setLayoutY(200);
+		nozzleRight.setLayoutX(position);
+		nozzleRight.setLayoutY(position);
 
-		nozzleBottom.setLayoutX(200);
-		nozzleBottom.setLayoutY(200);
+		nozzleBottom.setLayoutX(position);
+		nozzleBottom.setLayoutY(position);
 
 		// !!!!!!!!!!!
 
@@ -610,19 +612,10 @@ public class CreateRocket extends JPanel implements Serializable {
 
 		point = new Circle();
 
-		Button btn = new Button();
-		btn.setLayoutX(200);
-		btn.setLayoutX(200);
-		btn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				running = !running;
-			}
-		});
-
+		
 		whoops.getChildren().addAll(parentBoundingLine);
 
-		root.getChildren().addAll(point, btn, whoops);
+		root.getChildren().addAll(point, whoops);
 
 		double phi = Math.atan((Df) / Ln) * 180 / Math.PI;
 		fallingAngle = 90 - (180 - entireRocket.getRotate());
@@ -870,7 +863,7 @@ public class CreateRocket extends JPanel implements Serializable {
 		}
 		return entireRocket;
 	}
-
+	
 	public void updateRocket(double noseLength, double noseBaseDiameter,
 			double diameterAtFrontTransition, double diameterAtRearTransition,
 			double lengthOfTransition, double distanceFromNoseToTransition,
@@ -1013,6 +1006,7 @@ public class CreateRocket extends JPanel implements Serializable {
 		});
 	}
 
+
 	public void updateRocket(double v[]) {
 
 		Ln = v[0];
@@ -1052,7 +1046,6 @@ public class CreateRocket extends JPanel implements Serializable {
 		rightFinTip = x + (Dr + S);
 
 		Platform.runLater(new Runnable() {
-			@Override
 			public void run() {
 				aftRightSide.setStartX(aftBodyRightSide);
 				aftRightSide.setStartY(aftBodyTop);
