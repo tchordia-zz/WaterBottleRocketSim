@@ -158,7 +158,7 @@ public class VerticalBall extends JPanel implements Serializable {
 		bottleRocket.setTranslateX(0);
 		bottleRocket.setTranslateY(0);
 		bottleRocket.setLayoutX(x + 25);
-		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct) -20);
 
 		System.out.println("Circle Height: "
 				+ (rocket.Xb + rocket.Xr + rocket.Ct));
@@ -205,6 +205,7 @@ public class VerticalBall extends JPanel implements Serializable {
 				fxPanel.setScene(scene);
 			}
 		});
+		resetBall();
 	}
 
 	/**
@@ -220,7 +221,7 @@ public class VerticalBall extends JPanel implements Serializable {
 		falling = false;
 		secondPointFalling = false;
 		angle = 0;
-		//bottleRocket.setRotate(angle);
+		bottleRocket.setRotate(angle);
 		timer.stop();
 		
 		
@@ -240,7 +241,7 @@ public class VerticalBall extends JPanel implements Serializable {
 		bottleRocket.setLayoutX(x + 25);
 		bottleRocket
 				.setLayoutY(y
-						- ((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+						- ((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct) - 20);
 
 		minX = bottleRocket.getBoundsInParent().getMinX();
 		minY = bottleRocket.getBoundsInParent().getMinY();
@@ -352,7 +353,7 @@ public class VerticalBall extends JPanel implements Serializable {
 		bottleRocket.setTranslateX(0);
 		bottleRocket.setTranslateY(0);
 		bottleRocket.setLayoutX(x + 25);
-		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct) - 20);
 
 		// sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
@@ -459,6 +460,7 @@ public class VerticalBall extends JPanel implements Serializable {
 										- buttonText.getBoundsInLocal()
 												.getWidth() / 2);
 								orangeColored = true;
+								resetBall();
 							}
 						} else if (orangeColored == true
 								&& timerRunning == false) {
@@ -563,7 +565,7 @@ public class VerticalBall extends JPanel implements Serializable {
 					System.out.println("Current X: " + x);
 					System.out.println("Current Y: " + y);
 
-					//bottleRocket.setRotate(angle);
+					bottleRocket.setRotate(angle);
 
 					minX = bottleRocket.getBoundsInParent().getMinX();
 					minY = bottleRocket.getBoundsInParent().getMinY();
@@ -636,7 +638,7 @@ public class VerticalBall extends JPanel implements Serializable {
 					bottleRocket.setLayoutY(yInit
 							- ((rocket.totalBodyLength / 2) - rocket.Cr
 									+ rocket.Xr + rocket.Ct)
-							+ bottleRocket.getTranslateY());
+							+ bottleRocket.getTranslateY() -20);
 					bottleRocket.setTranslateX(0);
 					bottleRocket.setTranslateY(0);
 

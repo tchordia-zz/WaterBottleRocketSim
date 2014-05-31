@@ -462,6 +462,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 										- buttonText.getBoundsInLocal()
 												.getWidth() / 2);
 								orangeColored = true;
+								resetBall();
 							}
 						} else if (orangeColored == true
 								&& timerRunning == false) {

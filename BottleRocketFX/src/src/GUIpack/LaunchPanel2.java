@@ -25,6 +25,7 @@ public class LaunchPanel2 extends JPanel {
 	public VerticalBall apanel;
 	AngularLaunch rocket2;
 	GraphPanel graph = new GraphPanel(rocket2);
+	double launcha = 60;
 	private static final long serialVersionUID = 1L;
 
 	public LaunchPanel2() {
@@ -50,8 +51,8 @@ public class LaunchPanel2 extends JPanel {
 					spanel.airPressure.getValue() * 10000, Barrowman.cone,
 					(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df
 							: apanel.rocket.Dr, spanel.nozzleRadius.getValue()
-							/ (500 + 0.0), 89);
-			graph.updaterr(rocket2);
+							/ (500 + 0.0), launcha);
+			graph.updaterr(rocket2.copy());
 
 		spanel.setBackground(Color.white);
 		add(spanel);
@@ -79,16 +80,16 @@ public class LaunchPanel2 extends JPanel {
         		super.resetBall();
     			rocket2 = new AngularLaunch(
     	    			0,
-    	    			spanel.massWater.getValue()/(10 + 0.0),
+    	    			SliderPanel2.massWater.getValue()/(10 + 0.0),
     	    			apanel.rocket.barrow.volume(),
-    	    			spanel.airPressure.getValue()*10000,
+    	    			SliderPanel2.airPressure.getValue()*10000,
     	    			Barrowman.cone,
     	    			(apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df:apanel.rocket.Dr,
     	    			spanel.nozzleRadius.getValue()/(500 + 0.0),
-    	    		89);
+    	    		launcha);
     			
     			RocketMath.printStats(rocket2);
-    			graph.updaterr(rocket2);
+    			graph.updaterr(rocket2.copy());
         	}
        
         	public void angleAdjust(MouseEvent e)
@@ -104,9 +105,10 @@ public class LaunchPanel2 extends JPanel {
     	    			Barrowman.cone,
     	    			((apanel.rocket.Df > apanel.rocket.Dr) ? apanel.rocket.Df :apanel.rocket.Dr) * Barrowman.toMeasurements,
     	    			apanel.rocket.Nz*Barrowman.toMeasurements,
-    	    			89);
+    	    			launcha);
     			System.out.println(rocket2.angle);
-    			graph.updaterr(rocket2);
+    			RocketMath.printStats(rocket2.copy());
+    			graph.updaterr(rocket2.copy());
         	}
 
         	public void mathClass(double t)
@@ -144,7 +146,7 @@ public class LaunchPanel2 extends JPanel {
 							: apanel.rocket.Dr, spanel.nozzleRadius.getValue()
 							/ (500 + 0.0), Math.toDegrees(Math
 							.asin(VerticalBall.sineTheta)));
-			graph.updaterr(rocket2);
+			graph.updaterr(rocket2.copy());
 
 		}
 	}

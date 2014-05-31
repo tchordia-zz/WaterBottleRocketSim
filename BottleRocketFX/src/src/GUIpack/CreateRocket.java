@@ -841,7 +841,8 @@ public class CreateRocket extends JPanel implements Serializable {
 
 		nozzleBottom.setLayoutX(0);
 		nozzleBottom.setLayoutY(0);
-
+		Platform.runLater(new Runnable(){
+			public void run(){
 		if (entireRocket.getChildren().isEmpty()) {
 			entireRocket.getChildren().addAll(aftRightSide, aftLeftSide,
 					aftBottom);// 0-2
@@ -861,6 +862,9 @@ public class CreateRocket extends JPanel implements Serializable {
 			entireRocket.getChildren().addAll(nozzleRight, nozzleLeft,
 					nozzleBottom);
 		}
+		}
+		});
+		RocketF.sleep(10);
 		return entireRocket;
 	}
 	
