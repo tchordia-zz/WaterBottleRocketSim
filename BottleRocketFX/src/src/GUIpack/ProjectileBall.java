@@ -118,7 +118,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 	final Text buttonText = new Text(0, windowHeight + 150, "Launch!");
 	final Rectangle button = new Rectangle(100, 25,
 			javafx.scene.paint.Color.web("#FFCC40"));
-	double rocketFactor = .4;
+	public static double rocketFactor = .4;
 	CreateRocket rocket = new CreateRocket(rocketFactor);
 
 	double fallingRotation = 0;
@@ -156,10 +156,8 @@ public class ProjectileBall extends JPanel implements Serializable {
 		bottleRocket = rocket.getRocket();
 		
 		bottleRocket.setTranslateX(0);
-		bottleRocket.setTranslateY(0);
-		bottleRocket.setLayoutX(x + 25);
-		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
-
+		bottleRocket.setTranslateY(0);		
+		
 		System.out.println("Circle Height: "
 				+ (rocket.Xb + rocket.Xr + rocket.Ct));
 		System.out
@@ -347,12 +345,16 @@ public class ProjectileBall extends JPanel implements Serializable {
 		Scene scene = new Scene(root, javafx.scene.paint.Color.WHITE);
 		Group group = new Group();
 		
+		x = 10;
+		y = windowHeight;
+		
 		bottleRocket = rocket.getRocket();
 		
 		bottleRocket.setTranslateX(0);
 		bottleRocket.setTranslateY(0);
 		bottleRocket.setLayoutX(x + 25);
-		bottleRocket.setLayoutY(y-((rocket.totalBodyLength / 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+		bottleRocket.setLayoutY(y-((rocket.totalBodyLength/ 2) - rocket.Cr + rocket.Xr + rocket.Ct));
+
 
 		// sets up the square
 		square = new Rectangle(50, 50, javafx.scene.paint.Color.web("#FF6E40"));
@@ -519,7 +521,7 @@ public class ProjectileBall extends JPanel implements Serializable {
 						}
 					}
 				});
-		// checks if the cursor is in the circle
+		// checks if the cursor is in the circlef
 		bottleRocket.addEventFilter(MouseEvent.MOUSE_ENTERED_TARGET,
 				new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent event) {
@@ -624,14 +626,6 @@ public class ProjectileBall extends JPanel implements Serializable {
 												.getMaxY() - ground
 												.getBoundsInLocal().getMinY()));
 					}
-					// else
-					// {
-					// bottleRocket
-					// .setTranslateY(bottleRocket.getTranslateY()
-					// - (bottleRocket.getBoundsInParent()
-					// .getMaxY() - square
-					// .getBoundsInLocal().getMinY()));
-					// }
 					bottleRocket.setLayoutX(bottleRocket.getTranslateX() + 35);
 					bottleRocket.setLayoutY(yInit
 							- ((rocket.totalBodyLength / 2) - rocket.Cr

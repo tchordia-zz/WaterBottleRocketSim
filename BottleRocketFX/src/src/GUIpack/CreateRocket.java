@@ -260,21 +260,26 @@ public class CreateRocket extends JPanel implements Serializable {
 		barrow.volume();
 	}
 
-	CreateRocket(double[] v) {
-		Ln = v[0];
-		D = v[1];
-		Df = v[2];
-		Dr = v[3];
-		Lt = v[4];
-		Xp = v[5];
-		Cr = v[6];
-		Ct = v[7];
-		S = v[8];
-		Lf = v[9];
-		R = v[10];
-		Xr = v[11];
-		Xb = v[12];
-		Nz = v[13];
+	CreateRocket(double[] v)
+	{
+		this(v,1);
+	}
+	
+	CreateRocket(double[] v, double scale) {
+		Ln = v[0]* scale;
+		D = v[1]* scale;
+		Df = v[2]* scale;
+		Dr = v[3]* scale;
+		Lt = v[4]* scale;
+		Xp = v[5]* scale;
+		Cr = v[6]* scale;
+		Ct = v[7]* scale;
+		S = v[8]* scale;
+		Lf = v[9]* scale;
+		R = v[10]* scale;
+		Xr = v[11]* scale;
+		Xb = v[12]* scale;
+		Nz = v[13]* scale;
 		values = v;
 		totalBodyLength = Xb + Cr;
 
@@ -789,6 +794,60 @@ public class CreateRocket extends JPanel implements Serializable {
 	public Group getRocket() {
 
 		System.out.println("getting rocket");
+		
+		aftRightSide.setLayoutX(0);
+		aftRightSide.setLayoutY(0);
+
+		aftLeftSide.setLayoutX(0);
+		aftLeftSide.setLayoutY(0);
+
+		aftBottom.setLayoutX(0);
+		aftBottom.setLayoutY(0);
+
+		bottomTransitionLeft.setLayoutX(0);
+		bottomTransitionLeft.setLayoutY(0);
+
+		bottomTransitionRight.setLayoutX(0);
+		bottomTransitionRight.setLayoutY(0);
+
+		topTransitionLeft.setLayoutX(0);
+		topTransitionLeft.setLayoutY(0);
+
+		topTransitionRight.setLayoutX(0);
+		topTransitionRight.setLayoutY(0);
+
+		coneLeft.setLayoutX(0);
+		coneLeft.setLayoutY(0);
+
+		coneRight.setLayoutX(0);
+		coneRight.setLayoutY(0);
+
+		leftFinTop.setLayoutX(0);
+		leftFinTop.setLayoutY(0);
+
+		leftFinLeft.setLayoutX(0);
+		leftFinLeft.setLayoutY(0);
+
+		leftFinBottom.setLayoutX(0);
+		leftFinBottom.setLayoutY(0);
+
+		rightFinTop.setLayoutX(0);
+		rightFinTop.setLayoutY(0);
+
+		rightFinRight.setLayoutX(0);
+		rightFinRight.setLayoutY(0);
+
+		rightFinBottom.setLayoutX(0);
+		rightFinBottom.setLayoutY(0);
+
+		nozzleLeft.setLayoutX(0);
+		nozzleLeft.setLayoutY(0);
+
+		nozzleRight.setLayoutX(0);
+		nozzleRight.setLayoutY(0);
+
+		nozzleBottom.setLayoutX(0);
+		nozzleBottom.setLayoutY(0);
 
 		if (entireRocket.getChildren().isEmpty()) {
 			entireRocket.getChildren().addAll(aftRightSide, aftLeftSide,

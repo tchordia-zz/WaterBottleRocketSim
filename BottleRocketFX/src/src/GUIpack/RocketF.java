@@ -8,14 +8,20 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.Scanner;
 
+import javafx.application.Platform;
+
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
@@ -40,7 +46,7 @@ public class RocketF extends JFrame {
 	public MenuP menubar = new MenuP();
 	public JPanel htmlpanel = new JPanel();
 	public JPanel pdfpanel = new JPanel();
-	public RocketFAnimated targetpanel = new RocketFAnimated(); 
+	public RocketFAnimated targetpanel = new RocketFAnimated();
 	HTMLFile html = new HTMLFile("st");
 	public RocketCreation rBuilder = new RocketCreation();
 	public static RocketMath mRocket;
@@ -53,8 +59,8 @@ public class RocketF extends JFrame {
 
 	public RocketF() {
 		super();
-		
-		x.loopAudio(Music.riskyplan);
+
+		// x.loopAudio(Music.riskyplan);
 		UIManager.put(Options.USE_SYSTEM_FONTS_APP_KEY, Boolean.TRUE);
 		Options.setDefaultIconSize(new Dimension(18, 18));
 
@@ -111,16 +117,20 @@ public class RocketF extends JFrame {
 															// http://www.icesoft.org/JForum/posts/list/20535.page#sthash.cagw5UDN.dpuf
 	}
 
-//	public void mInit() {
-//		removeAll();
-//		// add(cpanel,BorderLayout.NORTH);
-//		add(mpanel);
-//		repaint();
-//	}
+	// public void mInit() {
+	// removeAll();
+	// // add(cpanel,BorderLayout.NORTH);
+	// add(mpanel);
+	// repaint();
+	// }
 
 	public void removeAll() {
 		remove(wpanel);
+<<<<<<< HEAD
 		remove(launchpanel);
+=======
+		// remove(mpanel);
+>>>>>>> 72e17f7d8ed0999754353dc02d7f44629e7c7700
 		remove(rBuilder);
 		remove(htmlpanel);
 		remove(pdfpanel);
@@ -202,7 +212,11 @@ public class RocketF extends JFrame {
 			if (e.getActionCommand().equals("launch")) {
 				System.out.println(e.getActionCommand());
 
+<<<<<<< HEAD
 				switchTo(launchpanel);
+=======
+				// mInit();
+>>>>>>> 72e17f7d8ed0999754353dc02d7f44629e7c7700
 
 			} else if (e.getActionCommand().equals("user")) {
 				user = j.getText();
@@ -223,10 +237,8 @@ public class RocketF extends JFrame {
 			} else if (e.getActionCommand().equals("exp")) {
 				switchTo(htmlpanel);
 				// switchTo(pdfpanel);
-				
-			}
-			else if (e.getActionCommand().equals("target"))
-			{
+
+			} else if (e.getActionCommand().equals("target")) {
 				switchTo(targetpanel);
 			}
 			pane.repaint();
@@ -255,8 +267,6 @@ public class RocketF extends JFrame {
 		}
 
 	}
-
-	
 
 	public static void setRocket(RocketMath r) {
 		RocketF.mRocket = r;
@@ -297,42 +307,37 @@ public class RocketF extends JFrame {
 					if (HyperlinkEvent.EventType.ACTIVATED.equals(hle
 							.getEventType())) {
 						System.out.println(hle.getURL().toString());
-						if (hle.getURL().toString().contains("pdf"))
-						{
+						if (hle.getURL().toString().contains("pdf")) {
 							openPdf(hle.getURL().toString());
-						}
-						else{
-						htmlpanel.remove(html);
-						htmlpanel.repaint();
-						// sleep(1000);
-						html = new HTMLFile(hle.getURL().toString());
+						} else {
+							htmlpanel.remove(html);
+							htmlpanel.repaint();
+							// sleep(1000);
+							html = new HTMLFile(hle.getURL().toString());
 
-						htmlpanel.add(html);
-						htmlpanel.repaint();
-						htmlpanel.setPreferredSize(new Dimension(getWidth(),
-								getHeight()));
-						html.setPreferredSize(new Dimension(getWidth(),
-								getHeight()));
-						switchTo(htmlpanel);
-						html.setVisible(true);
+							htmlpanel.add(html);
+							htmlpanel.repaint();
+							htmlpanel.setPreferredSize(new Dimension(
+									getWidth(), getHeight()));
+							html.setPreferredSize(new Dimension(getWidth(),
+									getHeight()));
+							switchTo(htmlpanel);
+							html.setVisible(true);
 						}
 					}
 				}
 			});
 		}
-		public void openPdf(String filename)
-		{
+
+		public void openPdf(String filename) {
 			try {
 				filename = filename.substring(5);
 				File pdfFile;
-				if (!filename.contains("src"))
-				{
-				 pdfFile = new File("src" + filename);
-				 System.out.println("filename is iii " + filename);
-				}
-				else
-				{
-					pdfFile = new File( filename);
+				if (!filename.contains("src")) {
+					pdfFile = new File("src" + filename);
+					System.out.println("filename is iii " + filename);
+				} else {
+					pdfFile = new File(filename);
 				}
 				if (pdfFile.exists()) {
 
@@ -354,6 +359,7 @@ public class RocketF extends JFrame {
 				ex.printStackTrace();
 			}
 		}
+
 		public void setUrl(String str) {
 			helpURL = HTMLFile.class.getResource(str);
 			// URL("RocketExplanation.html");
@@ -390,15 +396,49 @@ public class RocketF extends JFrame {
 		}
 	}
 
+	public class SaveDialog extends JOptionPane {
+		public SaveWindow s;
+		FullRocket f;
+		public SaveDialog() {
+			super();
+			setSize(100,100);
+			f = new FullRocket(targetpanel.apanel.rocket,null,null);
+			s = new SaveWindow(f, RocketF.user) {
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					String a = e.getActionCommand();
+//					System.out.println(a);
+//					if (a.equals("Save")) {
+//						System.out.println("Users fools: " + user);
+//						DataSave.saveAs(user, savename, rocket);
+//						save.setEnabled(false);
+//						text.setText("");
+//					} else {
+//						savename = a;
+//						if (DataSave.checkExists(user, savename)) {
+//							save.setText("Name exists. Click to overwrite");
+//						}
+//						if (savename.length() > 0) {
+//							save.setEnabled(true);
+//						}
+//					}
+//				}
+			};
+			add(s);
+			//setModal(true);
+			setVisible(true);
+		}
+
+	}
+
 	public class MenuP extends RMenu {
 		public MenuP() {
 			super();
 		}
-		
-		public void updateUsers()
-		{
+
+		public void updateUsers() {
 			subMenu2.removeAll();
-			File usersText = new File("Users" , "UsersList");
+			File usersText = new File("Users", "UsersList");
 			Scanner reader = null;
 			JMenuItem i;
 			try {
@@ -406,27 +446,23 @@ public class RocketF extends JFrame {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			if(usersText.exists())
-			{
-				while(reader.hasNext())
-				{
-				String readin = reader.next();
-				System.out.println(readin);
-				i = new JMenuItem(readin);
-				i.addActionListener(changeUsers);
-				subMenu2.add(i);
+			if (usersText.exists()) {
+				while (reader.hasNext()) {
+					String readin = reader.next();
+					System.out.println(readin);
+					i = new JMenuItem(readin);
+					i.addActionListener(changeUsers);
+					subMenu2.add(i);
 				}
-			}
-			else
-			{
+				subMenu2.add(userbox);
+			} else {
 				System.out.println("List of Users does not exist");
 			}
 		}
-		
-		public void updateRocketList()
-		{
+
+		public void updateRocketList() {
 			String rocket;
-			File usersText = new File("Users" , user +"array.txt");
+			File usersText = new File("Users", user + "array.txt");
 			Scanner reader = null;
 			JMenuItem i;
 			try {
@@ -434,43 +470,44 @@ public class RocketF extends JFrame {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			
-			if(usersText.exists() && reader.hasNext())
-			{
+
+			if (usersText.exists() && reader.hasNext()) {
 				subMenu.removeAll();
-				while(reader.hasNext())
-				{
-				System.out.println(rocket = reader.next());
-				i = new JMenuItem(rocket);
-				i.addActionListener(changeRockets);
-				subMenu.add(i);
+				while (reader.hasNext()) {
+					System.out.println(rocket = reader.next());
+					i = new JMenuItem(rocket);
+					i.addActionListener(changeRockets);
+					subMenu.add(i);
 				}
-			}
-			else
-			{
+			} else {
 				subMenu.removeAll();
 				i = new JMenuItem("User has no rockets.");
 				subMenu.add(i);
 				System.out.println("User has no rockets");
 			}
 		}
-		
+
 		@Override
-		public void userChangeFunction(ActionEvent e)
-		{
+		public void userChangeFunction(ActionEvent e) {
 			user = e.getActionCommand();
 			System.out.println(user);
 			updateRocketList();
 			rBuilder.load.updateCombo(user);
+			updateRocketList();
 		}
-		
+
 		@Override
-		public void rocketChangeFunction(ActionEvent e)
-		{
+		public void rocketChangeFunction(ActionEvent e) {
 			try {
-				System.out.println(DataSave.retrieve(user, e.getActionCommand()).getCreateRocket().getValues());
-				rBuilder.rockett.updateRocket(DataSave.retrieve(user, e.getActionCommand()).getCreateRocket().getValues());
-				targetpanel.loadNewRocket(DataSave.retrieve(user, e.getActionCommand()).getCreateRocket().getValues());
+				System.out.println(DataSave
+						.retrieve(user, e.getActionCommand()).getCreateRocket()
+						.getValues());
+				rBuilder.rockett.updateRocket(DataSave
+						.retrieve(user, e.getActionCommand()).getCreateRocket()
+						.getValues());
+				targetpanel.loadNewRocket(DataSave
+						.retrieve(user, e.getActionCommand()).getCreateRocket()
+						.getValues());
 			} catch (ClassNotFoundException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -480,64 +517,97 @@ public class RocketF extends JFrame {
 
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(e.getActionCommand());
+			String abc = e.getActionCommand();
 			if (e.getActionCommand().equals("Change User")) {
 				switchUser();
 			} else if (e.getActionCommand().equals("Launch Mode")) {
-				//mInit();
-			} else if (e.getActionCommand().equals("Save"))
-			{
+				// mInit();
+			} else if (e.getActionCommand().equals("Save")) {
+				
+				String b =  JOptionPane.showInputDialog(this, "Enter Savename:");
+				DataSave.saveAs (RocketF.user, b, new FullRocket(targetpanel.apanel.rocket,null,null));
+				updateRocketList();
 				
 			} else if (e.getActionCommand().equals("Load")) {
 				LoadWindow s = new LoadWindow(user);
-			}
-			else if (e.getActionCommand().equals("Toggle Music"))
-			{
+			} else if (abc.equals("Target Mode")) {
+				switchTo(targetpanel);
+			} else if (abc.equals("Info")) {
+				switchTo(htmlpanel);
+			} else if (abc.equals("Rocket Builder")) {
+				switchTo(rBuilder);
+			} else if (abc.equals("newuser")) {
+				PrintWriter specOut = null;
+				File usertxt = new File("Users", "UsersList");
+				try {
+					usertxt.createNewFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					specOut = new PrintWriter(new FileWriter(usertxt, true));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+				Scanner scan = null;
+				boolean nameExists = false;
+				try {
+					scan = new Scanner(usertxt);
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+				while (scan.hasNext() && !nameExists) {
+					String name = scan.next();
+					System.out.println("usernames: " + name);
+					nameExists = (name.equals(user));
+				}
+				if (user != null && !nameExists) {
+					specOut.println(user);
+				} else {
+					System.out.println("Name Exists!!!");
+				}
+				specOut.close();
+
+				user = userbox.getText();
+				System.out.println(user);
+				updateUsers();
+				updateRocketList();
+				// rBuilder.load.updateCombo(user);
+			} else if (e.getActionCommand().equals("Toggle Music")) {
 				System.out.println("lol");
-				if (musicon)
-				{
+				if (musicon) {
 					x.stopLoop();
 					musicon = false;
-				}
-				else
-				{
+				} else {
 					x.loopAudio(x.current);
-					musicon=true;
+					musicon = true;
 				}
 				// stop background music
-			}
-			else if (e.getActionCommand().equals("Change Tune"))
-			{
-				if (x.current.equals(x.wonder))
-				{
+			} else if (e.getActionCommand().equals("Change Tune")) {
+				if (x.current.equals(x.wonder)) {
 					x.stopLoop();
 					x.loopAudio(x.numberone);
 					System.out.println("numberone");
-				}
-				else if (x.current.equals(x.numberone))
-				{
+				} else if (x.current.equals(x.numberone)) {
 					x.stopLoop();
 					x.loopAudio(x.riskyplan);
 					System.out.println("riskyplan");
-				}
-				else if (x.current.equals(x.riskyplan))
-				{
+				} else if (x.current.equals(x.riskyplan)) {
 					x.stopLoop();
 					x.loopAudio(x.seamemories);
 					System.out.println("seamemories");
-				}
-				else if (x.current.equals(x.seamemories))
-				{
+				} else if (x.current.equals(x.seamemories)) {
 					x.stopLoop();
 					x.loopAudio(x.wonder);
 					System.out.println("wonder");
 				}
-//				else if (x.current.equals(x.tsunami))
-//				{
-//					x.stopLoop();
-//					x.loopAudio(x.wonder);
-//					System.out.println("wonder");
-//				}
-				
+				// else if (x.current.equals(x.tsunami))
+				// {
+				// x.stopLoop();
+				// x.loopAudio(x.wonder);
+				// System.out.println("wonder");
+				// }
+
 			}
 		}
 	}
