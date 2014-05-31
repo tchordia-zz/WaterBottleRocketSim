@@ -14,7 +14,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayerBuilder;
 import javafx.stage.Stage;
 
-public class AdvancedSound extends Application {
+public class AdvancedSound {
 
 	private static final Media CLICK_AUDIOCLIP = new Media(
 			new File("music.wav").toURI().toString());
